@@ -23,97 +23,69 @@ fetch("assets/data.json")
         }
     })
     .then((data) => {
-        // resultOfSearch.innerHTML = (
-        //     `
-        //      <li class="photographers-items">
-        //      <h2 class="photographer-name">${data.photographers[0].name}</h2>
-        //      <p class="photographer-tagline">${data.photographers[0].tagline}</h2>
-        //      </li>
-        //     `
-        // );
+        console.log(data, data.photographers);
+        let affichage = '<ul class="selected-items">';
 
-        console.log(data);
-        console.log(data.photographers);
-        let affichage = '<ul>';
+        // fonction pour factoriser le nom du fichier .jpg 
         for (let photographer of data.photographers) {
             console.log(photographer);
-            affichage += `<li>${photographer.name}</li>`;
+
+            let urlSrc = (toPascalCase(photographer.name) + '.jpg');
+            console.log(urlSrc);
+        }
+
+
+        for (let photographer of data.photographers) {
+            console.log(photographer);
+            // ajouter du code dans le DOM grâce aux variables de manière factorisée
+            affichage += `<li class="photographers-items">
+            <img class="photographer-portrait" src="images/Sample Photos/Photographers ID Photos/${(toPascalCase(photographer.name) + '.jpg')}"/>
+            <h2 class="photographer-name">${photographer.name}</h2>  
+            <p class="photographer-city">${photographer.city}<hr>${photographer.tagline}
+            <hr>${photographer.price}<hr>${photographer.tags}</p>               
+            </li>`;
         }
         affichage += '</ul>';
         resultOfSearch.innerHTML = affichage;
     })
 
-
-//je vais faire des fonctions pour donner des attributs aux variables de manière factorisée
-class photographerToShow {
-    constructor(name, id, city, country, tags, tagline, price, portrait) {
-        this.name = name
-        this.id = id
-        this.city = city
-        this.country = country
-        this.tags = tags
-        this.tagline = tagline
-        this.price = price
-        this.portrait = portrait
-    }
-    getName() {
-        return this.name
-    }
-    getId() {
-        return this.id
-    }
-    getCity() {
-        return this.city
-    }
-    getCountry() {
-        return this.country
-    }
-    getTags() {
-        return this.tags
-    }
-    getTagline() {
-        return this.tagline
-    }
-    getPrice() {
-        return this.price
-    }
-    getPortrait() {
-        return this.portrait
-    }
+// https://stackoverflow.com/questions/4068573/convert-string-to-pascal-case-aka-uppercamelcase-in-javascript
+function toPascalCase(string) {
+    return `${string}`
+        .replace(new RegExp(/[-_]+/, 'g'), ' ')
+        .replace(new RegExp(/[^\w\s]/, 'g'), '')
+        .replace(
+            new RegExp(/\s+(.)(\w+)/, 'g'),
+            ($1, $2, $3) => `${$2.toUpperCase() + $3.toLowerCase()}`
+        )
+        .replace(new RegExp(/\s/, 'g'), '')
+        .replace(new RegExp(/\w/), s => s.toUpperCase());
 }
+let den = "jean michel dUPuis";
+console.log(toPascalCase(den));
 
-const photoPeople = (new photographerToShow())
-console.log(photoPeople)
 
+// renvoie : "Test"
 //data.photographers.name.forEach(element => console.log(element));
 // remplissage de la page grâce aux données récupérées depuis data.json
-const showPhotographers = async() => {
-    await fetch();
-    // resultOfSearch.innerHTML = (
-    //      photographers.filter(photographer => photographer.name.toLowerCase().includes(searchTerm.toLowerCase()))
-    //      .map(photographers => (
-    //          `
-    //           <li class="photographers-items">
-    //              <img class="photographer-portrait" src="${photographers[0].portrait}"/>
-    //               <h2 class="photographer-name">${photographers[0].name}</h2>
-    //            </li>
-    //             `
-    //      )).join('')
-    ///  );
-};
+//const showPhotographers = async() => {
+//   await fetch();
+// resultOfSearch.innerHTML = (
+//      photographers.filter(photographer => photographer.name.toLowerCase().includes(searchTerm.toLowerCase()))
+//      .map(photographers => (
+//          `
+//           <li class="photographers-items">
+//              <img class="photographer-portrait" src="${photographers[0].portrait}"/>
+//               <h2 class="photographer-name">${photographers[0].name}</h2>
+//            </li>
+//             `
+//      )).join('')
+///  );
+//};
 
 // input setup
-searchInput.addEventListener('input', (e) => {
-    searchTerm = e.target.value;
-    console.log(e.target.value);
-    showPhotographers();
-});
-
-//.then(response => response.json())
-//.then(data => resultOfSearch.innerHTML = data.photographers[0].name); //ok!!!!
-//.then(json => {
-//    this.photographers = json;
-//    console.log(json);
-//    console.log(this.photographers);
-//})
-//.then(data => console.log(data.photographers[0].name)); // ouiiiiiiiii
+//searchInput.addEventListener('input', (e) => {
+//    searchTerm = e.target.value;
+//    console.log(e.target.value);
+//    showPhotographers();
+//});
