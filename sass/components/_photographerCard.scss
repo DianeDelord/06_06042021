@@ -1,0 +1,39 @@
+.selected-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    padding: initial;
+}
+
+hr {
+    border-style: none;
+}
+
+.photographers-items {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #d3573c;
+    width: 250px;
+    max-width: 30%;
+    list-style-type: none;
+    align-items: center;
+    background-color: yellow;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.photographer-portrait {
+    background-size: contain;
+    height: 120px;
+    width: 120px;
+    background-position: 50% 50%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.photographer-city {
+    color: $primary-color;
+}
