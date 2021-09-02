@@ -1,4 +1,4 @@
-.selected-items {
+#resultOfSearch {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -7,8 +7,28 @@
   padding: initial;
 }
 
+#selected-items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0;
+  padding: initial;
+}
+
+.restrict {
+  width: 25%;
+  display: block;
+  justify-content: center;
+  background-color: yellow;
+  margin: 0 20px 30px;
+  padding: 17px;
+  text-decoration: none;
+}
+
 hr {
   border-style: none;
+  margin: inherit;
 }
 
 .photographers-items {
@@ -16,19 +36,14 @@ hr {
   justify-content: center;
   flex-direction: column;
   color: #d3573c;
-  width: 250px;
-  max-width: 30%;
   list-style-type: none;
   align-items: center;
-  background-color: yellow;
-  padding: 20px;
-  margin-bottom: 30px;
 }
 
 .photographer-portrait {
   background-size: contain;
-  height: 120px;
-  width: 120px;
+  height: 150px;
+  width: 150px;
   background-position: 50% 50%;
   border-radius: 50%;
   -o-object-fit: cover;
@@ -39,8 +54,13 @@ hr {
   color: #901c1c;
 }
 
-* {
-  box-sizing: border-box;
+.listOfTags .cardTag {
+  text-decoration: none;
+  color: #901c1c;
+  border: 0.001rem solid;
+  border-color: lightgray;
+  border-radius: 20px;
+  font-size: 0.7rem;
 }
 
 .modal-btn {
@@ -392,38 +412,70 @@ small {
   }
 }
 body {
-  margin: 10px;
+  margin: 30px;
   display: flex;
   flex-direction: column;
+  font-family: "DM Sans", sans-serif;
 }
 
 header {
   display: flex;
   flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 25px 0;
+  margin-bottom: 80px;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 
 .fisheyeBanner {
-  height: 50px;
+  width: 25%;
+  height: 100%;
+  text-align: center;
+  align-content: center;
+}
+
+.fisheyeBanner a {
+  display: flex;
 }
 
 .fisheyeBanner img {
-  height: 100%;
+  width: 70%;
 }
 
 nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 45%;
 }
 
-nav input {
-  width: 350px;
-  height: 65%;
-  margin-left: 60px;
+.photographer-categories a:not(:first-child) {
+  margin-left: 3px;
+}
+
+.photographer-categories a {
+  text-decoration: none;
+  color: #901c1c;
+  padding: 1px 5px;
+  border: 0.001rem solid;
+  border-color: lightgray;
+  border-radius: 20px;
+  font-size: 0.7rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
   position: absolute;
-  top: -15px;
-  right: 10px;
+  top: 10px;
+  right: 55px;
+  color: #901c1c;
+  font-weight: 400;
 }/*# sourceMappingURL=style.css.map */

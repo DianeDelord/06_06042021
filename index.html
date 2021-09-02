@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="sass/style.css">
     <title>Fisheye</title>
@@ -18,8 +21,15 @@
             </a>
         </div>
 
-        <nav>
-            <input type="text" id="search" placeholder="Entrez le nom d'un photographe ou cliquez sur un tag" autocomplete="off">
+        <nav class="photographer-categories" aria-label="photographer-categories">
+            <a class="tag" href="#">#Portrait</a>
+            <a class="tag" href="#">#Art</a>
+            <a class="tag" href="#">#Fashion</a>
+            <a class="tag" href="#">#Architecture</a>
+            <a class="tag" href="#">#Travel</a>
+            <a class="tag" href="#">#Sport</a>
+            <a class="tag" href="#">#Animals</a>
+            <a class="tag" href="#">#Events</a>
         </nav>
 
     </header>
@@ -36,8 +46,8 @@
 
     </footer>
     <script type="text/javascript" src="assets/data.json"></script>
-    <script src="app.js ">
-    </script>
+    <script src="app.js"></script>
+    <!-- <script src="modale.js"></script> -->
 
 </body>
 

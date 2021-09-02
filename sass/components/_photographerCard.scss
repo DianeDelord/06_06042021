@@ -1,4 +1,4 @@
-.selected-items {
+#resultOfSearch {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -7,8 +7,28 @@
     padding: initial;
 }
 
+#selected-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    padding: initial;
+}
+
+.restrict {
+    width: 25%;
+    display: block;
+    justify-content: center;
+    background-color: yellow;
+    margin: 0 20px 30px;
+    padding: 17px;
+    text-decoration: none;
+}
+
 hr {
     border-style: none;
+    margin: inherit;
 }
 
 .photographers-items {
@@ -16,19 +36,14 @@ hr {
     justify-content: center;
     flex-direction: column;
     color: #d3573c;
-    width: 250px;
-    max-width: 30%;
     list-style-type: none;
     align-items: center;
-    background-color: yellow;
-    padding: 20px;
-    margin-bottom: 30px;
 }
 
 .photographer-portrait {
     background-size: contain;
-    height: 120px;
-    width: 120px;
+    height: 150px;
+    width: 150px;
     background-position: 50% 50%;
     border-radius: 50%;
     object-fit: cover;
@@ -36,4 +51,13 @@ hr {
 
 .photographer-city {
     color: $primary-color;
+}
+
+.listOfTags .cardTag {
+    text-decoration: none;
+    color: $primary-color;
+    border: .001rem solid;
+    border-color: lightgray;
+    border-radius: 20px;
+    font-size: .7rem;
 }
