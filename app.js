@@ -20,7 +20,7 @@ fetch("assets/data.json")
             return response.json();
         } else {
             console.log("erreur avec Jason");
-            resultOfSearch.innerHTML = ("erreur de chargement des données")
+            resultOfSearch.innerHTML = ("erreur de chargement des données");
         }
     })
     .then((data) => {
@@ -50,7 +50,7 @@ createPhotographerCard()
     .then(data => {
         let affichage = '<ul id="selected-items">';
         for (let photographer of data.photographers) { //href= "/photographer.html"
-            affichage += `<a id="${photographer.id}" class = "restrict" >
+            affichage += `<a id="${photographer.id}" class = "restrict" href= "/photographer.html?id=${photographer.id}">
         <li class="photographers-items">
         <img class="photographer-portrait" src="images/Sample Photos/Photographers ID Photos/${(toPascalCase(photographer.name) + '.jpg')}"/>
          <h2 class="photographer-name">${photographer.name}</h2> 
@@ -62,8 +62,8 @@ createPhotographerCard()
         affichage += '</ul>';
         resultOfSearch.innerHTML = affichage;
 
-        let refresh = document.getElementById("selected-items");
-        refresh.onclick = showAlert();
+        let toutSimple = document.getElementById("toutSimple");
+        toutSimple.addEventListener('click', showAlert());
 
         function showAlert() {
             console.log("Evènement de click détecté");
