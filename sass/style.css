@@ -20,7 +20,6 @@
   width: 25%;
   display: block;
   justify-content: center;
-  background-color: yellow;
   margin: 0 20px 30px;
   padding: 17px;
   text-decoration: none;
@@ -35,32 +34,65 @@ hr {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  color: #d3573c;
   list-style-type: none;
   align-items: center;
+  color: #525252;
+}
+
+.photographers-items p {
+  line-height: 0.3em;
+  font-size: 0.7rem;
 }
 
 .photographer-portrait {
   background-size: contain;
-  height: 150px;
-  width: 150px;
+  height: 170px;
+  width: 170px;
   background-position: 50% 50%;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
+h2 {
+  font-weight: 400;
+  color: #d3573c;
+  font-size: 1.7rem;
+  line-height: 0.3em;
+}
+
 .photographer-city {
   color: #901c1c;
 }
 
-.listOfTags .cardTag {
+.listOfTags {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.listOfTags a:not(:first-child) {
+  margin-left: 3px;
+}
+
+.cardTag {
   text-decoration: none;
   color: #901c1c;
   border: 0.001rem solid;
   border-color: lightgray;
   border-radius: 20px;
   font-size: 0.7rem;
+  padding: 6px 3px;
+}
+
+.photographerPrice {
+  color: #757575;
+}
+
+.photographer-selection {
+  width: 20%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .modal-btn {

@@ -1,9 +1,10 @@
 let searchInput = document.getElementById('search');
-let photographers;
+//let photographers;
 let searchTerm = '';
 
 let resultOfSearch = document.getElementById('resultOfSearch');
-let recupId;
+let selection;
+let affichage2;
 
 //  https://www.youtube.com/watch?v=o6ULZoMrFGg
 // API request
@@ -23,8 +24,19 @@ fetch("assets/data.json")
         }
     })
     .then((data) => {
-        console.log(data, data.photographers)
+        console.log(data, data.photographers);
+        for (let photographer of data.photographers) {
+            //console.log(photographer.tags);
+            for (let tag of photographer.tags) {
+                //console.log(tag);
+            }
+        }
+
+        //selection = document.addEventListener('click', fonctionURl);
+        //const result = words.filter(word => word.length > 6);
+
     });
+
 
 // fonction asynchrone https://dmitripavlutin.com/javascript-fetch-async-await/
 async function createPhotographerCard() {
@@ -34,20 +46,74 @@ async function createPhotographerCard() {
 };
 
 // function remplissage de la page grâce aux données récupérées depuis data.json
-createPhotographerCard().then(data => {
-    let affichage = '<ul id="selected-items">';
-    for (let photographer of data.photographers) {
-        console.log(data.photographers);
-        affichage += `<div id="${photographer.id}" class = "restrict" onclick="location.href= '/photographer/${photographer.name}.html'">
+createPhotographerCard()
+    .then(data => {
+        let affichage = '<ul id="selected-items">';
+        for (let photographer of data.photographers) { //href= "/photographer.html"
+            affichage += `<a id="${photographer.id}" class = "restrict" >
         <li class="photographers-items">
         <img class="photographer-portrait" src="images/Sample Photos/Photographers ID Photos/${(toPascalCase(photographer.name) + '.jpg')}"/>
          <h2 class="photographer-name">${photographer.name}</h2> 
-        <p class="photographer-city">${photographer.city}, ${photographer.country} <hr>${photographer.tagline} <hr>${photographer.price}€/jour <hr> </p> <p class="listOfTags"> <a class="cardTag" href="#">#${photographer.tags[0]} </a>, <a class="cardTag" href="#">#${photographer.tags[1]}</a>, <a class="cardTag" href="#">#${photographer.tags[2]}</a>, <a class="cardTag" href="#">#${photographer.tags[3]}</a> </p>  
-        </li> </div>`;
-    }
-    affichage += '</ul>';
-    resultOfSearch.innerHTML = affichage;
-});
+        <p class="photographer-city">${photographer.city}, ${photographer.country} </p><p class="tagline">${photographer.tagline} </p> 
+        <p class="photographerPrice">${photographer.price}€/jour </p> 
+        <p class="listOfTags"> ${photographer.tags}</p>  
+        </li> </a>`;
+        }
+        affichage += '</ul>';
+        resultOfSearch.innerHTML = affichage;
+
+        let refresh = document.getElementById("selected-items");
+        refresh.onclick = showAlert();
+
+        function showAlert() {
+            console.log("Evènement de click détecté");
+            for (let photographer of data.photographers) {
+                console.log("liste des id photographes " + photographer.name + " " + photographer.id);
+            }
+            for (let media of data.media) {
+                console.log(data.media);
+                console.log(media);
+                for (let image of media.image) {
+                    console.log(media.image);
+                    console.log(image);
+
+                    var prenom = photographer.name;
+                    var lastIndex = prenom.lastIndexOf(" ");
+                    prenom = prenom.substring(0, lastIndex);
+                    console.log(prenom)
+
+                    affichage2 = ` <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/>`;
+                    console.log(affichage2);
+                    console.log(affichage2);
+                    resultOfSearch.innerHTML = affichage2;
+                }
+            }
+        }
+    })
+
+//async function createPhotographerTag() {
+//    const respFetch = await fetch();
+//    const respCard = await createPhotographerCard();
+//    return respFetch + respCard;
+//}
+
+//function createPhotographerTag() {
+//    return fetch()
+//        .then(respFetch => {
+//           return createPhotographerCard()
+//               .then(respCard => respFetch + respCard);
+//       })
+//   let collect;
+//   let addTags = document.querySelector("listOfTags");
+//   for (let photographer of photographers) {
+//      console.log(photographer.tags);
+//       for (const tag of photographer.tags) {
+//          collect += `<a class="cardTag" href="#">#${photographer.tags}</a>`;
+//      }
+//      addTags.innerHTML = collect;
+//  }
+//}
+
 
 ////////////////////////////////////////////
 // https://stackoverflow.com/questions/4068573/convert-string-to-pascal-case-aka-uppercamelcase-in-javascript
@@ -63,6 +129,17 @@ function toPascalCase(string) {
         .replace(new RegExp(/\w/), s => s.toUpperCase());
 }
 
+function justName(string) {
+    return `${string}`
+        .replace(
+            new RegExp(/\s+(.)(\w+)/, 'g'),
+            ($1, $2, $3) => `${$2.split() + $3.split()}`
+        )
+}
+
+let essai = "Jean Marc";
+console.log(essai.justName);
+
 //////////////////////////////////////////////////
 // input setup
 //searchInput.addEventListener('input', (e) => {
@@ -73,3 +150,15 @@ function toPascalCase(string) {
 
 // create url //
 // https://www.youtube.com/watch?v=6BozpmSjk-Y
+
+function valueSender() {
+    var a = 999;
+    sessionStorage.setItem("myValue", a);
+    window.location.href = "photographer.html";
+}
+
+async function find_in_object() {
+    const response = await fetch("assets/data.json");
+    const data = await response.json();
+    return data;
+};

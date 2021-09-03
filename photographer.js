@@ -5,12 +5,13 @@ fetch("assets/data.json")
             return response.json();
         } else {
             console.log("erreur avec Jason");
-            console.log("erreur de chargement des données")
+            resultOfSearch.innerHTML = ("erreur de chargement des données")
         }
     })
     .then((data) => {
-        console.log(data, data.photographers);
-    })
+        console.log(data, data.photographers)
+    });
+
 
 function toPascalCase(string) {
     return `${string}`
@@ -23,6 +24,3 @@ function toPascalCase(string) {
         .replace(new RegExp(/\s/, 'g'), '')
         .replace(new RegExp(/\w/), s => s.toUpperCase());
 }
-
-let informations = document.getElementById("informations");
-informations.innerHTML = ("coucou");
