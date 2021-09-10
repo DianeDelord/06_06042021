@@ -6,13 +6,9 @@ const urlParams = new URLSearchParams(queryString);
 const photographerPage = urlParams.get("id"); //récupérer l'id du photographer qui a été sélectionné
 console.log(photographerPage);
 
-let contactModale = document.getElementById("contactModale");
-
 // variables
 let remplissage = document.getElementById("informations");
 let remplissage2 = document.getElementById("mediasDuPhotographe");
-
-let contactButton = document.getElementById("contactButton");
 
 // personnalisation du titre du formulaire de contact
 let contact = document.getElementById("contact");
@@ -58,33 +54,42 @@ async function printMedias() {
     const response = await fetch("assets/data.json");
     const data = await response.json();
     const resultPh = data.photographers.filter(photographer => photographer.id == photographerPage);
-    const resultFiltreDataCible = data.media.filter(media => data.media[0].photographerId == resultPh[0].id);
 
     var mediasRecup = data.media;
     var tri = mediasRecup.filter(function(media) {
         return media.photographerId == resultPh[0].id;
     });
-    console.log(tri); //médias du photogrpahe choisi
+    console.log(tri); //médias du photographe choisi
     var prenom = resultPh[0].name;
     var lastIndex = prenom.lastIndexOf(" ");
     prenom = prenom.substring(0, lastIndex).replace('-', ' ');
     console.log(prenom);
     let affichage2 = '<ul class="portfolioMedias">';
-    console.log(tri);
 
     for (let title of tri) {
+        console.log(title);
         console.log(title.image);
+        console.log(title.video);
         affichage2 += `<a class = "restricted" href= "#">
-        <li class="listOfMedias">
-        <img class="photographer-selection" src="images/Sample Photos/${prenom}/${title.image}"/>
-        <div class="label-media">
+        <li class="listOfMedias">`
+        if (title.image == undefined) {
+            affichage2 += `<video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${title.video}" type="video/mp4"></video>`;
+
+        } else {
+            console.log(title.image);
+
+            affichage2 += `<img class="photographer-selection" src="images/Sample Photos/${prenom}/${title.image}"/>`;
+        }
+        // affichage2 += `<img class="photographer-selection" src="images/Sample Photos/${prenom}/${title.image}"/>`
+
+        affichage2 += `<div class="label-media">
         <p class="photograph-title">${title.title}</p>
         <p class="photograph-numberOfLikes">${title.likes}</p>
         <i class="fas fa-heart"></i>
         </div>
         </li></a> `;
     }
-    // if 
+    // if undefined 
     affichage2 += '</ul></div>';
     remplissage2.innerHTML = affichage2;
 }
@@ -104,51 +109,33 @@ function toPascalCase(string) {
         .replace(new RegExp(/\w/), s => s.toUpperCase());
 }
 
-// le titre c'est _ entre chaque mot + tags[0] SI IL N'Y est pas déjà!!!
-//function titreMedia(string) {
-//    return '${string}'.replace(/ /g, '_', $title.tags[0]);
-//}
-
-
-// pour les medias = remplacer espaces par tiret + ajouter le tag au debut + remplacer le tag si il y est déjà
-
-// remplacer espaces par tiret + ajouter .jpg       .replace(/ /g, '_') + '.jpg'); 
-// regex doublon /(\b\S+\b)\s+\b\1\b/
-
-//function titreMedia(string) {
-///   let newString = title.tags[0] + ('${string}');
-//   return (newString.replace(/ /g, '_').replace(new RegExp(/(\b\S+\b)\s+\b\1\b/), '') + '.jpg');
-//}
-
-// . <p class="photographerPersonal_card-price">${resultPh[0].price}€/jour </p>
-
 let ongletLikesTarif = document.getElementById("ongletLikesTarif");
 
 async function ongletRemplissage() {
     const response = await fetch('assets/data.json');
     const data = await response.json();
     return data;
-};
+}
 
 // function remplissage de la page grâce aux données récupérées depuis data.json
 ongletRemplissage()
     .then(data => {
-        console.log(data.media);
+        //console.log(data.media);
         let compteurDeLikes = 0;
         let ongletDatas = '<p>';
         for (let media of data.media) {
             let mediaLikes = media.likes
-            console.log(mediaLikes);
+                //  console.log(mediaLikes);
             if (media.photographerId == photographerPage) {
                 compteurDeLikes += mediaLikes;
             }
-            console.log("et hop, le total est : " + compteurDeLikes);
+            // console.log("et hop, le total est : " + compteurDeLikes);
 
         }
         ongletDatas += `${compteurDeLikes} <i class="fas fa-heart">`;
         ongletDatas += `<p>€/jour</p> `;
         for (let photographer of data.photographers) {
-            console.log(photographer.id);
+            //console.log(photographer.id);
             if (photographer.id == photographerPage) {
                 //  console.log(media.photographerId);
             }
