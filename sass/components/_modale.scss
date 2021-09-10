@@ -1,3 +1,11 @@
+* {
+    font-family: 'DM Sans', sans-serif;
+}
+
+textarea::placeholder {
+    font-size: .7em;
+}
+
 .modal-btn {
     font-size: 145%;
     background: $secondary-color;

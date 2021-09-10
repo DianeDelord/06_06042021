@@ -67,7 +67,7 @@ async function printMedias() {
     console.log(tri); //médias du photogrpahe choisi
     var prenom = resultPh[0].name;
     var lastIndex = prenom.lastIndexOf(" ");
-    prenom = prenom.substring(0, lastIndex);
+    prenom = prenom.substring(0, lastIndex).replace('-', ' ');
     console.log(prenom);
     let affichage2 = '<ul class="portfolioMedias">';
     console.log(tri);
