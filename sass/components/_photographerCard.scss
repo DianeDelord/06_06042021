@@ -16,15 +16,6 @@
     padding: initial;
 }
 
-.restrict {
-    width: 25%;
-    display: block;
-    justify-content: center;
-    margin: 0 20px 30px;
-    padding: 17px;
-    text-decoration: none;
-}
-
 hr {
     border-style: none;
     margin: inherit;
@@ -40,7 +31,7 @@ hr {
 }
 
 .photographers-items p {
-    line-height: .3em;
+    line-height: 1em;
     font-size: .7rem;
 }
 
@@ -57,7 +48,7 @@ h2 {
     font-weight: 400;
     color: $secondary-color;
     font-size: 1.7rem;
-    line-height: .3em;
+    line-height: 1em;
 }
 
 .photographer-city {

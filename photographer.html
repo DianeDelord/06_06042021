@@ -3,20 +3,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="sass/style.css">
+    <script src="https://kit.fontawesome.com/b7afbb8d12.js" crossorigin="anonymous"></script>
     <title>photographer</title>
 </head>
 
 <body>
 
-    <main id="informations"></main>
+    <header id="photographerPageHeader">
+        <div class="fisheyeBanner">
+            <a href="index.html">
+                <img src="images/fisheye_logo.png" alt="Logo du site FishEye" />
+            </a>
+        </div>
+    </header>
 
+    <main>
+        <div id="informations"></div>
+
+        <button id="contactButton" class="btn-signup modal-btn"> Contactez-moi </button>
+
+        <div>
+            <li class="menuDeroulant"><a href="#">Trier par</a>
+                <ul class="listeDeroulante">
+                    <li class="deroulant deroulant1"><a href="#">Popularité</a></li>
+                    <li class="deroulant deroulant2"><a href="#">Date</a></li>
+                    <li class="deroulant deroulant3"><a href="#">Titre</a></li>
+                </ul>
+            </li>
+        </div>
+
+        <div id="mediasDuPhotographe"></div>
+
+        <div id="ongletLikesTarif"></div>
+
+        <div class="bground">
+            <div class="content">
+                <span class="close"></span>
+                <div class="modal-body">
+                    <form id="reserve" name="reserve" action="#" method="POST">
+                        <h3 id="contact"> </h3>
+                        <!-- prénom -->
+                        <div class="formData">
+                            <label for="first">Prénom</label><br>
+                            <input class="text-control" type="text" id="first" name="first" /><br>
+                            <small id="validationFieldFirst"></small>
+                        </div>
+
+                        <!-- nom -->
+                        <div class="formData">
+                            <label for="last">Nom</label><br>
+                            <input class="text-control" type="text" id="last" name="last" /><br>
+                            <small id="validationFieldSecond"></small>
+                        </div>
+
+                        <!-- email -->
+                        <div class="formData">
+                            <label for="email">Email</label><br>
+                            <input class="text-control" type="text" id="email" name="email" /><br>
+                            <small id="emailValidationField"></small>
+                        </div>
+
+                        <!-- champs texte -->
+                        <div class="formData">
+                            <label for="message">Votre message</label>
+                            <textarea id="message" class="text-control message" name="message" rows="10" cols="33">                             
+                        </textarea> <small id="messageValidationField"></small>
+                        </div>
+
+                        <!-- bouton submit -->
+                        <button type="submit" id="submit" class="btn-submit button">Envoyer</button>
+                    </form>
+
+                    <div id="modal-body__validation">Merci,<br/>votre message a bien été envoyé&nbsp;!</div>
+                    <button type="button" id="modal-body__validation__button">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <script type="text/javascript" src="assets/data.json"></script>
-    <script src="app.js"></script>
     <script src="photographer.js"></script>
-
+    <script src="modale.js"></script>
 
 </body>
-
 
 </html>

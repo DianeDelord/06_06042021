@@ -1,0 +1,117 @@
+#photographerPageHeader {
+    padding: 0;
+}
+
+#informations {
+    background-color: $quaternary-color;
+    border-radius: 5px;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.photographerPersonal_card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.photographerPersonal_card-name {
+    color: $another-color;
+    font-weight: 400;
+    position: initial;
+}
+
+.photographerPersonal_card-city {
+    color: $primary-color;
+}
+
+.photographerPersonal_card-tagline {
+    font-size: .8em;
+    color: $dark-color;
+}
+
+.restrict {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px 30px;
+    padding: 17px;
+    text-decoration: none;
+    align-items: center;
+}
+
+#mediasDuPhotographe {
+    display: flex;
+}
+
+.portfolioMedias {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    padding: initial;
+}
+
+.portfolioMedias li {
+    display: flex;
+    justify-content: center;
+    color: #312E2E;
+    flex-direction: column;
+    text-align: center;
+    list-style: none;
+    align-content: center;
+    align-items: center;
+}
+
+.listOfMedias img {
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.restricted {
+    text-decoration: none;
+}
+
+.photograph-title {
+    color: $primary-color;
+    font-size: .7em;
+}
+
+.photograph-numberOfLikes {
+    color: $primary-color;
+    font-size: .7em;
+}
+
+.label-media {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 170px;
+}
+
+.fas {
+    color: $primary-color;
+    font-size: .7em;
+}
+
+///// onglet //////
+#ongletLikesTarif {
+    background-color: #DB8876;
+    width: 230px;
+    height: 50px;
+    border-radius: 5px 5px 0px 0px;
+    position: fixed;
+    right: 3%;
+    bottom: 0px;
+}
+
+#ongletLikesTarif p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}

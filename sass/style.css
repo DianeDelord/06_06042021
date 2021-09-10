@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #resultOfSearch {
   display: flex;
   flex-direction: row;
@@ -16,15 +17,6 @@
   padding: initial;
 }
 
-.restrict {
-  width: 25%;
-  display: block;
-  justify-content: center;
-  margin: 0 20px 30px;
-  padding: 17px;
-  text-decoration: none;
-}
-
 hr {
   border-style: none;
   margin: inherit;
@@ -36,11 +28,11 @@ hr {
   flex-direction: column;
   list-style-type: none;
   align-items: center;
-  color: #525252;
+  color: #312E2E;
 }
 
 .photographers-items p {
-  line-height: 0.3em;
+  line-height: 1em;
   font-size: 0.7rem;
 }
 
@@ -56,13 +48,13 @@ hr {
 
 h2 {
   font-weight: 400;
-  color: #d3573c;
+  color: #DB8876;
   font-size: 1.7rem;
-  line-height: 0.3em;
+  line-height: 1em;
 }
 
 .photographer-city {
-  color: #901c1c;
+  color: #901C1C;
 }
 
 .listOfTags {
@@ -77,7 +69,7 @@ h2 {
 
 .cardTag {
   text-decoration: none;
-  color: #901c1c;
+  color: #901C1C;
   border: 0.001rem solid;
   border-color: lightgray;
   border-radius: 20px;
@@ -97,7 +89,7 @@ h2 {
 
 .modal-btn {
   font-size: 145%;
-  background: #d3573c;
+  background: #DB8876;
   display: flex;
   margin: auto;
   padding: 2em;
@@ -108,12 +100,18 @@ h2 {
 }
 
 .modal-btn:hover {
-  background: #3876ac;
+  background: #DB8876;
+  color: #312E2E;
 }
 
 /* Modal form */
+h3 {
+  color: black;
+  font-weight: 400;
+}
+
 .button {
-  background: #d3573c;
+  background: #DB8876;
   margin-top: 0.5em;
   padding: 1em;
   color: #fafafa;
@@ -123,7 +121,8 @@ h2 {
 }
 
 .button:hover {
-  background: #3876ac;
+  background: #fafafa;
+  color: #312E2E;
 }
 
 .smFont {
@@ -139,7 +138,7 @@ h2 {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .content {
@@ -150,11 +149,11 @@ h2 {
           animation-name: modalopen;
   -webkit-animation-duration: var(--modal-duration);
           animation-duration: var(--modal-duration);
-  background: #232323;
+  background: #DB8876;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  color: #fafafa;
+  color: black;
   padding-top: 10px;
 }
 
@@ -162,7 +161,6 @@ h2 {
 #modal-body__validation {
   padding: 15px 8%;
   margin: 15px auto;
-  min-height: 70vh;
 }
 
 #modal-body__validation {
@@ -172,41 +170,55 @@ h2 {
 }
 
 label {
-  font-family: var(--font-default);
   font-size: 17px;
   font-weight: normal;
   display: inline-block;
   margin-bottom: 11px;
+  color: #312E2E;
 }
 
-.modal-body input {
+.modal-body input,
+textarea {
   padding: 8px;
   border: 0.8px solid #fafafa;
   outline: none;
 }
 
+textarea {
+  overflow: hidden;
+}
+
 .modal-body input:focus-within {
-  border-color: #d3573c;
+  border-color: #DB8876;
 }
 
 .text-control {
   margin: 0;
   padding: 8px;
   width: 100%;
-  border-radius: 8px;
+  border-radius: 3px;
   font-size: 20px;
   height: 48px;
 }
 
+.message {
+  height: 100px;
+  resize: none;
+}
+
 small {
   font-size: 11px;
-  color: #901c1c;
+  color: #901C1C;
+}
+
+.formData {
+  margin-bottom: 10px;
 }
 
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
-  color: #d3573c;
+  color: #DB8876;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
@@ -221,7 +233,7 @@ small {
 }
 
 .formData[data-error-visible=true] .text-control {
-  border: 2px solid #901c1c;
+  border: 2px solid #901C1C;
 }
 
 .checkbox-label,
@@ -266,21 +278,6 @@ small {
 
 .checkbox-input {
   display: none;
-}
-
-.checkbox-input:checked + .checkbox-label .checkbox-icon::after,
-.checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
-  opacity: 1;
-}
-
-.checkbox-input:checked + .checkbox2-label .checkbox-icon {
-  background: #279e7a;
-}
-
-.checkbox2-label .checkbox-icon {
-  border-radius: 4px;
-  border: 0;
-  background: #c4c4c4;
 }
 
 .checkbox2-label .checkbox-icon::after {
@@ -328,12 +325,11 @@ small {
 .btn-submit,
 .btn-signup,
 #modal-body__validation__button {
-  background: #d3573c;
+  background: #901C1C;
   display: block;
-  margin: 0 auto;
-  border-radius: 7px;
+  border-radius: 3px;
   font-size: 1rem;
-  padding: 12px 82px;
+  padding: 12px 40px;
   color: #fff;
   cursor: pointer;
   border: 0;
@@ -367,8 +363,8 @@ small {
   width: 11px;
   height: 11px;
   border: 3px solid transparent;
-  border-bottom-color: #d3573c;
-  border-left-color: #d3573c;
+  border-bottom-color: #DB8876;
+  border-left-color: #DB8876;
   transform: rotate(-48deg);
   border-radius: 5px 0 5px 0;
 }
@@ -407,7 +403,7 @@ small {
 
 .select-items div:hover,
 .same-as-selected {
-  background-color: #d3573c;
+  background-color: #DB8876;
 }
 
 /* custom select end */
@@ -418,10 +414,10 @@ small {
 
 .btn-signup {
   outline: none;
-  font-size: 1.3rem;
-  padding: 15px 23px;
-  margin: 0;
-  margin-top: 59px;
+  font-size: 0.8rem;
+  padding: 12px 7px;
+  position: relative;
+  top: -188px;
 }
 
 @-webkit-keyframes modalopen {
@@ -491,7 +487,7 @@ nav {
 
 .photographer-categories a {
   text-decoration: none;
-  color: #901c1c;
+  color: #901C1C;
   padding: 1px 5px;
   border: 0.001rem solid;
   border-color: lightgray;
@@ -508,6 +504,187 @@ h1 {
   position: absolute;
   top: 10px;
   right: 55px;
-  color: #901c1c;
+  color: #901C1C;
   font-weight: 400;
+}
+
+.menuDeroulant {
+  list-style: none;
+  color: black;
+  padding: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: inherit;
+}
+
+.menuDeroulant a {
+  color: black;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.listeDeroulante {
+  background-color: #901C1C;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul .deroulant {
+  list-style: none;
+  line-height: 44px;
+  float: left;
+  background-color: #901C1C;
+  border-bottom: 1.5px solid #fafafa;
+}
+
+.deroulant a {
+  color: #fafafa;
+  padding: 10px;
+  font-size: 0.7em;
+  text-decoration: none;
+}
+
+.deroulant a:hover {
+  background-color: #fafafa;
+  color: #901C1C;
+  padding: 10px;
+  width: 100%;
+}
+
+li .listeDeroulante {
+  display: none;
+  /* Rend le menu déroulant caché par défaut */
+}
+
+li:hover .listeDeroulante {
+  display: list-item;
+  list-style-position: inside;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: -10px;
+}
+
+.menuDeroulant:hover ul li {
+  float: none;
+}
+
+#photographerPageHeader {
+  padding: 0;
+}
+
+#informations {
+  background-color: #fafafa;
+  border-radius: 5px;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.photographerPersonal_card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.photographerPersonal_card-name {
+  color: #D3573C;
+  font-weight: 400;
+  position: initial;
+}
+
+.photographerPersonal_card-city {
+  color: #901C1C;
+}
+
+.photographerPersonal_card-tagline {
+  font-size: 0.8em;
+  color: #757575;
+}
+
+.restrict {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px 30px;
+  padding: 17px;
+  text-decoration: none;
+  align-items: center;
+}
+
+#mediasDuPhotographe {
+  display: flex;
+}
+
+.portfolioMedias {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0;
+  padding: initial;
+}
+
+.portfolioMedias li {
+  display: flex;
+  justify-content: center;
+  color: #312E2E;
+  flex-direction: column;
+  text-align: center;
+  list-style: none;
+  align-content: center;
+  align-items: center;
+}
+
+.listOfMedias img {
+  width: 300px;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+}
+
+.restricted {
+  text-decoration: none;
+}
+
+.photograph-title {
+  color: #901C1C;
+  font-size: 0.7em;
+}
+
+.photograph-numberOfLikes {
+  color: #901C1C;
+  font-size: 0.7em;
+}
+
+.label-media {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 170px;
+}
+
+.fas {
+  color: #901C1C;
+  font-size: 0.7em;
+}
+
+#ongletLikesTarif {
+  background-color: #DB8876;
+  width: 230px;
+  height: 50px;
+  border-radius: 5px 5px 0px 0px;
+  position: fixed;
+  right: 3%;
+  bottom: 0px;
+}
+
+#ongletLikesTarif p {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */

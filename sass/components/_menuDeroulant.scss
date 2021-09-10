@@ -1,0 +1,61 @@
+.menuDeroulant {
+    list-style: none;
+    color: black;
+    padding: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: inherit;
+}
+
+.menuDeroulant a {
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.listeDeroulante {
+    background-color: $primary-color;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul .deroulant {
+    list-style: none;
+    line-height: 44px;
+    float: left;
+    background-color: $primary-color;
+    border-bottom: 1.5px solid $quaternary-color;
+}
+
+.deroulant a {
+    color: $quaternary-color;
+    padding: 10px;
+    font-size: .7em;
+    text-decoration: none;
+}
+
+.deroulant a:hover {
+    background-color: $quaternary-color;
+    color: $primary-color;
+    padding: 10px;
+    width: 100%;
+}
+
+li .listeDeroulante {
+    display: none;
+    /* Rend le menu déroulant caché par défaut */
+}
+
+li:hover .listeDeroulante {
+    display: list-item;
+    list-style-position: inside;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: -10px;
+}
+
+.menuDeroulant:hover ul li {
+    float: none;
+}

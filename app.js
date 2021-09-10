@@ -6,7 +6,7 @@ let resultOfSearch = document.getElementById('resultOfSearch');
 let selection;
 let affichage2;
 
-//  https://www.youtube.com/watch?v=o6ULZoMrFGg
+// https://www.youtube.com/watch?v=o6ULZoMrFGg
 // API request
 // https://www.youtube.com/watch?v=ZCrh59Bvbts
 // https://stackoverflow.com/questions/51859358/how-to-read-json-file-with-fetch-in-javascript
@@ -31,10 +31,6 @@ fetch("assets/data.json")
                 //console.log(tag);
             }
         }
-
-        //selection = document.addEventListener('click', fonctionURl);
-        //const result = words.filter(word => word.length > 6);
-
     });
 
 
@@ -52,7 +48,7 @@ createPhotographerCard()
         for (let photographer of data.photographers) { //href= "/photographer.html"
             affichage += `<a id="${photographer.id}" class = "restrict" href= "/photographer.html?id=${photographer.id}">
         <li class="photographers-items">
-        <img class="photographer-portrait" src="images/Sample Photos/Photographers ID Photos/${(toPascalCase(photographer.name) + '.jpg')}"/>
+        <img class="photographer-portrait" src="images/Sample Photos/Photographers ID Photos/${(toPascalCase(photographer.name) + '.jpg')}" alt="${photographer.name}/>
          <h2 class="photographer-name">${photographer.name}</h2> 
         <p class="photographer-city">${photographer.city}, ${photographer.country} </p><p class="tagline">${photographer.tagline} </p> 
         <p class="photographerPrice">${photographer.price}€/jour </p> 
@@ -61,58 +57,8 @@ createPhotographerCard()
         }
         affichage += '</ul>';
         resultOfSearch.innerHTML = affichage;
-
-        let toutSimple = document.getElementById("toutSimple");
-        toutSimple.addEventListener('click', showAlert());
-
-        function showAlert() {
-            console.log("Evènement de click détecté");
-            for (let photographer of data.photographers) {
-                console.log("liste des id photographes " + photographer.name + " " + photographer.id);
-            }
-            for (let media of data.media) {
-                console.log(data.media);
-                console.log(media);
-                for (let image of media.image) {
-                    console.log(media.image);
-                    console.log(image);
-
-                    var prenom = photographer.name;
-                    var lastIndex = prenom.lastIndexOf(" ");
-                    prenom = prenom.substring(0, lastIndex);
-                    console.log(prenom)
-
-                    affichage2 = ` <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/>`;
-                    console.log(affichage2);
-                    console.log(affichage2);
-                    resultOfSearch.innerHTML = affichage2;
-                }
-            }
-        }
+        return;
     })
-
-//async function createPhotographerTag() {
-//    const respFetch = await fetch();
-//    const respCard = await createPhotographerCard();
-//    return respFetch + respCard;
-//}
-
-//function createPhotographerTag() {
-//    return fetch()
-//        .then(respFetch => {
-//           return createPhotographerCard()
-//               .then(respCard => respFetch + respCard);
-//       })
-//   let collect;
-//   let addTags = document.querySelector("listOfTags");
-//   for (let photographer of photographers) {
-//      console.log(photographer.tags);
-//       for (const tag of photographer.tags) {
-//          collect += `<a class="cardTag" href="#">#${photographer.tags}</a>`;
-//      }
-//      addTags.innerHTML = collect;
-//  }
-//}
 
 
 ////////////////////////////////////////////
@@ -129,17 +75,6 @@ function toPascalCase(string) {
         .replace(new RegExp(/\w/), s => s.toUpperCase());
 }
 
-function justName(string) {
-    return `${string}`
-        .replace(
-            new RegExp(/\s+(.)(\w+)/, 'g'),
-            ($1, $2, $3) => `${$2.split() + $3.split()}`
-        )
-}
-
-let essai = "Jean Marc";
-console.log(essai.justName);
-
 //////////////////////////////////////////////////
 // input setup
 //searchInput.addEventListener('input', (e) => {
@@ -151,14 +86,40 @@ console.log(essai.justName);
 // create url //
 // https://www.youtube.com/watch?v=6BozpmSjk-Y
 
-function valueSender() {
-    var a = 999;
-    sessionStorage.setItem("myValue", a);
-    window.location.href = "photographer.html";
-}
 
-async function find_in_object() {
+// filtre au clic des tags
+
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+const result = words.filter(word => word.length > 6);
+console.log(result);
+
+async function tagFilter() {
     const response = await fetch("assets/data.json");
     const data = await response.json();
     return data;
 };
+
+// function remplissage de la page grâce aux données récupérées depuis data.json
+tagFilter()
+    .then(data => {
+        let filtrePortrait = document.getElementById("filtrePortrait");
+        console.log(data.media);
+        let mediasToFilter = data.media;
+
+        for (let media of mediasToFilter) {
+            console.log(media);
+            console.log(mediasToFilter);
+        };
+
+        mediasFiltres = mediasToFilter.filter(function(media) {
+            if (media.tags == 'events') {
+                console.log("j'ai trouvé la photo nommée " + media.image + " du photographe avec l'id " + media.photographerId);
+            }
+            console.log(mediasFiltres);
+        });
+    })
+
+// var mediasRecup = data.media;
+//  var tri = mediasRecup.filter(function(media) {
+//      return media.photographerId == resultPh[0].id;
+//   });
