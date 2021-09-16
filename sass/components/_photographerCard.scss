@@ -21,6 +21,18 @@ hr {
     margin: inherit;
 }
 
+.restrict {
+    display: flex;
+    justify-content: center;
+    margin: 0 20px 30px;
+    padding: 17px;
+    text-decoration: none;
+    align-items: center;
+    min-width: 23%;
+    width: 26%;
+    max-height: 360px;
+}
+
 .photographers-items {
     display: flex;
     justify-content: center;
@@ -42,6 +54,7 @@ hr {
     background-position: 50% 50%;
     border-radius: 50%;
     object-fit: cover;
+    margin-bottom: 10px;
 }
 
 h2 {

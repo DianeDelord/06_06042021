@@ -5,14 +5,12 @@
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
-    console.log("ouverture");
     modalbg.style.display = "block";
     formValidator.style.display = "block";
     validationMessage.style.display = "none";
@@ -48,7 +46,6 @@ let missingEmailInput = document.getElementById("emailValidationField");
 let missingMessage = document.getElementById("messageValidationField");
 
 // modale quand tout est ok - inscription validée!
-let closeForm = document.getElementsByClassName("modal-body");
 let validationMessage = document.getElementById("modal-body__validation");
 validationMessage.style.display = "none";
 let closeFormButton = document.getElementById("modal-body__validation__button");
@@ -60,7 +57,6 @@ let verifyEmailInput = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-z
 
 // je désactive le bouton de soumission en attendant que le formulaire soit rempli corectement
 let buttoned = document.getElementById("submit");
-console.log(buttoned);
 
 //prénom
 let firstInputValidated = false;
@@ -70,6 +66,7 @@ firstInput.onchange = function(e) {
         missingTextInputFirst.innerHTML = "Vous devez saisir au moins deux caractères, les chiffres et caractères spéciaux ne sont pas acceptés.";
         firstInputValidated = false;
         firstInput.style.borderColor = "red";
+        buttoned.style.backgroundColor = "#757575"; //pas ok
     } else {
         missingTextInputFirst.innerHTML = "";
         firstInputValidated = true;
@@ -87,6 +84,7 @@ secondInput.onchange = function(e) {
         missingTextInputSecond.innerHTML = "Vous devez saisir au moins deux caractères, les chiffres et caractères spéciaux ne sont pas acceptés.";
         secondInputValidated = false;
         secondInput.style.borderColor = "red";
+        buttoned.style.backgroundColor = "#757575"; //pas ok
     } else {
         missingTextInputSecond.innerHTML = "";
         secondInputValidated = true;
@@ -104,6 +102,7 @@ emailInput.onchange = function(e) {
         missingEmailInput.innerHTML = "Vous devez saisir une adresse mail valide.";
         emailInputValidated = false;
         emailInput.style.borderColor = "red";
+        buttoned.style.backgroundColor = "#757575"; //pas ok
     } else {
         missingEmailInput.innerHTML = "";
         emailInputValidated = true;
@@ -121,6 +120,7 @@ message.onchange = function(e) {
         missingMessage.innerHTML = "Veuillez saisir un message.";
         messageValidated = false;
         message.style.borderColor = "red";
+        buttoned.style.backgroundColor = "#757575"; //pas ok
     } else {
         missingMessage.innerHTML = "";
         messageValidated = true;
@@ -144,10 +144,10 @@ function valider() {
     for (var i = 0; i < (myArray.length - 1); i++) {
         if (firstInputValidated && secondInputValidated && emailInputValidated &&
             messageValidated) {
-            buttoned.disabled = false;
+            buttoned.style.backgroundColor = "#901C1C"; // ok
         } else if ((myArray[i]).value == false) {
             console.log((myArray[i]));
-            buttoned.disabled = true;
+            buttoned.style.backgroundColor = "#757575"; //pas ok
         }
     }
     console.log("tableau vérif " +
@@ -174,6 +174,6 @@ formValidator.addEventListener("submit", function(e) {
         secondInputValidated = false;
         emailInputValidated = false;
         messageValidated = false;
-        buttoned.disabled = true;
+        buttoned.style.backgroundColor = "#757575"; //pas ok
     }
 });
