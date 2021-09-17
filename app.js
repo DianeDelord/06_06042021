@@ -1,6 +1,36 @@
 // remplir dynamiquement ma page
 let resultOfSearch = document.getElementById('resultOfSearch');
 
+/////////////////////////////////////
+//////////// scroll ////////////////
+// https://www.w3schools.com/jsref/event_onscroll.asp
+// https://stackoverflow.com/questions/31223341/detecting-scroll-direction
+// quand on scrolle, le topLink apparaît
+let topLink = document.querySelector("#topLink");
+
+function scrollDetect() {
+    var lastScroll = 0;
+    window.onscroll = function() {
+        let currentScroll = document.documentElement.scrollTop || document.body.scrollTop; // Get Current Scroll Value
+
+        if (currentScroll > 0 && lastScroll <= currentScroll) {
+            lastScroll = currentScroll;
+            topLink.setAttribute('class', 'show');
+            console.log(" toplink down");
+        } else {
+            lastScroll = currentScroll;
+            topLink.setAttribute('class', 'hide');
+            console.log(" toplink up");
+        }
+    };
+}
+scrollDetect();
+
+/////////////////////////////////////
+/////////////////////////////////////
+
+
+
 // connection au fichier json pour lire les données
 fetch("assets/data.json")
     .then(response => {

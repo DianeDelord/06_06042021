@@ -1,0 +1,28 @@
+ #topLink {
+     position: fixed;
+     left: 50%;
+     width: 182px;
+     height: 30px;
+     background: $another-color;
+     color: black;
+     text-decoration: none;
+     border-radius: 5px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     transform: translateX(-50%);
+     transition: all 0.3s ease;
+     font-size: 18px;
+     font-weight: 400;
+ }
+ 
+ .hide {
+     opacity: 0;
+ }
+ 
+ .show {
+     display: block;
+     top: 30px;
+     opacity: 1;
+     transition: all 0.3s ease;
+ }
