@@ -2,20 +2,20 @@
 
 console.log("lightbox connectée")
 
+
 class lightbox {
     static init() { // créer un comportement à appliquer à chaque lien
         const links = Array.from(document.querySelectorAll('a[href$=".jpg"]'));
         const gallery = links.map(link => link.getAttribute('href'));
         console.log(links)
         console.log(gallery);
+        console.log("lightbox ok")
 
         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault()
-            new lightbox(e.currentTarget.getAttribute('href'), gallery); // récupérer url
-            console.log(lightbox);
-            console.log(gallery)
+            new lightbox(e.currentTarget.getAttribute('href'), gallery); // récupérer url     
+            console.log("lightbox init ok")
         }))
-        console.log("lightbox init")
     }
 
     /**
@@ -128,12 +128,8 @@ class lightbox {
     }
 }
 
-lightbox.init();
 
 
-
-/* 
-const links = Array.from(
-     document.querySelectorAll('img[src$=".jpg"],video[src$=".mp4"]')
- );
- */
+setTimeout(function() {
+    lightbox.init();
+}, 2000);

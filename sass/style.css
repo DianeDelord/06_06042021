@@ -751,7 +751,6 @@ li:hover .listeDeroulante {
   -webkit-animation: lightboxIn 0.5s;
           animation: lightboxIn 0.5s;
   transition: opacity 0.3s;
-  display: none;
 }
 
 .lightbox.fadeOut {

@@ -60,7 +60,16 @@ async function printMedias() {
     var tri = mediasRecup.filter(function(media) {
         return media.photographerId == resultPh[0].id;
     });
-    // console.log(tri); //médias du photographe choisi
+    console.log(tri); //médias du photographe choisi
+
+
+    // passer les medias du photographe choisi pour la lightbox
+    window.onload = function() {
+        localStorage.setItem("mediasPhotographerSelected", tri)
+        console.log(tri);
+    }
+
+
     var prenom = resultPh[0].name;
     var lastIndex = prenom.lastIndexOf(" ");
     prenom = prenom.substring(0, lastIndex).replace('-', ' ');
@@ -69,17 +78,21 @@ async function printMedias() {
 
     for (let title of tri) {
         //  console.log(title);
-        // console.log(title.image);
+        // console.log(title.image);     ///// . href= "/photographer.html?id=${photographerPage}">
         // console.log(title.video);
-        affichage2 += `<a href="images/Sample Photos/${prenom}/${title.image}" class="restricted">
-        <li class="listOfMedias">`
+        // affichage2 += `<a href="images/Sample Photos/${prenom}/${title.image}" class="restricted">
+        // <li class="listOfMedias">`
         if (title.image == undefined) {
-            affichage2 += `<video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${title.video}" type="video/mp4"></video>`;
+            affichage2 += `<a href="images/Sample Photos/${prenom}/${title.video}" class="restricted">
+             <li class="listOfMedias">
+             <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${title.video}" type="video/mp4"></video>`;
 
         } else {
             //  console.log(title.image);
 
-            affichage2 += `<img class="photographer-selection" src="images/Sample Photos/${prenom}/${title.image}"/>`;
+            affichage2 += `<a href="images/Sample Photos/${prenom}/${title.image}" class="restricted">
+             <li class="listOfMedias">
+             <img class="photographer-selection" src="images/Sample Photos/${prenom}/${title.image}"/>`;
         }
         // affichage2 += `<img class="photographer-selection" src="images/Sample Photos/${prenom}/${title.image}"/>`
 
