@@ -2,14 +2,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    margin: 0 50px;
+    min-height: 85vh;
+    margin: auto;
+    margin: 20px 50px;
 }
 
 .lightbox__container img {
-    max-width: 100%;
-    height: auto;
+    max-width: 90vh;
+    max-height: 90vh;
     animation: lightboxIn .5s;
+    border-radius: 5px;
+    object-fit: cover;
 }
 
 .lightbox {
@@ -18,7 +21,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: white;
     z-index: 10;
     overflow: auto;
     animation: lightboxIn .5s;
