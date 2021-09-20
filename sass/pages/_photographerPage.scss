@@ -6,7 +6,6 @@
     background-color: $quaternary-color;
     border-radius: 5px;
     display: flex;
-    justify-content: left;
     flex-wrap: wrap;
 }
 
@@ -33,11 +32,17 @@
 
 .redirect {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     margin: 0 20px 30px;
     padding: 17px;
     text-decoration: none;
     align-items: center;
+}
+
+#photographer_infos {
+    display: flex;
+    flex-direction: column;
 }
 
 #mediasDuPhotographe {

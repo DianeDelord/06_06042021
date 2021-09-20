@@ -31,7 +31,6 @@ hr {
   align-items: center;
   min-width: 23%;
   width: 26%;
-  max-height: 360px;
 }
 
 .photographers-items {
@@ -445,8 +444,6 @@ small {
   outline: none;
   font-size: 0.8rem;
   padding: 12px 7px;
-  position: relative;
-  top: -188px;
 }
 
 @-webkit-keyframes modalopen {
@@ -614,7 +611,6 @@ li:hover .listeDeroulante {
   background-color: #fafafa;
   border-radius: 5px;
   display: flex;
-  justify-content: left;
   flex-wrap: wrap;
 }
 
@@ -641,11 +637,17 @@ li:hover .listeDeroulante {
 
 .redirect {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   margin: 0 20px 30px;
   padding: 17px;
   text-decoration: none;
   align-items: center;
+}
+
+#photographer_infos {
+  display: flex;
+  flex-direction: column;
 }
 
 #mediasDuPhotographe {
