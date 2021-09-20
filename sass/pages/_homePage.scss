@@ -43,7 +43,8 @@ nav {
     margin-left: 3px;
 }
 
-.photographer-categories a {
+.photographer-categories a,
+.photographer_listOfTags a {
     text-decoration: none;
     color: $primary-color;
     padding: 1px 5px;
@@ -64,4 +65,9 @@ h1 {
     right: 55px;
     color: $primary-color;
     font-weight: 400;
+}
+
+.photographer_listOfTags {
+    display: flex;
+    flex-direction: row;
 }
