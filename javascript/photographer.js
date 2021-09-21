@@ -139,8 +139,8 @@ async function printMedias() {
     for (let title of tri) {
         if (title.image == undefined) {
             affichage2 += `<a href="images/Sample Photos/${prenom}/${title.video}" class="restricted">
-             <li class="listOfMedias">
-             <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${title.video}" type="video/mp4"></video>`;
+             <li class="listOfMedias"><div class="video_container">
+             <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${title.video}" type="video/mp4"></video></div>`;
 
         } else {
             //  console.log(title.image);
@@ -151,8 +151,8 @@ async function printMedias() {
 
         affichage2 += `<div class="label-media">
         <p class="photograph-title">${title.title}</p>
-        <p class="photograph-numberOfLikes">${title.likes}</p>
-        <i class="fas fa-heart" alt="likes"></i>
+        <p class="photograph-numberOfLikes">${title.likes}
+        <i class="fas fa-heart" alt="likes"></i></p>
         </div>
         </li></a> `;
     }

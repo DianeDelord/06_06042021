@@ -470,7 +470,7 @@ small {
   }
 }
 body {
-  margin: 30px;
+  margin: 40px 50px;
   display: flex;
   flex-direction: column;
   font-family: "DM Sans", sans-serif;
@@ -543,6 +543,17 @@ h1 {
 .photographer_listOfTags {
   display: flex;
   flex-direction: row;
+}
+
+.photographer_listOfTags a {
+  padding: 3px 7px;
+}
+
+.generatedTags {
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
 }
 
 /*.menuDeroulant {
@@ -822,14 +833,26 @@ li:hover .listeDeroulante {
   border-radius: 5px;
 }
 
-.photographer-video {
+.video_container {
   width: 300px;
-  height: auto;
+  overflow: hidden;
+  display: block;
+  height: 250px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.photographer-video {
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .restricted {
   text-decoration: none;
+  margin-bottom: 20px;
 }
 
 .photograph-title {
@@ -847,12 +870,12 @@ li:hover .listeDeroulante {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 170px;
+  width: 95%;
 }
 
 .fas {
   color: #901C1C;
-  font-size: 0.7em;
+  font-size: inherit;
 }
 
 #ongletLikesTarif {
@@ -870,7 +893,7 @@ li:hover .listeDeroulante {
 
 .onglet_likesColor:before {
   color: black;
-  font-size: larger;
+  font-size: inherit;
 }
 
 #ongletLikesTarif p {

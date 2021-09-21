@@ -75,14 +75,24 @@
     border-radius: 5px;
 }
 
-.photographer-video {
+.video_container {
     width: 300px;
-    height: auto;
+    overflow: hidden;
+    display: block;
+    height: 250px;
+    object-fit: contain;
+}
+
+.photographer-video {
+    width: 100%;
+    height: 100%;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .restricted {
     text-decoration: none;
+    margin-bottom: 20px;
 }
 
 .photograph-title {
@@ -100,12 +110,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 170px;
+    width: 95%;
 }
 
 .fas {
     color: $primary-color;
-    font-size: .7em;
+    font-size: inherit;
 }
 
 ///// onglet //////
@@ -124,7 +134,7 @@
 
 .onglet_likesColor:before {
     color: black;
-    font-size: larger;
+    font-size: inherit;
 }
 
 #ongletLikesTarif p {
