@@ -19,7 +19,7 @@
 
     <main>
         <div id="informations"></div>
-
+        <!--
         <div>
             <li class="menuDeroulant"><a href="#">Trier par</a>
                 <ul class="listeDeroulante">
@@ -29,6 +29,39 @@
                 </ul>
             </li>
         </div>
+-->
+        <div class="custom-select">
+            <ul class="select">
+                <li>
+                    <input class="select_close" type="radio" name="customselect" id="customselect-close" value="" />
+                    <span class="select_label select_label-placeholder">Popularité</span>
+                </li>
+
+                <li class="select_items">
+                    <input class="select_expand" type="radio" name="customselect" id="customselect-opener" />
+                    <label class="select_closeLabel" for="customselect-close"></label>
+
+                    <ul class="select_options">
+                        <li class="select_option">
+                            <input class="select_input" type="radio" name="customselect" id="customselect-date" />
+                            <label class="select_label" for="customselect-date"><span class="border-top">Date</span></label>
+                        </li>
+
+                        <li class="select_option">
+                            <input class="select_input" type="radio" name="customselect" id="customselect-titre" />
+                            <label class="select_label" for="customselect-titre"><span class="border-top">Titre</span></label>
+                        </li>
+
+                    </ul>
+
+                    <label class="select_expandLabel" for="customselect-opener"></label>
+                </li>
+            </ul>
+        </div>
+
+
+
+
 
         <div id="mediasDuPhotographe"></div>
 

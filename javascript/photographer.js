@@ -10,7 +10,6 @@ const photographerPage = urlParams.get("id"); //récupérer l'id du photographer
 let remplissage = document.getElementById("informations");
 let remplissage2 = document.getElementById("mediasDuPhotographe");
 
-
 // personnalisation du titre du formulaire de contact
 let contact = document.getElementById("contact");
 
@@ -27,7 +26,6 @@ fetch("assets/data.json")
 
 
 .then(data => {
-
     // console.log(data, data.photographers);
     const resultPh = data.photographers.filter(photographer => photographer.id == photographerPage);
     console.log(resultPh); // infos du photographe
@@ -42,12 +40,14 @@ fetch("assets/data.json")
     console.log(data.photographers[0].tags)
 
     // variables de données
-    let photographer_city = data.photographers[0].city;
-    let photographer_country = data.photographers[0].country;
-    let photographer_id = data.photographers[0].id;
-    let photographer_name = data.photographers[0].name;
-    let photographer_tagline = data.photographers[0].tagline;
-    let photographer_tags = data.photographers[0].tags;
+    let photographer_city = resultPh[0].city;
+    let photographer_country = resultPh[0].country;
+    let photographer_id = resultPh[0].id;
+    let photographer_name = resultPh[0].name;
+    console.log(photographer_name)
+
+    let photographer_tagline = resultPh[0].tagline;
+    let photographer_tags = resultPh[0].tags;
 
     // creation des éléments HTML du DOM
     let photographerCard_divPhoto = document.createElement("div");
@@ -84,7 +84,6 @@ fetch("assets/data.json")
     button_contact.setAttribute("class", "btn-signup modal-btn");
     button_contact.textContent = "Contactez-moi";
 
-
     console.log(photographer_tags);
 
     for (let i = 0; i < photographer_tags.length; i++) {
@@ -97,8 +96,8 @@ fetch("assets/data.json")
         photographer_tagsList.appendChild(photographer_tagsA);
     }
 
-    // photographerCard_div.appendChild(photographerCard_div2)
     photographerCard_div2.appendChild(photographerCard_photographerInfos)
+    photographerCard_photographerInfos.appendChild(photographerCard_h1)
     photographerCard_photographerInfos.appendChild(photographerCard_location)
     photographerCard_photographerInfos.appendChild(photographerCard_tagline)
     photographerCard_photographerInfos.appendChild(photographer_tagsList)
@@ -110,50 +109,9 @@ fetch("assets/data.json")
     photographerCard_div2.appendChild(photographerCard_divPhoto)
     photographerCard_divPhoto.appendChild(photographerCard_img)
 
-
-
-
     //remplissage.innerHTML = affichageResult;
     remplissage.appendChild(photographerCard_div2)
-
-
 })
-
-
-
-
-
-
-
-
-
-/*
-.then((data) => {
-    // console.log(data, data.photographers);
-    const resultPh = data.photographers.filter(photographer => photographer.id == photographerPage);
-    // console.log(resultPh); // infos du photographe
-    //  console.log(photographerPage); // id du photographe choisi
-    //  console.log(data.media); // tous les medias
-    // console.log(data.photographers); // tous les photographes
-    //  console.log(resultPh[0].name); // nom du photographe choisi
-
-    contact.innerText = ("Contactez-moi \n" + (resultPh[0].name));
-
-    let affichageResult = '<div class = "photographerPersonal_Page">';
-    affichageResult += `<div id="${photographerPage}" class = "redirect">
-             <div class="photographerPersonal_card">                
-              <h1 class="photographerPersonal_card-name">${resultPh[0].name}</h1> 
-              <p class="photographerPersonal_card-city">${resultPh[0].city}, ${resultPh[0].country} </p>
-              <p class="photographerPersonal_card-tagline">${resultPh[0].tagline} </p> 
-              <p class="photographerPersonal_card-listOfTags"> ${resultPh[0].tags}</p>  </div>                  
-              <img class="photographer-portrait" src="images/Sample Photos/Photographers ID Photos/${(toPascalCase(resultPh[0].name) + '.jpg')}"/>
-              `;
-
-    affichageResult += '</div>';
-    remplissage.innerHTML = affichageResult;
-
-    return data, resultPh;
-});*/
 
 async function printMedias() {
     const response = await fetch("assets/data.json");
@@ -166,13 +124,11 @@ async function printMedias() {
     });
     console.log(tri); //médias du photographe choisi
 
-
     // passer les medias du photographe choisi pour la lightbox
     window.onload = function() {
         localStorage.setItem("mediasPhotographerSelected", tri)
         console.log(tri);
     }
-
 
     var prenom = resultPh[0].name;
     var lastIndex = prenom.lastIndexOf(" ");
@@ -181,11 +137,6 @@ async function printMedias() {
     let affichage2 = '<ul class="portfolioMedias">';
 
     for (let title of tri) {
-        //  console.log(title);
-        // console.log(title.image);     ///// . href= "/photographer.html?id=${photographerPage}">
-        // console.log(title.video);
-        // affichage2 += `<a href="images/Sample Photos/${prenom}/${title.image}" class="restricted">
-        // <li class="listOfMedias">`
         if (title.image == undefined) {
             affichage2 += `<a href="images/Sample Photos/${prenom}/${title.video}" class="restricted">
              <li class="listOfMedias">
@@ -193,31 +144,74 @@ async function printMedias() {
 
         } else {
             //  console.log(title.image);
-
             affichage2 += `<a href="images/Sample Photos/${prenom}/${title.image}" class="restricted">
              <li class="listOfMedias">
              <img class="photographer-selection" src="images/Sample Photos/${prenom}/${title.image}"/>`;
         }
-        // affichage2 += `<img class="photographer-selection" src="images/Sample Photos/${prenom}/${title.image}"/>`
 
         affichage2 += `<div class="label-media">
         <p class="photograph-title">${title.title}</p>
         <p class="photograph-numberOfLikes">${title.likes}</p>
-        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart" alt="likes"></i>
         </div>
         </li></a> `;
-
-        // pour la lightbox
-        // srcImgLightbox.setAttribute("src", `images/Sample Photos/${prenom}/${title.image}`);
-        // srcImgLightbox.setAttribute("alt", "");  // à compléter        
-
     }
     // if undefined 
     affichage2 += '</ul></div>';
     remplissage2.innerHTML = affichage2;
-
 }
 printMedias()
+
+async function ongletRemplissage() {
+    const response = await fetch('assets/data.json');
+    const data = await response.json();
+    return data;
+}
+
+let ongletLikesTarif = document.getElementById("ongletLikesTarif");
+
+// function remplissage de la page grâce aux données récupérées depuis data.json
+ongletRemplissage()
+    .then(data => {
+        console.log("onglet remplissage");
+        let compteurDeLikes = 0;
+        let onglet_likes = document.createElement("p");
+        let likes_onglet = document.createElement("i")
+        let onglet_price = document.createElement("p");
+        console.log(onglet_price);
+        let mediaLikes
+
+        //boucle pour ajouter les likes de chaque média au compteur total de likes obtenus par le photographe
+        for (let media of data.media) {
+            mediaLikes = media.likes
+            if (media.photographerId == photographerPage) {
+                compteurDeLikes += mediaLikes;
+            }
+        }
+        console.log("le total de likes est : " + compteurDeLikes);
+        onglet_likes.setAttribute("class", "numberOfLikes")
+        onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
+        console.log(onglet_likes);
+        console.log(likes_onglet);
+        onglet_price.setAttribute("class", "onglet_price")
+
+        for (let photographer of data.photographers) {
+            console.log(photographer.id);
+            if (photographer.id == photographerPage) {
+                console.log(photographer.price); // tarif journalier du photographe de la page
+                onglet_price.textContent = `${photographer.price} €/jour`
+            }
+        }
+        console.log(onglet_price);
+
+        ongletLikesTarif.appendChild(onglet_likes)
+        ongletLikesTarif.appendChild(onglet_price)
+    })
+
+setTimeout(function() {
+    ongletRemplissage()
+}, 2000);
+
 
 ////////////////////////////////////////////
 // https://stackoverflow.com/questions/4068573/convert-string-to-pascal-case-aka-uppercamelcase-in-javascript
@@ -232,42 +226,3 @@ function toPascalCase(string) {
         .replace(new RegExp(/\s/, 'g'), '')
         .replace(new RegExp(/\w/), s => s.toUpperCase());
 }
-
-let ongletLikesTarif = document.getElementById("ongletLikesTarif");
-
-async function ongletRemplissage() {
-    const response = await fetch('assets/data.json');
-    const data = await response.json();
-    return data;
-}
-
-// function remplissage de la page grâce aux données récupérées depuis data.json
-ongletRemplissage()
-    .then(data => {
-        //console.log(data.media);
-        let compteurDeLikes = 0;
-        let ongletDatas = '<p>';
-        for (let media of data.media) {
-            let mediaLikes = media.likes
-                //  console.log(mediaLikes);
-            if (media.photographerId == photographerPage) {
-                compteurDeLikes += mediaLikes;
-            }
-            // console.log("et hop, le total est : " + compteurDeLikes);
-
-        }
-        ongletDatas += `${compteurDeLikes} <i class="fas fa-heart">`;
-        ongletDatas += `<p>€/jour</p> `;
-        for (let photographer of data.photographers) {
-            //console.log(photographer.id);
-            if (photographer.id == photographerPage) {
-                //  console.log(media.photographerId);
-            }
-            // return photographer
-        }
-        ongletDatas += '</p>';
-        ongletLikesTarif.innerHTML = ongletDatas;
-        return;
-    })
-
-ongletRemplissage()
