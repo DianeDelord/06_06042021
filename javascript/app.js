@@ -109,6 +109,7 @@ createPhotographerCard2()
             for (let i = 0; i < photographer_tags.length; i++) {
                 photographer_tagsA = document.createElement("a");
                 photographer_tagsA.setAttribute("class", "lienTag");
+                photographer_tagsA.setAttribute("href", `#${photographer_tags[i]}`);
                 let eachTag = document.createElement("h5");
                 eachTag.setAttribute("class", "generatedTags")
                 eachTag.textContent = `#${photographer_tags[i]}`;
@@ -140,6 +141,74 @@ function toPascalCase(string) {
         .replace(new RegExp(/\s/, 'g'), '')
         .replace(new RegExp(/\w/), s => s.toUpperCase());
 }
+
+let tri
+let prenom
+
+async function filtreTag() {
+    const response = await fetch("assets/data.json");
+    const data = await response.json();
+    return data;
+}
+
+filtreTag()
+    .then(data => {
+        console.log(data)
+        let tagsOnThisPage = Array.from(document.querySelectorAll(".tag"))
+        console.log(tagsOnThisPage)
+        console.log(data)
+
+        let linkClicked
+
+        tagsOnThisPage.forEach(link => {
+            link.addEventListener('click', function filter(link) {
+                linkClicked = link.target.innerHTML.substr(1) // ouiiiiiiiii
+                console.log(linkClicked)
+
+                let affichage3 = '<ul class="portfolioMedias">';
+
+                for (let tag of tri) {
+                    //console.log(tag.tags)
+                    if (tag.tags == linkClicked) {
+                        console.log("j'en ai un " + tag.title)
+
+                        if (tag.image == undefined) {
+                            affichage3 += `<a href="images/Sample Photos/${prenom}/${tag.video}" class="restricted">
+                             <li class="listOfMedias"><div class="video_container">
+                             <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${tag.video}" type="video/mp4"></video></div>`;
+
+                        } else {
+                            //  console.log(title.image);
+                            affichage3 += `<a href="images/Sample Photos/${prenom}/${tag.image}" class="restricted">
+                             <li class="listOfMedias">
+                             <img class="photographer-selection" src="images/Sample Photos/${prenom}/${tag.image}"/>`;
+                        }
+                        affichage3 += `<div class="label-media">
+                    <p class="photograph-title">${tag.title}</p>
+                    <p class="photograph-numberOfLikes">${tag.likes}
+                    <i class="fas fa-heart" alt="likes"></i></p>
+                    </div>
+                    </li></a> `;
+                        // if undefined 
+                        affichage3 += '</ul></div>';
+                        resultOfSearch.innerHTML = affichage3;
+                    }
+
+                }
+            })
+        });
+
+        let mediasOfThePage = document.querySelectorAll('.portfolioMedias a')
+        console.log(mediasOfThePage)
+        console.log(tri); //médias du photographe choisi
+    })
+
+
+
+
+
+
+
 
 
 // create url //

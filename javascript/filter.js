@@ -7,33 +7,35 @@ const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present']
 const result = words.filter(word => word.length > 6);
 console.log(result);
 */
-/*
+
 async function tagFilter() {
     const response = await fetch("assets/data.json");
     const data = await response.json();
     return data;
 }
-*/
 
-/*
 // function remplissage de la page grâce aux données récupérées depuis data.json
 tagFilter()
     .then(data => {
-        console.log(data.media);
+        // console.log(data.media); //
         let mediasToFilter = data.media;
 
         for (let media of mediasToFilter) {
-            console.log(media);
-            console.log(mediasToFilter);
+            // console.log(media);
+            //  console.log(mediasToFilter);
         }
         let mediasFiltres;
         mediasFiltres = mediasToFilter.filter(function(media) {
             if (media.tags == 'events') {
-                console.log("j'ai trouvé la photo nommée " + media.image + " du photographe avec l'id " + media.photographerId);
+                // console.log("j'ai trouvé la photo nommée " + media.image + " du photographe avec l'id " + media.photographerId);
             }
             console.log(mediasFiltres);
         });
-    })*/
+    })
+
+
+
+//tagsToListen.addEventListener
 
 /*
 // var mediasRecup = data.media;
