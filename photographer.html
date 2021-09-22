@@ -19,45 +19,26 @@
 
     <main>
         <div id="informations"></div>
-        <!--
-        <div>
-            <li class="menuDeroulant"><a href="#">Trier par</a>
-                <ul class="listeDeroulante">
-                    <li class="deroulant deroulant1"><a href="#">Popularité</a></li>
-                    <li class="deroulant deroulant2"><a href="#">Date</a></li>
-                    <li class="deroulant deroulant3"><a href="#">Titre</a></li>
-                </ul>
-            </li>
-        </div>
--->
-        <div class="custom-select">
-            <ul class="select">
+
+        <details class="custom-select">
+            <summary class="radios">
+                <input type="radio" name="item" id="default" title="Popularité" checked>
+                <input type="radio" name="item" id="item1" title="Popularité">
+                <input type="radio" name="item" id="item2" title="Date">
+                <input type="radio" name="item" id="item3" title="Titre">
+            </summary>
+            <ul class="list">
                 <li>
-                    <input class="select_close" type="radio" name="customselect" id="customselect-close" value="" />
-                    <span class="select_label select_label-placeholder">Popularité</span>
+                    <label class="deroulant" for="item1">Popularité</label>
                 </li>
-
-                <li class="select_items">
-                    <input class="select_expand" type="radio" name="customselect" id="customselect-opener" />
-                    <label class="select_closeLabel" for="customselect-close"></label>
-
-                    <ul class="select_options">
-                        <li class="select_option">
-                            <input class="select_input" type="radio" name="customselect" id="customselect-date" />
-                            <label class="select_label" for="customselect-date"><span class="border-top">Date</span></label>
-                        </li>
-
-                        <li class="select_option">
-                            <input class="select_input" type="radio" name="customselect" id="customselect-titre" />
-                            <label class="select_label" for="customselect-titre"><span class="border-top">Titre</span></label>
-                        </li>
-
-                    </ul>
-
-                    <label class="select_expandLabel" for="customselect-opener"></label>
+                <li>
+                    <label class="deroulant" for="item2">Date</label>
+                </li>
+                <li>
+                    <label class="deroulant" for="item3">Titre</label>
                 </li>
             </ul>
-        </div>
+        </details>
 
 
 
@@ -118,7 +99,6 @@
     <script src="javascript/photographer.js"></script>
     <script src="javascript/modale.js" async></script>
     <script src="javascript/lightbox.js" type="module" async></script>
-    <script src="javascript/filter.js" async></script>
 
 
 </body>

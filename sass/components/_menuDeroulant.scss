@@ -1,200 +1,133 @@
-/*.menuDeroulant {
-    list-style: none;
-    color: black;
-    padding: 10px;
-    font-size: 20px;
-    text-decoration: none;
-    text-align: inherit;
-}
-
-.menuDeroulant a {
-    color: black;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 18px;
-}
-
-.listeDeroulante {
-    background-color: $primary-color;
-    list-style: none;
+.custom-select {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+    margin: 10px 0;
 }
 
-ul .deroulant {
-    list-style: none;
-    line-height: 44px;
-    float: left;
-    background-color: $primary-color;
-    border-bottom: 1.5px solid $quaternary-color;
-}
-
-.deroulant a {
-    color: $quaternary-color;
-    padding: 10px;
-    font-size: .7em;
-    text-decoration: none;
-}
-
-.deroulant a:hover {
-    background-color: $quaternary-color;
-    color: $primary-color;
-    padding: 10px;
-    width: 100%;
-}
-
-li .listeDeroulante {
-    display: none;
-    /* Rend le menu déroulant caché par défaut 
-
-
-}
-
-li:hover .listeDeroulante {
-    display: list-item;
-    list-style-position: inside;
-    position: absolute;
-    margin-top: 5px;
-    margin-left: -10px;
-}
-
-.menuDeroulant:hover ul li {
-    float: none;
-}
-
-.custom-select {
+details {
     position: relative;
-    margin: 50px;
-    li {
-        list-style-type: none;
-    }
+    width: 300px;
+    margin-right: 1rem;
 }
 
-*/
+details[open] {
+    z-index: 1;
+}
 
-.select {
-    width: 170px;
-    height: 73px;
+summary {
+    padding: 10px;
     cursor: pointer;
-    background-color: #911C1C;
     border-radius: 5px;
-    position: relative;
-    &_expand {
-        width: 0;
-        height: 69px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        &::after {
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            content: "\f104";
-            position: absolute;
-            top: 50%;
-            right: 18px;
-            transform: translate(-50%, -50%) rotate(90deg);
-            color: #fff;
-            font-size: 20px;
-            pointer-events: none;
-            z-index: 2;
-            color: #fff;
-            transition: all 250ms ease-in-out;
-        }
-        &:checked::after {
-            transform: translate(-50%, -50%) rotate(90deg) scaleX(-1);
-        }
-    }
-    &_expandLabel {
-        display: block;
-        width: 100%;
-        height: 69px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        cursor: pointer;
-    }
-    &_close {
-        display: none
-    }
-    &_closeLabel {
-        width: 170px;
-        height: 69px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: none;
-    }
-    &_items {
-        width: 170px;
-        height: 69px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-radius: 5px;
-        padding-top: 69px;
-    }
-    &_input {
-        display: none
-    }
-    &_label {
-        display: block;
-        height: 0;
-        font-size: 1.2rem;
-        line-height: 69px;
-        overflow: hidden;
-        color: #fff;
-        background-color: #fff;
-        cursor: pointer;
-        padding-left: 20px;
-        &-placeholder {
-            height: 69px;
-            vertical-align: middle;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: transparent;
-        }
-    }
-    &_expand:checked {
-        +.select_closeLabel {
-            display: block;
-            +.select_options {
-                background: #911C1C;
-                border-radius: 0 0 5px 5px;
-                .select_label {
-                    height: 69px;
-                    background: transparent;
-                    &:hover {
-                        background-color: #DB8876;
-                        color: #000;
-                    }
-                }
-                +.select_expandLabel {
-                    display: none
-                }
-                +.select_option {
-                    border-radius: 5px;
-                }
-                .select_option:nth-child(2) .select_label:hover {
-                    border-radius: 0 0 5px 5px;
-                }
-            }
-        }
-    }
-    &_input:checked+.select_label {
-        height: 69px;
-        margin-top: -69px;
-        background-color: #911C1C;
-        border-radius: 5px;
-    }
-    .border-top {
-        display: block;
-        height: 100%;
-        width: 85%;
-        border-top: 1px solid #fff;
-    }
+    background-color: $primary-color;
+    list-style: none;
+    color: white;
 }
 
-.select_input:checked+.select_label .border-top {
-    border-top: none;
+summary::-webkit-details-marker {
+    display: none;
 }
+
+details[open] summary:before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+summary:after {
+    content: '';
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    border-bottom: 2px solid currentColor;
+    border-left: 2px solid currentColor;
+    border-bottom-left-radius: 2px;
+    transform: rotate(135deg) translate(50%, 0%);
+    transform-origin: center center;
+    transition: transform ease-in-out 100ms;
+    position: absolute;
+    top: 14px;
+    left: 125px;
+}
+
+summary:focus {
+    outline: none;
+}
+
+details[open] summary:after {
+    transform: rotate(-45deg) translate(0%, 0%);
+}
+
+.list {
+    width: 100%;
+    background: $primary-color;
+    position: absolute;
+    top: calc(100% + .5rem);
+    left: 0;
+    padding: 1rem;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.list li {
+    margin: 0;
+    padding: 1rem 0;
+    border-bottom: 1px solid $primary-color;
+    list-style: none;
+}
+
+.listli:first-child {
+    padding-top: 0;
+}
+
+.listli:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+
+/* FAKE SELECT */
+
+summary.radios {
+    counter-reset: radios;
+    width: 130px;
+}
+
+input[type=radio] {
+    counter-increment: radios;
+    appearance: none;
+    display: none;
+    color: white;
+}
+
+input[type=radio]:checked {
+    display: inline;
+}
+
+input[type=radio]:after {
+    content: attr(title);
+    display: inline;
+    font-size: 1rem;
+}
+
+ul.list {
+    counter-reset: labels;
+}
+
+.list .deroulant {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+// https://codepen.io/STKNG/pen/GbVogZ

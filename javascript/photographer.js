@@ -267,11 +267,13 @@ setTimeout(function filtreTag() {
                     </div>
                     </li></a> `;
                     // if undefined 
-                    affichage3 += '</ul></div>';
-                    remplissage2.innerHTML = affichage3;
+
                 }
 
+
             }
+            affichage3 += '</ul></div>';
+            remplissage2.innerHTML = affichage3;
         })
     });
 
