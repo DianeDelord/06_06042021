@@ -230,12 +230,11 @@ function toPascalCase(string) {
         .replace(new RegExp(/\w/), s => s.toUpperCase());
 }
 
+let linkClicked
 
 setTimeout(function filtreTag() {
     let tagsOnThisPage = Array.from(document.querySelectorAll(".lienTag"))
     console.log(tagsOnThisPage)
-
-    let linkClicked
 
     tagsOnThisPage.forEach(link => {
         link.addEventListener('click', function filter(link) {
@@ -270,6 +269,8 @@ setTimeout(function filtreTag() {
             }
             affichage3 += '</ul></div>';
             remplissage2.innerHTML = affichage3;
+            console.log(linkClicked)
+            return linkClicked
         })
     });
     // console.log(tri); //médias du photographe choisi
@@ -281,22 +282,21 @@ setTimeout(function filtreTag() {
 // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 
 function triPopulariteCroissante() { // ok
-    console.log("tagsOnThisPagtriPopulariteCroissantee")
-    const links = Array.from(document.querySelectorAll('a[class="restricted"]'));
-    console.log(links)
+    console.log("triPopulariteCroissantee")
 
     let affichage3 = '<ul class="portfolioMedias">';
-    let mediasPlusPopulaires = links.sort(function(a, b) { return b.likes - a.likes })
+    let mediasPlusPopulaires = tri.sort(function(a, b) { if (b.likes < a.likes) { return -1; } else { return 1 } })
 
     for (let media of mediasPlusPopulaires) {
-        console.log(media)
+
+        //  console.log(media)
         if (media.image == undefined) {
             affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
                  <li class="listOfMedias"><div class="video_container">
                  <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
 
         } else {
-            //  console.log(title.image);
+            //  console.log(media.image);
             affichage3 += `<a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
                  <li class="listOfMedias">
                  <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/>`;
@@ -310,9 +310,11 @@ function triPopulariteCroissante() { // ok
     }
     affichage3 += '</ul></div>';
     remplissage2.innerHTML = affichage3;
+
+
 }
 
-function triDateRecenteEnPremier() {
+function triDateRecenteEnPremier() { //ok
     console.log("triDateRecenteEnPremier")
 
     let affichage3 = '<ul class="portfolioMedias">';
