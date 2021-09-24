@@ -1,3 +1,14 @@
+#deroulant_tri {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#deroulant_tri_p {
+    margin: 0 10px 0 0;
+    font-weight: 700;
+}
+
 .custom-select {
     padding: 0;
     margin: 0;

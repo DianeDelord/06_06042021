@@ -20,26 +20,26 @@
     <main>
         <div id="informations"></div>
 
-        <details class="custom-select">
-            <summary class="radios">
-                <input type="radio" name="item" id="default" title="Popularité" checked>
-                <input type="radio" name="item" id="item1" title="Popularité">
-                <input type="radio" name="item" id="item2" title="Date">
-                <input type="radio" name="item" id="item3" title="Titre">
-            </summary>
-            <ul class="list">
-                <li>
-                    <label class="deroulant" for="item1">Popularité</label>
-                </li>
-                <li>
-                    <label class="deroulant" for="item2">Date</label>
-                </li>
-                <li>
-                    <label class="deroulant" for="item3">Titre</label>
-                </li>
-            </ul>
-        </details>
 
+        <div id="deroulant_tri">
+            <p id="deroulant_tri_p">Trier par</p>
+            <details class="custom-select">
+                <summary class="radios">
+                    <input type="radio" name="item" id="deroulant_default" onclick="triPopulariteCroissante()">Popularité</input>
+                </summary>
+                <ul class="list">
+                    <li>
+                        <label class="deroulant" for="Popularite" onclick="triPopulariteCroissante()">Popularité</label>
+                    </li>
+                    <li>
+                        <label class="deroulant" for="Date" onclick="triDateRecenteEnPremier()">Date</label>
+                    </li>
+                    <li>
+                        <label class="deroulant" for="Titre" onclick="triOrdreAlphabétique()">Titre</label>
+                    </li>
+                </ul>
+            </details>
+        </div>
 
 
 

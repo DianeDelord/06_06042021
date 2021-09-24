@@ -199,9 +199,9 @@ ongletRemplissage()
         onglet_price.setAttribute("class", "onglet_price")
 
         for (let photographer of data.photographers) {
-            console.log(photographer.id);
+            //  console.log(photographer.id);
             if (photographer.id == photographerPage) {
-                console.log(photographer.price); // tarif journalier du photographe de la page
+                //   console.log(photographer.price); // tarif journalier du photographe de la page
                 onglet_price.textContent = `${photographer.price} €/jour`
             }
         }
@@ -266,18 +266,111 @@ setTimeout(function filtreTag() {
                     <i class="fas fa-heart" alt="likes"></i></p>
                     </div>
                     </li></a> `;
-                    // if undefined 
-
                 }
-
-
             }
             affichage3 += '</ul></div>';
             remplissage2.innerHTML = affichage3;
         })
     });
-
-    let mediasOfThePage = document.querySelectorAll('.portfolioMedias a')
-    console.log(mediasOfThePage)
-    console.log(tri); //médias du photographe choisi
+    // console.log(tri); //médias du photographe choisi
 }, 2000);
+
+////////////////////////////////////////////
+// menu déroulant
+////////////////////////////////////////////
+// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
+function triPopulariteCroissante() { // ok
+    console.log("tagsOnThisPagtriPopulariteCroissantee")
+    const links = Array.from(document.querySelectorAll('a[class="restricted"]'));
+    console.log(links)
+
+    let affichage3 = '<ul class="portfolioMedias">';
+    let mediasPlusPopulaires = links.sort(function(a, b) { return b.likes - a.likes })
+
+    for (let media of mediasPlusPopulaires) {
+        console.log(media)
+        if (media.image == undefined) {
+            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
+                 <li class="listOfMedias"><div class="video_container">
+                 <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
+
+        } else {
+            //  console.log(title.image);
+            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
+                 <li class="listOfMedias">
+                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/>`;
+        }
+        affichage3 += `<div class="label-media">
+        <p class="photograph-title">${media.title}</p>
+        <p class="photograph-numberOfLikes">${media.likes}
+        <i class="fas fa-heart" alt="likes"></i></p>
+        </div>
+        </li></a> `;
+    }
+    affichage3 += '</ul></div>';
+    remplissage2.innerHTML = affichage3;
+}
+
+function triDateRecenteEnPremier() {
+    console.log("triDateRecenteEnPremier")
+
+    let affichage3 = '<ul class="portfolioMedias">';
+    let mediasPlusRecent = tri.sort(function(a, b) { if (a.date < b.date) { return -1; } else { return 1 } })
+
+    for (let media of mediasPlusRecent) {
+
+        //  console.log(media)
+        if (media.image == undefined) {
+            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
+                 <li class="listOfMedias"><div class="video_container">
+                 <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
+
+        } else {
+            //  console.log(media.image);
+            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
+                 <li class="listOfMedias">
+                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/>`;
+        }
+        affichage3 += `<div class="label-media">
+        <p class="photograph-title">${media.title}</p>
+        <p class="photograph-numberOfLikes">${media.likes}
+        <i class="fas fa-heart" alt="likes"></i></p>
+        </div>
+        </li></a> `;
+    }
+    affichage3 += '</ul></div>';
+    remplissage2.innerHTML = affichage3;
+}
+
+
+function triOrdreAlphabétique() { //ok
+    console.log("triOrdreAlphabétique")
+
+    let affichage3 = '<ul class="portfolioMedias">';
+    let mediasEnOrdreAlphabetique = tri.sort(function(a, b) { if (a.title < b.title) { return -1; } else { return 1 } })
+    console.log(mediasEnOrdreAlphabetique);
+
+    for (let media of mediasEnOrdreAlphabetique) {
+        console.log(media);
+
+        if (media.image == undefined) {
+            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
+                 <li class="listOfMedias"><div class="video_container">
+                 <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
+
+        } else {
+            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
+                 <li class="listOfMedias">
+                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/>`;
+        }
+        affichage3 += `<div class="label-media">
+        <p class="photograph-title">${media.title}</p>
+        <p class="photograph-numberOfLikes">${media.likes}
+        <i class="fas fa-heart" alt="likes"></i></p>
+        </div>
+        </li></a> `;
+    }
+    affichage3 += '</ul></div>';
+    remplissage2.innerHTML = affichage3;
+}
