@@ -48,8 +48,6 @@ class lightbox {
             console.log("c'est une vidéo, pas une image!");
         }
         */
-        console.log("salut")
-
         const image = new Image();
         const container = this.element.querySelector('.lightbox__container')
         const loader = document.createElement('div')
@@ -95,7 +93,7 @@ class lightbox {
         e.preventDefault()
         let i = this.images.findIndex(image => image === this.url);
         if (i === this.images.length - 1) {
-            i = -1 // si on est arrivé à la dernière image, on repart du début
+            i = -1 // si on est arrivé à la dernière image, on repart au début
         }
         this.loadImage(this.images[i + 1]);
     }

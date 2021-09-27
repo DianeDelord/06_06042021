@@ -141,23 +141,23 @@ async function printMedias() {
 
     for (let title of tri) {
         if (title.image == undefined) {
-            affichage2 += `<a href="images/Sample Photos/${prenom}/${title.video}" class="restricted">
-             <li class="listOfMedias"><div class="video_container">
-             <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${title.video}" type="video/mp4"></video></div>`;
+            affichage2 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${title.video}" class="restricted">
+             <div class="video_container">
+             <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${title.video}" type="video/mp4"></video></div></a>`;
 
         } else {
             //  console.log(title.image);
-            affichage2 += `<a href="images/Sample Photos/${prenom}/${title.image}" class="restricted">
-             <li class="listOfMedias">
-             <img class="photographer-selection" src="images/Sample Photos/${prenom}/${title.image}"/>`;
+            affichage2 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${title.image}" class="restricted">
+           
+             <img class="photographer-selection" src="images/Sample Photos/${prenom}/${title.image}"/></a>`;
         }
 
         affichage2 += `<div class="label-media">
         <p class="photograph-title">${title.title}</p>
         <p class="photograph-numberOfLikes">${title.likes}
-        <i class="fas fa-heart" alt="likes"></i></p>
+        <i class="far fa-heart" alt="likes"></i></p>
         </div>
-        </li></a> `;
+        </li> `;
     }
     // if undefined 
     affichage2 += '</ul></div>';
@@ -191,6 +191,35 @@ ongletRemplissage()
                 compteurDeLikes += mediaLikes;
             }
         }
+
+        ////////////// likes /////
+        let heart_likes = document.querySelectorAll(".photograph-numberOfLikes i")
+        console.log(heart_likes)
+        console.log(heart_likes[0].className)
+
+        heart_likes.forEach(element => {
+            element.addEventListener('click', event => {
+                console.log("coeur clické")
+
+                if (element.classList.contains("far")) {
+                    element.classList.replace("far", "fas");
+                    compteurDeLikes += 1
+                    console.log("coeur liké")
+                    console.log(compteurDeLikes)
+                    onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
+
+                } else if (element.classList.contains("fas")) {
+                    element.classList.replace("fas", "far");
+                    console.log("coeur unliké")
+                    compteurDeLikes -= 1
+                    onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
+
+                }
+            })
+        })
+
+        /////////////////////////
+
         console.log("le total de likes est : " + compteurDeLikes);
         onglet_likes.setAttribute("class", "numberOfLikes")
         onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
@@ -251,7 +280,7 @@ setTimeout(function filtreTag() {
                     if (tag.image == undefined) {
                         affichage3 += `<a href="images/Sample Photos/${prenom}/${tag.video}" class="restricted">
                              <li class="listOfMedias"><div class="video_container">
-                             <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${tag.video}" type="video/mp4"></video></div>`;
+                             <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${tag.video}" type="video/mp4"></video></div>`;
 
                     } else {
                         //  console.log(title.image);
@@ -293,7 +322,7 @@ function triPopulariteCroissante() { // ok
         if (media.image == undefined) {
             affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
                  <li class="listOfMedias"><div class="video_container">
-                 <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
+                 <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
 
         } else {
             //  console.log(media.image);
@@ -314,6 +343,7 @@ function triPopulariteCroissante() { // ok
 
 }
 
+
 function triDateRecenteEnPremier() { //ok
     console.log("triDateRecenteEnPremier")
 
@@ -326,7 +356,7 @@ function triDateRecenteEnPremier() { //ok
         if (media.image == undefined) {
             affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
                  <li class="listOfMedias"><div class="video_container">
-                 <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
+                 <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
 
         } else {
             //  console.log(media.image);
@@ -359,7 +389,7 @@ function triOrdreAlphabétique() { //ok
         if (media.image == undefined) {
             affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
                  <li class="listOfMedias"><div class="video_container">
-                 <video width="320" height="240" autoplay class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
+                 <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
 
         } else {
             affichage3 += `<a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
