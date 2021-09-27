@@ -45,6 +45,7 @@
 
 #mediasDuPhotographe {
     display: flex;
+    width: 100%;
 }
 
 .portfolioMedias {
@@ -59,7 +60,7 @@
 .portfolioMedias li {
     display: flex;
     justify-content: center;
-    color: #312E2E;
+    color: $tertiary-color;
     flex-direction: column;
     text-align: center;
     list-style: none;
@@ -67,6 +68,8 @@
     align-items: center;
     transform: scale(1);
     transition: .3s ease-in-out;
+    margin: 0 53px 0 0;
+    width: 300px;
 }
 
 .photographer-video:hover,
@@ -100,7 +103,6 @@
 
 .restricted {
     text-decoration: none;
-    margin: 0 53px 0 0;
 }
 
 .photograph-title {
