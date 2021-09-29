@@ -21,27 +21,18 @@
         <div id="informations"></div>
 
 
-        <div id="deroulant_tri">
-            <p id="deroulant_tri_p">Trier par</p>
-            <details class="custom-select">
-                <summary class="radios">
-                    <input type="radio" name="item" id="deroulant_default" onclick="triPopulariteCroissante()">Popularité</input>
-                </summary>
-                <ul class="list">
-                    <li>
-                        <label class="deroulant" for="Popularite" onclick="triPopulariteCroissante()">Popularité</label>
-                    </li>
-                    <li>
-                        <label class="deroulant" for="Date" onclick="triDateRecenteEnPremier()">Date</label>
-                    </li>
-                    <li>
-                        <label class="deroulant" for="Titre" onclick="triOrdreAlphabétique()">Titre</label>
-                    </li>
-                </ul>
-            </details>
-        </div>
-
-
+        <!-- menu déroulant-->
+        <nav id="menu-deroulant">
+            <p>Trier par</p>
+            <ul>
+                <li class="menu-html"><a onclick="triPopulariteCroissante()">Popularité <i id="chevron" class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a onclick="triDateRecenteEnPremier()">Date</a></li>
+                        <li><a onclick="triOrdreAlphabétique()">Titre</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
 
 
         <div id="mediasDuPhotographe"></div>

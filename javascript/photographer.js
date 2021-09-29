@@ -24,7 +24,7 @@ fetch("assets/data.json")
         }
     })
 
-
+///// génère la "carte" de présentation du photographe 
 .then(data => {
     // console.log(data, data.photographers);
     const resultPh = data.photographers.filter(photographer => photographer.id == photographerPage);
@@ -96,7 +96,7 @@ fetch("assets/data.json")
         photographer_tagsA.appendChild(eachTag);
         photographer_tagsList.appendChild(photographer_tagsA);
     }
-
+    remplissage.appendChild(photographerCard_div2)
     photographerCard_div2.appendChild(photographerCard_photographerInfos)
     photographerCard_photographerInfos.appendChild(photographerCard_h1)
     photographerCard_photographerInfos.appendChild(photographerCard_location)
@@ -113,6 +113,8 @@ fetch("assets/data.json")
     //remplissage.innerHTML = affichageResult;
 })
 
+
+//////////// affichage des médias du photographe /////////////
 let tri
 let prenom
 async function printMedias() {
@@ -155,19 +157,21 @@ async function printMedias() {
             photographerCard_video.setAttribute("controls", "");
             photographerCard_video.setAttribute("class", "photographer-video");
             let photographerCard_source = document.createElement("source");
-            photographerCard_source.setAttribute("src", "images/Sample Photos/${prenom}/${title.video}");
+            photographerCard_source.setAttribute("src", `images/Sample Photos/${prenom}/${title.video}`);
             photographerCard_source.setAttribute("type", "video/mp4");
 
             photographerCard_ul.appendChild(photographerCard_li)
             photographerCard_li.appendChild(photographerCard_a)
             photographerCard_li.appendChild(photographerCard_div)
-            photographerCard_li.appendChild(photographerCard_video)
-            photographerCard_li.appendChild(photographerCard_source)
+            photographerCard_div.appendChild(photographerCard_video)
+            photographerCard_video.appendChild(photographerCard_source)
 
             let photographerCard_div2 = document.createElement("div");
             photographerCard_div2.setAttribute("class", "label-media");
 
-            photographerCard_li.appendChild(photographerCard_div)
+            // photographerCard_li.appendChild(photographerCard_div)
+            //photographerCard_div.appendChild(photographerCard_video)
+            // photographerCard_video.appendChild(photographerCard_source)
             let photographerCard_p = document.createElement("p");
             photographerCard_p.setAttribute("class", "photograph-title");
             photographerCard_p.textContent = `${title.title}`
@@ -177,7 +181,8 @@ async function printMedias() {
             let photographerCard_i = document.createElement("i");
             photographerCard_i.setAttribute("class", "far fa-heart");
             photographerCard_i.setAttribute("alt", "likes");
-
+            photographerCard_div.appendChild(photographerCard_video)
+            photographerCard_li.appendChild(photographerCard_div2)
             photographerCard_div2.appendChild(photographerCard_p)
             photographerCard_div2.appendChild(photographerCard_p2)
             photographerCard_p2.appendChild(photographerCard_i)
@@ -224,7 +229,7 @@ async function ongletRemplissage() {
 
 let ongletLikesTarif = document.getElementById("ongletLikesTarif");
 
-// function remplissage de la page grâce aux données récupérées depuis data.json
+//  remplissage de l'onglet et gestion des likes : sur les médias et sur le total sur l'onglet
 ongletRemplissage()
     .then(data => {
         console.log("onglet remplissage");
@@ -245,29 +250,28 @@ ongletRemplissage()
 
         ////////////// likes du media /////
         let heart_likes = Array.from(document.querySelectorAll(".label-media"))
-
-
         heart_likes.forEach(element => {
                 element.addEventListener('click', event => {
-                    console.log(heart_likes)
+                    console.log(heart_likes, event)
                     console.log("coeur clické")
                     let heart = element.querySelector(".fa-heart")
                     let numberOfLikesOfTheMedia = parseInt(element.querySelector(".photograph-numberOfLikes").innerText)
                     console.log(numberOfLikesOfTheMedia)
 
-
+                    // si le coeur est "vide" c'est qu'il n'a pas été clické / liké 
+                    // au click = coeur liké => le coeur passe "plein"
                     if (heart.classList.contains("far")) {
                         heart.classList.replace("far", "fas");
-                        compteurDeLikes += 1
-
-                        numberOfLikesOfTheMedia += 1
+                        compteurDeLikes += 1 // ajout +1 au total des likes du photographe dans l'onglet
+                        numberOfLikesOfTheMedia += 1 // ajout +1 au total des likes de ce média
                         element.querySelector(".photograph-numberOfLikes").innerHTML = numberOfLikesOfTheMedia + " " + `<i class="fas fa-heart" alt="likes"></i>`
                         console.log(numberOfLikesOfTheMedia)
-
                         console.log("coeur liké")
                         console.log(compteurDeLikes)
                         onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
 
+                        // si le coeur est "plein" c'est qu'il a déjà été clické / liké 
+                        // au click = coeur unliké => le coeur repasse à "vide"
                     } else if (heart.classList.contains("fas")) {
                         heart.classList.replace("fas", "far");
                         console.log("coeur unliké")
@@ -275,12 +279,11 @@ ongletRemplissage()
                         numberOfLikesOfTheMedia -= 1
                         console.log(numberOfLikesOfTheMedia)
                         element.querySelector(".photograph-numberOfLikes").innerHTML = numberOfLikesOfTheMedia + " " + `<i class="far fa-heart" alt="likes"></i>`
-
                         onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
                     }
                 })
             })
-            /////////////////////////
+            //////////////////////////////////////
 
         console.log("le total de likes est : " + compteurDeLikes);
         onglet_likes.setAttribute("class", "numberOfLikes")
@@ -297,7 +300,6 @@ ongletRemplissage()
             }
         }
         console.log(onglet_price);
-
         ongletLikesTarif.appendChild(onglet_likes)
         ongletLikesTarif.appendChild(onglet_price)
     })
@@ -309,6 +311,7 @@ setTimeout(function() {
 
 ////////////////////////////////////////////
 // https://stackoverflow.com/questions/4068573/convert-string-to-pascal-case-aka-uppercamelcase-in-javascript
+// fonction qui passe une string en PascalCase (pour le titre des photos par exemple)
 function toPascalCase(string) {
     return `${string}`
         .replace(new RegExp(/[-_]+/, 'g'), ' ')
@@ -321,8 +324,8 @@ function toPascalCase(string) {
         .replace(new RegExp(/\w/), s => s.toUpperCase());
 }
 
+////////// sur la page du photographe, tri dans ses médias au click sur un des tags de sa page
 let linkClicked
-
 setTimeout(function filtreTag() {
     let tagsOnThisPage = Array.from(document.querySelectorAll(".lienTag"))
     console.log(tagsOnThisPage)
@@ -330,37 +333,38 @@ setTimeout(function filtreTag() {
     tagsOnThisPage.forEach(link => {
         link.addEventListener('click', function filter(link) {
             linkClicked = link.target.innerHTML.substr(1) // ouiiiiiiiii
-            console.log(linkClicked)
+            console.log(linkClicked) // lien qui a été clické
 
             let affichage3 = '<ul class="portfolioMedias">';
 
             for (let tag of tri) {
                 //console.log(tag.tags)
                 if (tag.tags == linkClicked) {
-                    console.log("j'en ai un " + tag.title)
+                    //console.log("j'en ai un " + tag.title)
 
                     if (tag.image == undefined) {
-                        affichage3 += `<a href="images/Sample Photos/${prenom}/${tag.video}" class="restricted">
-                             <li class="listOfMedias"><div class="video_container">
+                        affichage3 += `
+                             <li class="listOfMedias">
+                             <a class="restricted" href="images/Sample Photos/${prenom}/${tag.video}"> </a><div class="video_container">
                              <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${tag.video}" type="video/mp4"></video></div>`;
 
                     } else {
                         //  console.log(title.image);
-                        affichage3 += `<a href="images/Sample Photos/${prenom}/${tag.image}" class="restricted">
+                        affichage3 += `
                              <li class="listOfMedias">
+                             <a class="restricted" href="images/Sample Photos/${prenom}/${tag.image}"></a>
                              <img class="photographer-selection" src="images/Sample Photos/${prenom}/${tag.image}"/>`;
                     }
                     affichage3 += `<div class="label-media">
                     <p class="photograph-title">${tag.title}</p>
                     <p class="photograph-numberOfLikes">${tag.likes}
-                    <i class="fas fa-heart" alt="likes"></i></p>
+                    <i class="far fa-heart" alt="likes"></i></p>
                     </div>
-                    </li></a> `;
+                    </li> `;
                 }
             }
             affichage3 += '</ul></div>';
             remplissage2.innerHTML = affichage3;
-            console.log(linkClicked)
             return linkClicked
         })
     });
@@ -371,15 +375,15 @@ setTimeout(function filtreTag() {
 // menu déroulant
 ////////////////////////////////////////////
 // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+// tri dans les médias du photographe depuis les données json
 
-function triPopulariteCroissante() { // ok
+function triPopulariteCroissante() { // fonction déclenchée au clic (fonction dans le html)
     console.log("triPopulariteCroissantee")
 
     let affichage3 = '<ul class="portfolioMedias">';
     let mediasPlusPopulaires = tri.sort(function(a, b) { if (b.likes < a.likes) { return -1; } else { return 1 } })
 
     for (let media of mediasPlusPopulaires) {
-
         //  console.log(media)
         if (media.image == undefined) {
             affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
@@ -395,25 +399,22 @@ function triPopulariteCroissante() { // ok
         affichage3 += `<div class="label-media">
         <p class="photograph-title">${media.title}</p>
         <p class="photograph-numberOfLikes">${media.likes}
-        <i class="fas fa-heart" alt="likes"></i></p>
+        <i class="far fa-heart" alt="likes"></i></p>
         </div>
         </li></a> `;
     }
     affichage3 += '</ul></div>';
     remplissage2.innerHTML = affichage3;
-
-
 }
 
 
-function triDateRecenteEnPremier() { //ok
+function triDateRecenteEnPremier() { // fonction déclenchée au clic (fonction dans le html)
     console.log("triDateRecenteEnPremier")
 
     let affichage3 = '<ul class="portfolioMedias">';
     let mediasPlusRecent = tri.sort(function(a, b) { if (a.date < b.date) { return -1; } else { return 1 } })
 
     for (let media of mediasPlusRecent) {
-
         //  console.log(media)
         if (media.image == undefined) {
             affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
@@ -429,7 +430,7 @@ function triDateRecenteEnPremier() { //ok
         affichage3 += `<div class="label-media">
         <p class="photograph-title">${media.title}</p>
         <p class="photograph-numberOfLikes">${media.likes}
-        <i class="fas fa-heart" alt="likes"></i></p>
+        <i class="far fa-heart" alt="likes"></i></p>
         </div>
         </li></a> `;
     }
@@ -438,7 +439,7 @@ function triDateRecenteEnPremier() { //ok
 }
 
 
-function triOrdreAlphabétique() { //ok
+function triOrdreAlphabétique() { // fonction déclenchée au clic (fonction dans le html)
     console.log("triOrdreAlphabétique")
 
     let affichage3 = '<ul class="portfolioMedias">';
@@ -446,8 +447,7 @@ function triOrdreAlphabétique() { //ok
     console.log(mediasEnOrdreAlphabetique);
 
     for (let media of mediasEnOrdreAlphabetique) {
-        console.log(media);
-
+        // console.log(media);
         if (media.image == undefined) {
             affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
                  <li class="listOfMedias"><div class="video_container">
@@ -461,10 +461,15 @@ function triOrdreAlphabétique() { //ok
         affichage3 += `<div class="label-media">
         <p class="photograph-title">${media.title}</p>
         <p class="photograph-numberOfLikes">${media.likes}
-        <i class="fas fa-heart" alt="likes"></i></p>
+        <i class="far fa-heart" alt="likes"></i></p>
         </div>
         </li></a> `;
     }
     affichage3 += '</ul></div>';
     remplissage2.innerHTML = affichage3;
 }
+
+
+//////////
+////// accessibilité
+//// https://www.youtube.com/watch?v=UeQ5T8NbE7A

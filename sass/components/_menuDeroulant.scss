@@ -1,144 +1,114 @@
-#deroulant_tri {
+#menu-deroulant {
+    margin: 15px;
+    justify-content: flex-start;
     display: flex;
     flex-direction: row;
-    align-items: center;
-}
-
-#deroulant_tri_p {
-    margin: 0 10px 0 0;
-    font-weight: 700;
-}
-
-.custom-select {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    margin: 10px 0;
-}
-
-details {
-    position: relative;
-    width: 300px;
-    margin-right: 1rem;
-}
-
-details[open] {
-    z-index: 1;
-}
-
-summary {
-    padding: 10px;
     cursor: pointer;
-    border-radius: 5px;
+}
+
+nav>p {
+    margin-right: 15px;
+}
+
+nav>ul {
+    width: 140px;
+    margin: 0;
+    padding: 0;
     background-color: $primary-color;
-    list-style: none;
+    border-radius: 5px;
+}
+
+nav>ul::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+nav>ul>li {
+    float: left;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+nav>ul>li a {
+    padding: 15px 20px;
     color: white;
 }
 
-summary::-webkit-details-marker {
-    display: none;
-}
-
-details[open] summary:before {
-    content: '';
-    display: block;
-    width: 100vw;
-    height: 100vh;
-    background: transparent;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-summary:after {
-    content: '';
+#chevron {
+    color: white;
+    content: "";
     display: inline-block;
-    width: .5rem;
-    height: .5rem;
-    border-bottom: 2px solid currentColor;
-    border-left: 2px solid currentColor;
+    width: 15px;
+    height: 15px;
     border-bottom-left-radius: 2px;
-    transform: rotate(135deg) translate(50%, 0%);
+    transform: rotate(0deg) translate(0%, 0%);
     transform-origin: center center;
     transition: transform ease-in-out 100ms;
     position: absolute;
-    top: 14px;
-    left: 125px;
+    top: 15px;
+    left: 109px;
 }
 
-summary:focus {
-    outline: none;
+nav>ul>li:hover a {
+    padding: 15px, 30px, 20px, 30px;
 }
 
-details[open] summary:after {
-    transform: rotate(-45deg) translate(0%, 0%);
+nav li {
+    list-style-type: none;
 }
 
-.list {
-    width: 100%;
-    background: $primary-color;
-    position: absolute;
-    top: calc(100% + .5rem);
-    left: 0;
-    padding: 1rem;
-    margin: 0;
-    box-sizing: border-box;
-    border-radius: 5px;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.list li {
-    margin: 0;
-    padding: 1rem 0;
-    border-bottom: 1px solid $primary-color;
-    list-style: none;
-}
-
-.listli:first-child {
-    padding-top: 0;
-}
-
-.listli:last-child {
-    padding-bottom: 0;
-    border-bottom: none;
-}
-
-
-/* FAKE SELECT */
-
-summary.radios {
-    counter-reset: radios;
-    width: 130px;
-}
-
-input[type=radio] {
-    counter-increment: radios;
-    appearance: none;
+.submenu {
     display: none;
+}
+
+nav a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+nav li:hover .submenu {
+    display: inline-block;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    padding: 0px;
+    z-index: 1000;
+}
+
+nav li:hover #chevron {
+    transform: rotate(180deg) translate(0%, 0%);
+}
+
+.submenu li {
+    border-top: 1.5px solid white;
+    padding: 10px 0;
+}
+
+.submenu li a {
+    padding: 15px 30px;
     color: white;
+    width: 80px;
 }
 
-input[type=radio]:checked {
-    display: inline;
+.menu-html .submenu:hover {
+    //  background-color: $another-color;
 }
 
-input[type=radio]:after {
-    content: attr(title);
-    display: inline;
-    font-size: 1rem;
+.menu-html .submenu {
+    background-color: $primary-color;
+    border-radius: 0 0 5px 5px;
 }
 
-ul.list {
-    counter-reset: labels;
-}
-
-.list .deroulant {
-    width: 100%;
-    display: block;
-    cursor: pointer;
+.submenu li:hover a {
     color: white;
-    border-bottom: 1px solid white;
+    font-weight: bold;
 }
 
-// https://codepen.io/STKNG/pen/GbVogZ
+.menu-html .submenu li:hover a {
+    background-color: rgb(210, 77, 60, 0.5);
+}
+
+//////////////////
+/// https://www.youtube.com/watch?v=cWrmoGwQ1iE
