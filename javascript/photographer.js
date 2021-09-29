@@ -191,14 +191,14 @@ async function printMedias() {
             photographerCard_li.setAttribute("class", "listOfMedias");
             let photographerCard_a = document.createElement("a");
             photographerCard_a.setAttribute("class", "restricted");
-            photographerCard_a.setAttribute("href", `images/Sample Photos/${prenom}/${title.video}`);
+            photographerCard_a.setAttribute("href", `images/Sample Photos/${prenom}/${title.image}`);
             let photographerCard_img = document.createElement("img");
             photographerCard_img.setAttribute("class", "photographer-selection");
             photographerCard_img.setAttribute("src", `images/Sample Photos/${prenom}/${title.image}`);
 
             photographerCard_ul.appendChild(photographerCard_li)
             photographerCard_li.appendChild(photographerCard_a)
-            photographerCard_li.appendChild(photographerCard_img)
+            photographerCard_a.appendChild(photographerCard_img)
 
             let photographerCard_div = document.createElement("div");
             photographerCard_div.setAttribute("class", "label-media");
@@ -345,15 +345,15 @@ setTimeout(function filtreTag() {
                     if (tag.image == undefined) {
                         affichage3 += `
                              <li class="listOfMedias">
-                             <a class="restricted" href="images/Sample Photos/${prenom}/${tag.video}"> </a><div class="video_container">
-                             <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${tag.video}" type="video/mp4"></video></div>`;
+                             <a class="restricted" href="images/Sample Photos/${prenom}/${tag.video}"> <div class="video_container">
+                             <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${tag.video}" type="video/mp4"></video></a></div>`;
 
                     } else {
                         //  console.log(title.image);
                         affichage3 += `
                              <li class="listOfMedias">
-                             <a class="restricted" href="images/Sample Photos/${prenom}/${tag.image}"></a>
-                             <img class="photographer-selection" src="images/Sample Photos/${prenom}/${tag.image}"/>`;
+                             <a class="restricted" href="images/Sample Photos/${prenom}/${tag.image}">
+                             <img class="photographer-selection" src="images/Sample Photos/${prenom}/${tag.image}"/></a>`;
                     }
                     affichage3 += `<div class="label-media">
                     <p class="photograph-title">${tag.title}</p>
@@ -386,22 +386,22 @@ function triPopulariteCroissante() { // fonction déclenchée au clic (fonction 
     for (let media of mediasPlusPopulaires) {
         //  console.log(media)
         if (media.image == undefined) {
-            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
-                 <li class="listOfMedias"><div class="video_container">
-                 <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
+            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
+                 <div class="video_container">
+                 <video width="320" height="240" controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div></a>`;
 
         } else {
             //  console.log(media.image);
-            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
-                 <li class="listOfMedias">
-                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/>`;
+            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
+                 
+                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/></a>`;
         }
         affichage3 += `<div class="label-media">
         <p class="photograph-title">${media.title}</p>
         <p class="photograph-numberOfLikes">${media.likes}
         <i class="far fa-heart" alt="likes"></i></p>
         </div>
-        </li></a> `;
+        </li> `;
     }
     affichage3 += '</ul></div>';
     remplissage2.innerHTML = affichage3;
@@ -417,22 +417,22 @@ function triDateRecenteEnPremier() { // fonction déclenchée au clic (fonction 
     for (let media of mediasPlusRecent) {
         //  console.log(media)
         if (media.image == undefined) {
-            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
-                 <li class="listOfMedias"><div class="video_container">
-                 <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
+            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
+                 <div class="video_container">
+                 <video width="320" height="240" controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div></a>`;
 
         } else {
             //  console.log(media.image);
-            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
-                 <li class="listOfMedias">
-                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/>`;
+            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
+                 
+                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/></a>`;
         }
         affichage3 += `<div class="label-media">
         <p class="photograph-title">${media.title}</p>
         <p class="photograph-numberOfLikes">${media.likes}
         <i class="far fa-heart" alt="likes"></i></p>
         </div>
-        </li></a> `;
+        </li> `;
     }
     affichage3 += '</ul></div>';
     remplissage2.innerHTML = affichage3;
@@ -447,23 +447,24 @@ function triOrdreAlphabétique() { // fonction déclenchée au clic (fonction da
     console.log(mediasEnOrdreAlphabetique);
 
     for (let media of mediasEnOrdreAlphabetique) {
-        // console.log(media);
+        //  console.log(media)
         if (media.image == undefined) {
-            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
-                 <li class="listOfMedias"><div class="video_container">
-                 <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div>`;
+            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
+                 <div class="video_container">
+                 <video width="320" height="240" controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div></a>`;
 
         } else {
-            affichage3 += `<a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
-                 <li class="listOfMedias">
-                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/>`;
+            //  console.log(media.image);
+            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
+                 
+                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/></a>`;
         }
         affichage3 += `<div class="label-media">
         <p class="photograph-title">${media.title}</p>
         <p class="photograph-numberOfLikes">${media.likes}
         <i class="far fa-heart" alt="likes"></i></p>
         </div>
-        </li></a> `;
+        </li> `;
     }
     affichage3 += '</ul></div>';
     remplissage2.innerHTML = affichage3;

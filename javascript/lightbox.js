@@ -7,10 +7,10 @@ class lightbox {
     static init() { // créer un comportement à appliquer à chaque lien
         const links = Array.from(document.querySelectorAll('a[href$=".jpg"]'));
         const gallery = links.map(link => link.getAttribute('href'));
-        //   console.log(links)
-        //   console.log(links[0])
-        //   console.log(links[0])
-        //  console.log(gallery);
+        console.log(links)
+            //   console.log(links[0])
+            //   console.log(links[0])
+            //  console.log(gallery);
         console.log("lightbox ok")
 
         links.forEach(link => link.addEventListener('click', e => {
