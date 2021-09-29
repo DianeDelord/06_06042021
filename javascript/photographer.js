@@ -159,22 +159,19 @@ async function printMedias() {
             photographerCard_video.setAttribute("height", "240");
             photographerCard_video.setAttribute("controls", "");
             photographerCard_video.setAttribute("class", "photographer-video");
+            photographerCard_video.setAttribute("aria-label", `${title.title}`);
             let photographerCard_source = document.createElement("source");
             photographerCard_source.setAttribute("src", `images/Sample Photos/${prenom}/${title.video}`);
             photographerCard_source.setAttribute("type", "video/mp4");
 
             photographerCard_ul.appendChild(photographerCard_li)
             photographerCard_li.appendChild(photographerCard_a)
-            photographerCard_li.appendChild(photographerCard_div)
+            photographerCard_a.appendChild(photographerCard_div)
             photographerCard_div.appendChild(photographerCard_video)
             photographerCard_video.appendChild(photographerCard_source)
 
             let photographerCard_div2 = document.createElement("div");
             photographerCard_div2.setAttribute("class", "label-media");
-
-            // photographerCard_li.appendChild(photographerCard_div)
-            //photographerCard_div.appendChild(photographerCard_video)
-            // photographerCard_video.appendChild(photographerCard_source)
             let photographerCard_p = document.createElement("p");
             photographerCard_p.setAttribute("class", "photograph-title");
             photographerCard_p.textContent = `${title.title}`
@@ -198,6 +195,7 @@ async function printMedias() {
             let photographerCard_img = document.createElement("img");
             photographerCard_img.setAttribute("class", "photographer-selection");
             photographerCard_img.setAttribute("src", `images/Sample Photos/${prenom}/${title.image}`);
+            photographerCard_img.setAttribute("aria-label", `${title.title}`);
 
             photographerCard_ul.appendChild(photographerCard_li)
             photographerCard_li.appendChild(photographerCard_a)
