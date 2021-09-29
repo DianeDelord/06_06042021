@@ -35,41 +35,42 @@
         </nav>
 
 
-        <div id="mediasDuPhotographe"></div>
+        <div id="mediasDuPhotographe" tabindex="1"></div>
 
         <div id="ongletLikesTarif"></div>
 
         <!-- modale de contact -->
-        <div class="bground">
+        <!-- https://a11y-guidelines.orange.com/fr/web/exemples-de-composants/formulaires/ -->
+        <div class="bground" tabindex="-1" role="dialog" aria-labelledby="contact" aria-describedby="">
             <div class="content">
-                <span class="close"></span>
+                <span class="close" role="button" aria-label="fermer" title="fermer le formulaire de contact sans l'envoyer au photographe" data-dismiss="dialog"></span>
                 <div class="modal-body">
                     <form id="reserve" name="reserve" action="#" method="POST">
                         <h3 id="contact"> </h3>
                         <!-- prénom -->
                         <div class="formData">
-                            <label for="first">Prénom</label><br>
+                            <label for="first" title="indiquez votre prénom : 2 caractères minimum">Prénom</label><br>
                             <input class="text-control" type="text" id="first" name="first" /><br>
                             <small id="validationFieldFirst"></small>
                         </div>
 
                         <!-- nom -->
                         <div class="formData">
-                            <label for="last">Nom</label><br>
+                            <label for="last" title="indiquez votre nom : 2 caractères minimum">Nom</label><br>
                             <input class="text-control" type="text" id="last" name="last" /><br>
                             <small id="validationFieldSecond"></small>
                         </div>
 
                         <!-- email -->
                         <div class="formData">
-                            <label for="email">Email</label><br>
+                            <label for="email" title="indiquez votre adresse mail">Email</label><br>
                             <input class="text-control" type="text" id="email" name="email" /><br>
                             <small id="emailValidationField"></small>
                         </div>
 
                         <!-- champs texte -->
                         <div class="formData">
-                            <label for="message">Votre message</label>
+                            <label for="message" title="rédigez un message décrivant votre demande : 10 caractères minimum">Votre message</label>
                             <textarea id="message" class="text-control message" name="message" rows="10" cols="33" placeholder="Écrivez votre message."></textarea>
                             <small id="messageValidationField"></small>
                         </div>

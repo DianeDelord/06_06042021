@@ -69,11 +69,13 @@ setTimeout(function() {
             missingTextInputFirst.innerHTML = "Vous devez saisir au moins deux caractères, les chiffres et caractères spéciaux ne sont pas acceptés.";
             firstInputValidated = false;
             firstInput.style.borderColor = "red";
+            firstInput.setAttribute("aria-invalid", "true");
             buttoned.style.backgroundColor = "#757575"; //pas ok
         } else {
             missingTextInputFirst.innerHTML = "";
             firstInputValidated = true;
             firstInput.style.borderColor = "#DB8876";
+            firstInput.setAttribute("aria-invalid", "false");
             valider();
         }
         console.log("champs prénom " + firstInputValidated);
@@ -87,11 +89,13 @@ setTimeout(function() {
             missingTextInputSecond.innerHTML = "Vous devez saisir au moins deux caractères, les chiffres et caractères spéciaux ne sont pas acceptés.";
             secondInputValidated = false;
             secondInput.style.borderColor = "red";
+            secondInput.setAttribute("aria-invalid", "true");
             buttoned.style.backgroundColor = "#757575"; //pas ok
         } else {
             missingTextInputSecond.innerHTML = "";
             secondInputValidated = true;
             secondInput.style.borderColor = "#DB8876";
+            secondInput.setAttribute("aria-invalid", "false");
             valider();
         }
         console.log("champs nom " + secondInputValidated);

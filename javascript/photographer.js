@@ -82,6 +82,9 @@ fetch("assets/data.json")
     button_contact_div.setAttribute("class", "div_contact_button");
     button_contact.setAttribute("id", "contactButton");
     button_contact.setAttribute("class", "btn-signup modal-btn");
+    button_contact.setAttribute("type", "button");
+    button_contact.setAttribute("aria-controls", "dialog");
+    button_contact.setAttribute("aria-haspopup", "dialog");
     button_contact.textContent = "Contactez-moi";
 
     console.log(photographer_tags);

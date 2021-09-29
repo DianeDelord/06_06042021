@@ -86,14 +86,18 @@ createPhotographerCard2()
             let photographerCard_tagline = document.createElement("p");
             let photographerCard_price = document.createElement("p");
             let photographer_tagsList = document.createElement("p")
+            let photographer_section = document.createElement("section")
+            let photographer_section2 = document.createElement("section")
             let photographer_tagsA
 
             photographerCard_ul.setAttribute("id", "selected-items");
             photographerCard_a.setAttribute("id", `${photographer_id}`);
             photographerCard_a.setAttribute("class", "restrict");
             photographerCard_a.setAttribute("href", `/photographer.html?id=${photographer_id}`);
+            photographerCard_a.setAttribute("aria-label", `${(toPascalCase(photographer_name))}`);
             photographerCard_li.setAttribute("class", "photographers-items");
             photographerCard_img.setAttribute("class", "photographer-portrait");
+            photographerCard_img.setAttribute("alt", `${(toPascalCase(photographer_name))}`);
             photographerCard_img.setAttribute("src", `images/Sample Photos/Photographers ID Photos/${(toPascalCase(photographer_name) + '.jpg')}`);
             photographerCard_img.setAttribute("alt", `${photographer_name}`);
             photographerCard_h2.setAttribute("class", "photographer-name");
@@ -111,22 +115,34 @@ createPhotographerCard2()
             for (let i = 0; i < photographer_tags.length; i++) {
                 photographer_tagsA = document.createElement("a");
                 photographer_tagsA.setAttribute("class", "lienTag");
-                photographer_tagsA.setAttribute("href", `#${photographer_tags[i]}`);
+                photographer_tagsA.setAttribute("title", "ce photographe est spécialisé dans les photos sur le thème " + `${photographer_tags[i]}`);
+                photographer_tagsA.setAttribute("href", `${photographer_tags[i]}`);
                 let eachTag = document.createElement("h5");
                 eachTag.setAttribute("class", "generatedTags")
                 eachTag.textContent = `#${photographer_tags[i]}`;
                 photographer_tagsA.appendChild(eachTag);
                 photographer_tagsList.appendChild(photographer_tagsA);
             }
-
+            /*
+                        photographerCard_ul.appendChild(photographerCard_a)
+                        photographerCard_a.appendChild(photographerCard_li)
+                        photographerCard_li.appendChild(photographerCard_img)
+                        photographerCard_li.appendChild(photographerCard_h2)
+                        photographerCard_li.appendChild(photographerCard_location)
+                        photographerCard_li.appendChild(photographerCard_tagline)
+                        photographerCard_li.appendChild(photographerCard_price)
+                        photographerCard_li.appendChild(photographer_tagsList)
+            */
             photographerCard_ul.appendChild(photographerCard_a)
             photographerCard_a.appendChild(photographerCard_li)
-            photographerCard_li.appendChild(photographerCard_img)
-            photographerCard_li.appendChild(photographerCard_h2)
-            photographerCard_li.appendChild(photographerCard_location)
-            photographerCard_li.appendChild(photographerCard_tagline)
-            photographerCard_li.appendChild(photographerCard_price)
-            photographerCard_li.appendChild(photographer_tagsList)
+            photographerCard_li.appendChild(photographer_section)
+            photographer_section.appendChild(photographerCard_img)
+            photographerCard_li.appendChild(photographer_section2)
+            photographer_section2.appendChild(photographerCard_h2)
+            photographer_section2.appendChild(photographerCard_location)
+            photographer_section2.appendChild(photographerCard_tagline)
+            photographer_section2.appendChild(photographerCard_price)
+            photographer_section2.appendChild(photographer_tagsList)
         }
     })
 

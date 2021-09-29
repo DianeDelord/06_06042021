@@ -18,6 +18,8 @@
  
  .hide {
      opacity: 0;
+     display: none;
+     visibility: hidden;
  }
  
  .show {
@@ -25,4 +27,5 @@
      top: 30px;
      opacity: 1;
      transition: all 0.3s ease;
+     visibility: visible;
  }
