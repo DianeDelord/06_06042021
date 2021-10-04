@@ -39,6 +39,14 @@ hr {
     width: 26%;
 }
 
+.restrict:hover {
+    background-color: rgba($secondary-color, 0.4);
+    border-radius: 10px;
+    h2 {
+        color: $dark-color;
+    }
+}
+
 .photographers-items {
     display: flex;
     justify-content: center;
@@ -50,7 +58,7 @@ hr {
 
 .photographers-items p {
     line-height: 1em;
-    font-size: .7rem;
+    font-size: .9rem;
 }
 
 .photographer-portrait {

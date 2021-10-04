@@ -54,111 +54,58 @@ async function createPhotographerCard2() {
     const data = await response.json();
     return data;
 }
+var createEachCard
+class CardPhotographer {
+    constructor(city, country, id, name, portrait, price, tagline, tags) {
+        this.city = city;
+        this.country = country;
+        this.id = id;
+        this.name = name;
+        this.portrait = portrait;
+        this.price = price;
+        this.tagline = tagline;
+        this.tags = tags;
+    }
+
+    get createTheCard() {
+        return this.createCard()
+    }
+    createCard() {
+        createEachCard = `<a href="/photographer.html?id=` + this.id + `" id="` + this.id + `" class="restrict" aria-label="` + this.name + `"> 
+        <li class="photographers-items"> <section> <img class="photographer-portrait" alt="${this.name}" src="images/Sample Photos/Photographers ID Photos/${this.portrait}">
+       </section> <section> <h2 class="photographer-name">${this.name}</h2> <p class="photographer-city">${this.city}, ${this.country}</p> <p class="tagline">${this.tagline}</p>
+    <p class="photographerPrice">${this.price}€/jour</p> <div class="photographer_listOfTags">`;
+        // boucle pour récupérer un à un les tags du photographe vu que le nombre de tags varie d'un photographe à l'autre
+        this.tags.forEach((element) => {
+            createEachCard +=
+                `<h5 class="generatedTags" title="ce photographe est spécialisé dans les photos sur le thème ${element}" >#${element}</h5>`;
+        });
+        createEachCard += `</div> </section> </li> </a>`;
+        return createEachCard
+    }
+}
 
 // function remplissage de la page grâce aux données récupérées depuis data.json => POO
 createPhotographerCard2()
     .then(data => {
         //console.log(data)
-        //console.log(data.photographers)
-        // console.log(data.photographers[0].city)
+        console.log(data.photographers)
+        let createAffichage = `<ul id="selected-items">`
+        console.log(resultOfSearch) // 
 
-        let photographerCard_ul = document.createElement("ul");
-        resultOfSearch.appendChild(photographerCard_ul)
-
+        let newPhotographer
         for (let photographer of data.photographers) {
-            // console.log(photographer);
-
-            // variables de données
-            let photographer_city = photographer.city;
-            let photographer_country = photographer.country;
-            let photographer_id = photographer.id;
-            let photographer_name = photographer.name;
-            let photographer_price = photographer.price;
-            let photographer_tagline = photographer.tagline;
-            let photographer_tags = photographer.tags;
-
-            // creation des éléments HTML du DOM
-            let photographerCard_a = document.createElement("a");
-            let photographerCard_li = document.createElement("li");
-            let photographerCard_img = document.createElement("img");
-            let photographerCard_h2 = document.createElement("h2");
-            let photographerCard_location = document.createElement("p");
-            let photographerCard_tagline = document.createElement("p");
-            let photographerCard_price = document.createElement("p");
-            let photographer_tagsList = document.createElement("p")
-            let photographer_section = document.createElement("section")
-            let photographer_section2 = document.createElement("section")
-            let photographer_tagsA
-
-            photographerCard_ul.setAttribute("id", "selected-items");
-            photographerCard_a.setAttribute("id", `${photographer_id}`);
-            photographerCard_a.setAttribute("class", "restrict");
-            photographerCard_a.setAttribute("href", `/photographer.html?id=${photographer_id}`);
-            photographerCard_a.setAttribute("aria-label", `${(toPascalCase(photographer_name))}`);
-            photographerCard_li.setAttribute("class", "photographers-items");
-            photographerCard_img.setAttribute("class", "photographer-portrait");
-            photographerCard_img.setAttribute("alt", `${(toPascalCase(photographer_name))}`);
-            photographerCard_img.setAttribute("src", `images/Sample Photos/Photographers ID Photos/${(toPascalCase(photographer_name) + '.jpg')}`);
-            photographerCard_img.setAttribute("alt", `${photographer_name}`);
-            photographerCard_h2.setAttribute("class", "photographer-name");
-            photographerCard_h2.textContent = photographer_name;
-            photographerCard_location.setAttribute("class", "photographer-city");
-            photographerCard_location.textContent = photographer_city + ", " + photographer_country;
-            photographerCard_tagline.setAttribute("class", "tagline");
-            photographerCard_tagline.textContent = photographer_tagline;
-            photographerCard_price.setAttribute("class", "photographerPrice");
-            photographerCard_price.textContent = photographer_price + "€/jour";
-            photographerCard_price.setAttribute("class", "photographerPrice");
-            photographer_tagsList.setAttribute("class", "photographer_listOfTags");
-
-            // boucle pour récupérer un à un les tags du photographe vu que le nombre de tags varie d'un photogrpahe à l'autre
-            for (let i = 0; i < photographer_tags.length; i++) {
-                photographer_tagsA = document.createElement("a");
-                photographer_tagsA.setAttribute("class", "lienTag");
-                photographer_tagsA.setAttribute("title", "ce photographe est spécialisé dans les photos sur le thème " + `${photographer_tags[i]}`);
-                photographer_tagsA.setAttribute("href", `${photographer_tags[i]}`);
-                let eachTag = document.createElement("h5");
-                eachTag.setAttribute("class", "generatedTags")
-                eachTag.textContent = `#${photographer_tags[i]}`;
-                photographer_tagsA.appendChild(eachTag);
-                photographer_tagsList.appendChild(photographer_tagsA);
-            }
-            /*
-                        photographerCard_ul.appendChild(photographerCard_a)
-                        photographerCard_a.appendChild(photographerCard_li)
-                        photographerCard_li.appendChild(photographerCard_img)
-                        photographerCard_li.appendChild(photographerCard_h2)
-                        photographerCard_li.appendChild(photographerCard_location)
-                        photographerCard_li.appendChild(photographerCard_tagline)
-                        photographerCard_li.appendChild(photographerCard_price)
-                        photographerCard_li.appendChild(photographer_tagsList)
-            */
-            photographerCard_ul.appendChild(photographerCard_a)
-            photographerCard_a.appendChild(photographerCard_li)
-            photographerCard_li.appendChild(photographer_section)
-            photographer_section.appendChild(photographerCard_img)
-            photographerCard_li.appendChild(photographer_section2)
-            photographer_section2.appendChild(photographerCard_h2)
-            photographer_section2.appendChild(photographerCard_location)
-            photographer_section2.appendChild(photographerCard_tagline)
-            photographer_section2.appendChild(photographerCard_price)
-            photographer_section2.appendChild(photographer_tagsList)
+            newPhotographer = new CardPhotographer(photographer.city, photographer.country, photographer.id, photographer.name, photographer.portrait, photographer.price, photographer.tagline, photographer.tags).createTheCard
+            createAffichage += newPhotographer
+            console.log(photographer.city)
         }
-    })
+        console.log(newPhotographer)
+        createAffichage += '</ul>'
+        resultOfSearch.innerHTML = createAffichage
 
-////////////////////////////////////////////
-// https://stackoverflow.com/questions/4068573/convert-string-to-pascal-case-aka-uppercamelcase-in-javascript
-function toPascalCase(string) {
-    return `${string}`
-        .replace(new RegExp(/[-_]+/, 'g'), ' ')
-        .replace(new RegExp(/[^\w\s]/, 'g'), '')
-        .replace(
-            new RegExp(/\s+(.)(\w+)/, 'g'),
-            ($1, $2, $3) => `${$2.toUpperCase() + $3.toLowerCase()}`
-        )
-        .replace(new RegExp(/\s/, 'g'), '')
-        .replace(new RegExp(/\w/), s => s.toUpperCase());
-}
+        console.log(createAffichage) // là le code est ok
+        console.log(resultOfSearch) // 
+    })
 
 let linkClicked
 let tagsOnThisPage
@@ -185,6 +132,8 @@ filtreTag()
                 linkClicked = link.target.innerHTML.substr(1).toLowerCase() // tag sur lequel on a clické sans le #
                 console.log(linkClicked) // tag sur lequel on a clické sans le #
 
+                // boucle pour chercher dans les tags des photogrpahes
+                // les photographes dont le tag correspond au tag clické sont stockés dans un tableau
                 for (let eachPhotographer of photographersRecup) {
                     //console.log(eachPhotographer)
                     for (let tag of eachPhotographer.tags) {
@@ -196,81 +145,18 @@ filtreTag()
                     }
                 }
                 var select = resultOfSearch;
-                select.removeChild(select.firstChild);
-                let photographerCardSorted_ul = document.createElement("ul");
+                let createAffichageFiltred = `<ul id="selected-items">`
 
                 console.log(arrayOfResult)
                 arrayOfResult.forEach(eachPhotographer => {
-
-                    // creation des éléments HTML du DOM
-                    let photographerCard_a = document.createElement("a");
-                    let photographerCard_li = document.createElement("li");
-                    let photographerCard_img = document.createElement("img");
-                    let photographerCard_h2 = document.createElement("h2");
-                    let photographerCard_location = document.createElement("p");
-                    let photographerCard_tagline = document.createElement("p");
-                    let photographerCard_price = document.createElement("p");
-                    let photographer_tagsList = document.createElement("p")
-                    let photographer_tagsA
-
-                    // variables de données
-                    let photographer_city = eachPhotographer.city;
-                    let photographer_country = eachPhotographer.country;
-                    let photographer_id = eachPhotographer.id;
-                    let photographer_name = eachPhotographer.name;
-                    let photographer_price = eachPhotographer.price;
-                    let photographer_tagline = eachPhotographer.tagline;
-                    let photographer_tags = eachPhotographer.tags;
-
-                    photographerCardSorted_ul.setAttribute("id", "selected-items");
-                    photographerCard_a.setAttribute("id", `${photographer_id}`);
-                    photographerCard_a.setAttribute("class", "restrict");
-                    photographerCard_a.setAttribute("href", `/photographer.html?id=${photographer_id}`);
-                    photographerCard_li.setAttribute("class", "photographers-items");
-                    photographerCard_img.setAttribute("class", "photographer-portrait");
-                    photographerCard_img.setAttribute("src", `images/Sample Photos/Photographers ID Photos/${(toPascalCase(photographer_name) + '.jpg')}`);
-                    photographerCard_img.setAttribute("alt", `${photographer_name}`);
-                    photographerCard_h2.setAttribute("class", "photographer-name");
-                    photographerCard_h2.textContent = photographer_name;
-                    photographerCard_location.setAttribute("class", "photographer-city");
-                    photographerCard_location.textContent = photographer_city + ", " + photographer_country;
-                    photographerCard_tagline.setAttribute("class", "tagline");
-                    photographerCard_tagline.textContent = photographer_tagline;
-                    photographerCard_price.setAttribute("class", "photographerPrice");
-                    photographerCard_price.textContent = photographer_price + "€/jour";
-                    photographerCard_price.setAttribute("class", "photographerPrice");
-                    photographer_tagsList.setAttribute("class", "photographer_listOfTags");
-
-                    for (let i = 0; i < photographer_tags.length; i++) {
-                        photographer_tagsA = document.createElement("a");
-                        photographer_tagsA.setAttribute("class", "lienTag");
-                        photographer_tagsA.setAttribute("href", `#${photographer_tags[i]}`);
-                        let eachTag = document.createElement("h5");
-                        eachTag.setAttribute("class", "generatedTags")
-                        eachTag.textContent = `#${photographer_tags[i]}`;
-                        photographer_tagsA.appendChild(eachTag);
-                        photographer_tagsList.appendChild(photographer_tagsA);
-                    }
-
-                    photographerCardSorted_ul.appendChild(photographerCard_a);
-                    photographerCard_a.appendChild(photographerCard_li);
-                    photographerCard_li.appendChild(photographerCard_img);
-                    photographerCard_li.appendChild(photographerCard_h2)
-                    photographerCard_li.appendChild(photographerCard_location)
-                    photographerCard_li.appendChild(photographerCard_tagline)
-                    photographerCard_li.appendChild(photographerCard_price)
-                    photographerCard_li.appendChild(photographer_tagsList)
-
-
-                    resultOfSearch.appendChild(photographerCardSorted_ul)
+                    let newPhotographer = new CardPhotographer(eachPhotographer.city, eachPhotographer.country, eachPhotographer.id, eachPhotographer.name, eachPhotographer.portrait, eachPhotographer.price, eachPhotographer.tagline, eachPhotographer.tags).createTheCard
+                    createAffichageFiltred += newPhotographer
                 })
+                createAffichageFiltred += '</ul>'
+                select.innerHTML = createAffichageFiltred
             })
         })
     });
-
-
-
-
 
 
 /////////////////////////////////////
@@ -289,3 +175,17 @@ filtreTag()
 // https://www.youtube.com/watch?v=b0dPBK37-M8&t=24s
 
 // fonction asynchrone https://dmitripavlutin.com/javascript-fetch-async-await/
+
+////////////////////////////////////////////
+// https://stackoverflow.com/questions/4068573/convert-string-to-pascal-case-aka-uppercamelcase-in-javascript
+/*function toPascalCase(string) {
+    return `${string}`
+        .replace(new RegExp(/[-_]+/, 'g'), ' ')
+        .replace(new RegExp(/[^\w\s]/, 'g'), '')
+        .replace(
+            new RegExp(/\s+(.)(\w+)/, 'g'),
+            ($1, $2, $3) => `${$2.toUpperCase() + $3.toLowerCase()}`
+        )
+        .replace(new RegExp(/\s/, 'g'), '')
+        .replace(new RegExp(/\w/), s => s.toUpperCase());
+}*/

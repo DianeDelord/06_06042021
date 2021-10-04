@@ -141,10 +141,15 @@ async function printMedias() {
     var lastIndex = prenom.lastIndexOf(" ");
     prenom = prenom.substring(0, lastIndex).replace('-', ' ');
     //  console.log(prenom);
+    createMedias()
+}
+printMedias()
+
+//////////// affichage des médias du photographe /////////////
+function createMedias() {
     let photographerCard_ul = document.createElement("ul");
     photographerCard_ul.setAttribute("class", "portfolioMedias");
     remplissage2.appendChild(photographerCard_ul)
-
     for (let title of tri) {
         if (title.image == undefined) {
             let photographerCard_li = document.createElement("li");
@@ -220,7 +225,6 @@ async function printMedias() {
         }
     }
 }
-printMedias()
 
 async function ongletRemplissage() {
     const response = await fetch('assets/data.json');
@@ -230,7 +234,7 @@ async function ongletRemplissage() {
 
 let ongletLikesTarif = document.getElementById("ongletLikesTarif");
 
-//  remplissage de l'onglet et gestion des likes : sur les médias et sur le total sur l'onglet
+///////  remplissage de l'onglet et gestion des likes : sur les médias et sur le total sur l'onglet
 ongletRemplissage()
     .then(data => {
         console.log("onglet remplissage");
@@ -347,14 +351,15 @@ setTimeout(function filtreTag() {
                         affichage3 += `
                              <li class="listOfMedias">
                              <a class="restricted" href="images/Sample Photos/${prenom}/${tag.video}"> <div class="video_container">
-                             <video width="320" height="240"  controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${tag.video}" type="video/mp4"></video></a></div>`;
+                             <video width="320" height="240" controls="" class="photographer-video" aria-label="${tag.title}"> 
+                             <source src="images/Sample Photos/${prenom}/${tag.video}" type="video/mp4"></video></div></a>`;
 
                     } else {
                         //  console.log(title.image);
                         affichage3 += `
                              <li class="listOfMedias">
                              <a class="restricted" href="images/Sample Photos/${prenom}/${tag.image}">
-                             <img class="photographer-selection" src="images/Sample Photos/${prenom}/${tag.image}"/></a>`;
+                             <img class="photographer-selection" src="images/Sample Photos/${prenom}/${tag.image}" aria-label="${tag.title}"/></a>`;
                     }
                     affichage3 += `<div class="label-media">
                     <p class="photograph-title">${tag.title}</p>

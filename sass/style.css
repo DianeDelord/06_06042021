@@ -39,6 +39,14 @@ hr {
   width: 26%;
 }
 
+.restrict:hover {
+  background-color: rgba(219, 136, 118, 0.4);
+  border-radius: 10px;
+}
+.restrict:hover h2 {
+  color: #757575;
+}
+
 .photographers-items {
   display: flex;
   justify-content: center;
@@ -50,7 +58,7 @@ hr {
 
 .photographers-items p {
   line-height: 1em;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
 }
 
 .photographer-portrait {
@@ -246,7 +254,7 @@ textarea {
   resize: none;
 }
 
-small {
+.bground span {
   font-size: 11px;
   color: #901C1C;
 }
@@ -524,8 +532,7 @@ header {
   margin-left: 3px;
 }
 
-.photographer-categories a,
-.photographer_listOfTags a {
+.photographer-categories a {
   text-decoration: none;
   color: #901C1C;
   padding: 1px 5px;
@@ -533,6 +540,12 @@ header {
   border-color: lightgray;
   border-radius: 20px;
   font-size: 0.7rem;
+  margin: 2px 0;
+}
+
+.photographer-categories a:hover,
+.photographer_listOfTags a:hover {
+  background-color: #DB8876;
 }
 
 main {
@@ -553,8 +566,9 @@ h1 {
   flex-direction: row;
 }
 
-.photographer_listOfTags a {
-  padding: 3px 7px;
+.lienTag {
+  padding: 3px 0px;
+  text-decoration: none;
 }
 
 .generatedTags {
@@ -562,6 +576,14 @@ h1 {
           margin-block-start: 0;
   -webkit-margin-after: 0;
           margin-block-end: 0;
+  text-decoration: none;
+  color: #901C1C;
+  padding: 1px 5px;
+  border: 0.001rem solid;
+  border-color: lightgray;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  margin: 0 2px;
 }
 
 #menu-deroulant {
@@ -913,7 +935,7 @@ nav li:hover #chevron {
   width: 38px;
   height: 38px;
   opacity: 0.5;
-  background: url(../images/loader.svg) center center/no-repeat transparent;
+  background: url("../images/loader.svg") center center no-repeat transparent;
 }
 
 @-webkit-keyframes lightboxIn {

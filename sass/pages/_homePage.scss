@@ -43,8 +43,7 @@ header {
     margin-left: 3px;
 }
 
-.photographer-categories a,
-.photographer_listOfTags a {
+.photographer-categories a {
     text-decoration: none;
     color: $primary-color;
     padding: 1px 5px;
@@ -52,6 +51,12 @@ header {
     border-color: lightgray;
     border-radius: 20px;
     font-size: .7rem;
+    margin: 2px 0;
+}
+
+.photographer-categories a:hover,
+.photographer_listOfTags a:hover {
+    background-color: $secondary-color;
 }
 
 main {
@@ -72,11 +77,20 @@ h1 {
     flex-direction: row;
 }
 
-.photographer_listOfTags a {
-    padding: 3px 7px;
+.lienTag {
+    padding: 3px 0px;
+    text-decoration: none;
 }
 
 .generatedTags {
     margin-block-start: 0;
     margin-block-end: 0;
+    text-decoration: none;
+    color: #901C1C;
+    padding: 1px 5px;
+    border: 0.001rem solid;
+    border-color: lightgray;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    margin: 0 2px;
 }
