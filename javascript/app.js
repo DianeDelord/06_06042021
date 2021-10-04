@@ -91,7 +91,6 @@ createPhotographerCard2()
         //console.log(data)
         console.log(data.photographers)
         let createAffichage = `<ul id="selected-items">`
-        console.log(resultOfSearch) // 
 
         let newPhotographer
         for (let photographer of data.photographers) {
@@ -99,12 +98,8 @@ createPhotographerCard2()
             createAffichage += newPhotographer
             console.log(photographer.city)
         }
-        console.log(newPhotographer)
         createAffichage += '</ul>'
         resultOfSearch.innerHTML = createAffichage
-
-        console.log(createAffichage) // là le code est ok
-        console.log(resultOfSearch) // 
     })
 
 let linkClicked

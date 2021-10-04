@@ -144,86 +144,75 @@ async function printMedias() {
     createMedias()
 }
 printMedias()
+let createEachMediaVideo
+let createEachMediaImage
+class createMediasVideoCard {
+    constructor(date, id, likes, photographerId, price, tags, title, video) {
+        this.date = date;
+        this.id = id;
+        this.likes = likes;
+        this.photographerId = photographerId;
+        this.price = price;
+        this.tags = tags;
+        this.title = title;
+        this.video = video;
+    }
+    get createTheMediasVideoCard() {
+        return this.createMediasVideo()
+    }
+    createMediasVideo() {
+        createEachMediaVideo = `<li class="listOfMedias">
+        <a class="restricted" href="images/Sample Photos/${prenom}/${this.video}"><div class="video_container">
+        <video width="320" height="240" controls="" class="photographer-video" aria-label="${this.title}">
+        <source src="images/Sample Photos/${prenom}/${this.video}" type="video/mp4">
+        </video></div></a><div class="label-media"><p class="photograph-title">${this.title}</p>
+        <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
+        return createEachMediaVideo
+    }
+}
 
+class createMediasImageCard {
+    constructor(date, id, image, likes, photographerId, price, tags, title) {
+        this.date = date;
+        this.id = id;
+        this.image = image;
+        this.likes = likes;
+        this.photographerId = photographerId;
+        this.price = price;
+        this.tags = tags;
+        this.title = title;
+    }
+    get createTheMediaImageCard() {
+        return this.createMediaImage()
+    }
+    createMediaImage() {
+        createEachMediaImage = `<li class="listOfMedias">
+        <a class="restricted" href="images/Sample Photos/${prenom}/${this.image}">
+        <img class="photographer-selection" src="images/Sample Photos/${prenom}/${this.image}" aria-label="${this.title}">
+        </a>
+        <div class="label-media"><p class="photograph-title">${this.title}</p>
+        <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
+        return createEachMediaImage
+    }
+}
 //////////// affichage des médias du photographe /////////////
 function createMedias() {
-    let photographerCard_ul = document.createElement("ul");
-    photographerCard_ul.setAttribute("class", "portfolioMedias");
-    remplissage2.appendChild(photographerCard_ul)
+    let photographerCard_ul = `<ul class="portfolioMedias">`;
+    let newMediasPrinted
+
     for (let title of tri) {
         if (title.image == undefined) {
-            let photographerCard_li = document.createElement("li");
-            photographerCard_li.setAttribute("class", "listOfMedias");
-            let photographerCard_a = document.createElement("a");
-            photographerCard_a.setAttribute("class", "restricted");
-            photographerCard_a.setAttribute("href", `images/Sample Photos/${prenom}/${title.video}`);
-            let photographerCard_div = document.createElement("div");
-            photographerCard_div.setAttribute("class", "video_container");
-            let photographerCard_video = document.createElement("video");
-            photographerCard_video.setAttribute("width", "320");
-            photographerCard_video.setAttribute("height", "240");
-            photographerCard_video.setAttribute("controls", "");
-            photographerCard_video.setAttribute("class", "photographer-video");
-            photographerCard_video.setAttribute("aria-label", `${title.title}`);
-            let photographerCard_source = document.createElement("source");
-            photographerCard_source.setAttribute("src", `images/Sample Photos/${prenom}/${title.video}`);
-            photographerCard_source.setAttribute("type", "video/mp4");
-
-            photographerCard_ul.appendChild(photographerCard_li)
-            photographerCard_li.appendChild(photographerCard_a)
-            photographerCard_a.appendChild(photographerCard_div)
-            photographerCard_div.appendChild(photographerCard_video)
-            photographerCard_video.appendChild(photographerCard_source)
-
-            let photographerCard_div2 = document.createElement("div");
-            photographerCard_div2.setAttribute("class", "label-media");
-            let photographerCard_p = document.createElement("p");
-            photographerCard_p.setAttribute("class", "photograph-title");
-            photographerCard_p.textContent = `${title.title}`
-            let photographerCard_p2 = document.createElement("p");
-            photographerCard_p2.setAttribute("class", "photograph-numberOfLikes");
-            photographerCard_p2.textContent = `${title.likes}` + " "
-            let photographerCard_i = document.createElement("i");
-            photographerCard_i.setAttribute("class", "far fa-heart");
-            photographerCard_i.setAttribute("alt", "likes");
-            photographerCard_div.appendChild(photographerCard_video)
-            photographerCard_li.appendChild(photographerCard_div2)
-            photographerCard_div2.appendChild(photographerCard_p)
-            photographerCard_div2.appendChild(photographerCard_p2)
-            photographerCard_p2.appendChild(photographerCard_i)
+            newMediasPrinted = new createMediasVideoCard(title.date, title.id, title.likes, title.photographerId, title.price, title.tags, title.title, title.video).createTheMediasVideoCard
+            photographerCard_ul += newMediasPrinted
         } else {
-            let photographerCard_li = document.createElement("li");
-            photographerCard_li.setAttribute("class", "listOfMedias");
-            let photographerCard_a = document.createElement("a");
-            photographerCard_a.setAttribute("class", "restricted");
-            photographerCard_a.setAttribute("href", `images/Sample Photos/${prenom}/${title.image}`);
-            let photographerCard_img = document.createElement("img");
-            photographerCard_img.setAttribute("class", "photographer-selection");
-            photographerCard_img.setAttribute("src", `images/Sample Photos/${prenom}/${title.image}`);
-            photographerCard_img.setAttribute("aria-label", `${title.title}`);
-
-            photographerCard_ul.appendChild(photographerCard_li)
-            photographerCard_li.appendChild(photographerCard_a)
-            photographerCard_a.appendChild(photographerCard_img)
-
-            let photographerCard_div = document.createElement("div");
-            photographerCard_div.setAttribute("class", "label-media");
-            photographerCard_li.appendChild(photographerCard_div)
-            let photographerCard_p = document.createElement("p");
-            photographerCard_p.setAttribute("class", "photograph-title");
-            photographerCard_p.textContent = `${title.title}`
-            let photographerCard_p2 = document.createElement("p");
-            photographerCard_p2.setAttribute("class", "photograph-numberOfLikes");
-            photographerCard_p2.textContent = `${title.likes}` + " "
-            let photographerCard_i = document.createElement("i");
-            photographerCard_i.setAttribute("class", "far fa-heart");
-            photographerCard_i.setAttribute("alt", "likes");
-
-            photographerCard_div.appendChild(photographerCard_p)
-            photographerCard_div.appendChild(photographerCard_p2)
-            photographerCard_p2.appendChild(photographerCard_i)
+            newMediasPrinted = new createMediasImageCard(title.date, title.id, title.image, title.likes, title.photographerId, title.price, title.tags, title.title).createTheMediaImageCard
+            photographerCard_ul += newMediasPrinted
         }
     }
+    photographerCard_ul += '</ul>'
+    remplissage2.innerHTML = photographerCard_ul
+
+    console.log(remplissage2) //
 }
 
 async function ongletRemplissage() {
@@ -270,7 +259,6 @@ ongletRemplissage()
                         compteurDeLikes += 1 // ajout +1 au total des likes du photographe dans l'onglet
                         numberOfLikesOfTheMedia += 1 // ajout +1 au total des likes de ce média
                         element.querySelector(".photograph-numberOfLikes").innerHTML = numberOfLikesOfTheMedia + " " + `<i class="fas fa-heart" alt="likes"></i>`
-                        console.log(numberOfLikesOfTheMedia)
                         console.log("coeur liké")
                         console.log(compteurDeLikes)
                         onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
@@ -282,7 +270,6 @@ ongletRemplissage()
                         console.log("coeur unliké")
                         compteurDeLikes -= 1
                         numberOfLikesOfTheMedia -= 1
-                        console.log(numberOfLikesOfTheMedia)
                         element.querySelector(".photograph-numberOfLikes").innerHTML = numberOfLikesOfTheMedia + " " + `<i class="far fa-heart" alt="likes"></i>`
                         onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
                     }
