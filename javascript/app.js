@@ -85,7 +85,7 @@ class CardPhotographer {
     }
 }
 
-// function remplissage de la page grâce aux données récupérées depuis data.json => POO
+// function remplissage de la page grâce aux données récupérées depuis data.json
 createPhotographerCard2()
     .then(data => {
         //console.log(data)

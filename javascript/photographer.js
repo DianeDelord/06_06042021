@@ -7,12 +7,67 @@ const photographerPage = urlParams.get("id"); //récupérer l'id du photographer
 //console.log(photographerPage);
 
 // variables
-let remplissage = document.getElementById("informations");
-let remplissage2 = document.getElementById("mediasDuPhotographe");
+let remplissage = document.getElementById("informations"); // pour la carte de présentation du photographe
+let remplissage2 = document.getElementById("mediasDuPhotographe"); // pour l'affichage des médias du photographe
 
 // personnalisation du titre du formulaire de contact
 let contact = document.getElementById("contact");
 
+
+// factory pattern - constructors pour l'affichage des médias
+let createEachMediaVideo
+let createEachMediaImage
+class createMediasVideoCard {
+    constructor(date, id, likes, photographerId, price, tags, title, video) {
+        this.date = date;
+        this.id = id;
+        this.likes = likes;
+        this.photographerId = photographerId;
+        this.price = price;
+        this.tags = tags;
+        this.title = title;
+        this.video = video;
+    }
+    get createTheMediasVideoCard() {
+        return this.createMediasVideo()
+    }
+    createMediasVideo() {
+        createEachMediaVideo = `<li class="listOfMedias ${this.tags}">
+        <a class="restricted" href="images/Sample Photos/${prenom}/${this.video}"><div class="video_container">
+        <video width="320" height="240" controls="" class="photographer-video" aria-label="${this.title}">
+        <source src="images/Sample Photos/${prenom}/${this.video}" type="video/mp4">
+        </video></div></a><div class="label-media"><p class="photograph-title">${this.title}</p>
+        <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
+        return createEachMediaVideo
+    }
+}
+
+class createMediasImageCard {
+    constructor(date, id, image, likes, photographerId, price, tags, title) {
+        this.date = date;
+        this.id = id;
+        this.image = image;
+        this.likes = likes;
+        this.photographerId = photographerId;
+        this.price = price;
+        this.tags = tags;
+        this.title = title;
+    }
+    get createTheMediaImageCard() {
+        return this.createMediaImage()
+    }
+    createMediaImage() {
+        createEachMediaImage = `<li class="listOfMedias ${this.tags}">
+        <a class="restricted" href="images/Sample Photos/${prenom}/${this.image}">
+        <img class="photographer-selection" src="images/Sample Photos/${prenom}/${this.image}" aria-label="${this.title}">
+        </a>
+        <div class="label-media"><p class="photograph-title">${this.title}</p>
+        <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
+        return createEachMediaImage
+    }
+}
+
+// fetch pour récupérer les datas sur le json
 fetch("assets/data.json")
     .then(response => {
         if (response.ok) {
@@ -30,22 +85,14 @@ fetch("assets/data.json")
     const resultPh = data.photographers.filter(photographer => photographer.id == photographerPage);
     console.log(resultPh); // infos du photographe
     console.log(photographerPage); // id du photographe choisi
-    //  console.log(data.media); // tous les medias
-    // console.log(data.photographers); // tous les photographes
-    //  console.log(resultPh[0].name); // nom du photographe choisi
-
     contact.innerText = ("Contactez-moi \n" + (resultPh[0].name));
-    console.log(data)
-    console.log(data.photographers)
-    console.log(data.photographers[0].tags)
 
     // variables de données
     let photographer_city = resultPh[0].city;
     let photographer_country = resultPh[0].country;
     let photographer_id = resultPh[0].id;
     let photographer_name = resultPh[0].name;
-    console.log(photographer_name)
-
+    let photographer_portrait = resultPh[0].portrait;
     let photographer_tagline = resultPh[0].tagline;
     let photographer_tags = resultPh[0].tags;
 
@@ -71,7 +118,7 @@ fetch("assets/data.json")
     photographerCard_h1.textContent = photographer_name;
 
     photographerCard_img.setAttribute("class", "photographer-portrait");
-    photographerCard_img.setAttribute("src", `images/Sample Photos/Photographers ID Photos/${(toPascalCase(photographer_name) + '.jpg')}`);
+    photographerCard_img.setAttribute("src", `images/Sample Photos/Photographers ID Photos/${photographer_portrait}`);
     photographerCard_img.setAttribute("alt", `${photographer_name}`);
     photographerCard_location.setAttribute("class", "photographer-city");
     photographerCard_location.textContent = photographer_city + ", " + photographer_country;
@@ -87,18 +134,18 @@ fetch("assets/data.json")
     button_contact.setAttribute("aria-haspopup", "dialog");
     button_contact.textContent = "Contactez-moi";
 
-    console.log(photographer_tags);
-
     for (let i = 0; i < photographer_tags.length; i++) {
         photographer_tagsA = document.createElement("a");
         photographer_tagsA.setAttribute("class", "lienTag");
         photographer_tagsA.setAttribute("href", `#${photographer_tags[i]}`);
+        //photographer_tagsA.setAttribute("onclick", `filterByTag(${photographer_tags[i]}")`);
         let eachTag = document.createElement("h5");
         eachTag.setAttribute("class", "generatedTags")
         eachTag.textContent = `#${photographer_tags[i]}`;
         photographer_tagsA.appendChild(eachTag);
         photographer_tagsList.appendChild(photographer_tagsA);
     }
+
     remplissage.appendChild(photographerCard_div2)
     photographerCard_div2.appendChild(photographerCard_photographerInfos)
     photographerCard_photographerInfos.appendChild(photographerCard_h1)
@@ -106,16 +153,11 @@ fetch("assets/data.json")
     photographerCard_photographerInfos.appendChild(photographerCard_tagline)
     photographerCard_photographerInfos.appendChild(photographer_tagsList)
     photographerCard_div2.appendChild(photographerCard_photographerInfos)
-
     photographerCard_div2.appendChild(button_contact_div)
     button_contact_div.appendChild(button_contact)
-
     photographerCard_div2.appendChild(photographerCard_divPhoto)
     photographerCard_divPhoto.appendChild(photographerCard_img)
-
-    //remplissage.innerHTML = affichageResult;
 })
-
 
 //////////// affichage des médias du photographe /////////////
 let tri
@@ -134,7 +176,6 @@ async function printMedias() {
     // passer les medias du photographe choisi pour la lightbox
     window.onload = function() {
         localStorage.setItem("mediasPhotographerSelected", tri)
-        console.log(tri);
     }
 
     prenom = resultPh[0].name;
@@ -144,57 +185,7 @@ async function printMedias() {
     createMedias()
 }
 printMedias()
-let createEachMediaVideo
-let createEachMediaImage
-class createMediasVideoCard {
-    constructor(date, id, likes, photographerId, price, tags, title, video) {
-        this.date = date;
-        this.id = id;
-        this.likes = likes;
-        this.photographerId = photographerId;
-        this.price = price;
-        this.tags = tags;
-        this.title = title;
-        this.video = video;
-    }
-    get createTheMediasVideoCard() {
-        return this.createMediasVideo()
-    }
-    createMediasVideo() {
-        createEachMediaVideo = `<li class="listOfMedias">
-        <a class="restricted" href="images/Sample Photos/${prenom}/${this.video}"><div class="video_container">
-        <video width="320" height="240" controls="" class="photographer-video" aria-label="${this.title}">
-        <source src="images/Sample Photos/${prenom}/${this.video}" type="video/mp4">
-        </video></div></a><div class="label-media"><p class="photograph-title">${this.title}</p>
-        <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
-        return createEachMediaVideo
-    }
-}
 
-class createMediasImageCard {
-    constructor(date, id, image, likes, photographerId, price, tags, title) {
-        this.date = date;
-        this.id = id;
-        this.image = image;
-        this.likes = likes;
-        this.photographerId = photographerId;
-        this.price = price;
-        this.tags = tags;
-        this.title = title;
-    }
-    get createTheMediaImageCard() {
-        return this.createMediaImage()
-    }
-    createMediaImage() {
-        createEachMediaImage = `<li class="listOfMedias">
-        <a class="restricted" href="images/Sample Photos/${prenom}/${this.image}">
-        <img class="photographer-selection" src="images/Sample Photos/${prenom}/${this.image}" aria-label="${this.title}">
-        </a>
-        <div class="label-media"><p class="photograph-title">${this.title}</p>
-        <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
-        return createEachMediaImage
-    }
-}
 //////////// affichage des médias du photographe /////////////
 function createMedias() {
     let photographerCard_ul = `<ul class="portfolioMedias">`;
@@ -211,16 +202,14 @@ function createMedias() {
     }
     photographerCard_ul += '</ul>'
     remplissage2.innerHTML = photographerCard_ul
-
-    console.log(remplissage2) //
 }
 
 async function ongletRemplissage() {
     const response = await fetch('assets/data.json');
     const data = await response.json();
+    const data2 = await createMedias()
     return data;
 }
-
 let ongletLikesTarif = document.getElementById("ongletLikesTarif");
 
 ///////  remplissage de l'onglet et gestion des likes : sur les médias et sur le total sur l'onglet
@@ -280,8 +269,6 @@ ongletRemplissage()
         console.log("le total de likes est : " + compteurDeLikes);
         onglet_likes.setAttribute("class", "numberOfLikes")
         onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
-        console.log(onglet_likes);
-        console.log(likes_onglet);
         onglet_price.setAttribute("class", "onglet_price")
 
         for (let photographer of data.photographers) {
@@ -291,73 +278,42 @@ ongletRemplissage()
                 onglet_price.textContent = `${photographer.price} €/jour`
             }
         }
-        console.log(onglet_price);
         ongletLikesTarif.appendChild(onglet_likes)
         ongletLikesTarif.appendChild(onglet_price)
     })
 
-setTimeout(function() {
-    ongletRemplissage()
-}, 2000);
 
-
-////////////////////////////////////////////
-// https://stackoverflow.com/questions/4068573/convert-string-to-pascal-case-aka-uppercamelcase-in-javascript
-// fonction qui passe une string en PascalCase (pour le titre des photos par exemple)
-function toPascalCase(string) {
-    return `${string}`
-        .replace(new RegExp(/[-_]+/, 'g'), ' ')
-        .replace(new RegExp(/[^\w\s]/, 'g'), '')
-        .replace(
-            new RegExp(/\s+(.)(\w+)/, 'g'),
-            ($1, $2, $3) => `${$2.toUpperCase() + $3.toLowerCase()}`
-        )
-        .replace(new RegExp(/\s/, 'g'), '')
-        .replace(new RegExp(/\w/), s => s.toUpperCase());
-}
 
 ////////// sur la page du photographe, tri dans ses médias au click sur un des tags de sa page
 let linkClicked
 setTimeout(function filtreTag() {
     let tagsOnThisPage = Array.from(document.querySelectorAll(".lienTag"))
+    let mediasOnThisPage = Array.from(document.querySelectorAll(".listOfMedias"))
     console.log(tagsOnThisPage)
+    console.log(mediasOnThisPage)
 
     tagsOnThisPage.forEach(link => {
         link.addEventListener('click', function filter(link) {
+
             linkClicked = link.target.innerHTML.substr(1) // ouiiiiiiiii
             console.log(linkClicked) // lien qui a été clické
 
+            // au lieu de récupérer dans les datas, récupérer dans les medias déjà affichés
             let affichage3 = '<ul class="portfolioMedias">';
-
+            let newMediasPrinted
             for (let tag of tri) {
-                //console.log(tag.tags)
                 if (tag.tags == linkClicked) {
-                    //console.log("j'en ai un " + tag.title)
-
                     if (tag.image == undefined) {
-                        affichage3 += `
-                             <li class="listOfMedias">
-                             <a class="restricted" href="images/Sample Photos/${prenom}/${tag.video}"> <div class="video_container">
-                             <video width="320" height="240" controls="" class="photographer-video" aria-label="${tag.title}"> 
-                             <source src="images/Sample Photos/${prenom}/${tag.video}" type="video/mp4"></video></div></a>`;
-
+                        newMediasPrinted = new createMediasVideoCard(tag.date, tag.id, tag.likes, tag.photographerId, tag.price, tag.tags, tag.title, tag.video).createTheMediasVideoCard
+                        affichage3 += newMediasPrinted
                     } else {
-                        //  console.log(title.image);
-                        affichage3 += `
-                             <li class="listOfMedias">
-                             <a class="restricted" href="images/Sample Photos/${prenom}/${tag.image}">
-                             <img class="photographer-selection" src="images/Sample Photos/${prenom}/${tag.image}" aria-label="${tag.title}"/></a>`;
+                        newMediasPrinted = new createMediasImageCard(tag.date, tag.id, tag.image, tag.likes, tag.photographerId, tag.price, tag.tags, tag.title).createTheMediaImageCard
+                        affichage3 += newMediasPrinted
                     }
-                    affichage3 += `<div class="label-media">
-                    <p class="photograph-title">${tag.title}</p>
-                    <p class="photograph-numberOfLikes">${tag.likes}
-                    <i class="far fa-heart" alt="likes"></i></p>
-                    </div>
-                    </li> `;
                 }
             }
-            affichage3 += '</ul></div>';
-            remplissage2.innerHTML = affichage3;
+            affichage3 += '</ul>'
+            remplissage2.innerHTML = affichage3
             return linkClicked
         })
     });
@@ -369,6 +325,7 @@ setTimeout(function filtreTag() {
 ////////////////////////////////////////////
 // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 // tri dans les médias du photographe depuis les données json
+let newMediasPrinted
 
 function triPopulariteCroissante() { // fonction déclenchée au clic (fonction dans le html)
     console.log("triPopulariteCroissantee")
@@ -379,22 +336,12 @@ function triPopulariteCroissante() { // fonction déclenchée au clic (fonction 
     for (let media of mediasPlusPopulaires) {
         //  console.log(media)
         if (media.image == undefined) {
-            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
-                 <div class="video_container">
-                 <video width="320" height="240" controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div></a>`;
-
+            newMediasPrinted = new createMediasVideoCard(media.date, media.id, media.likes, media.photographerId, media.price, media.tags, media.title, media.video).createTheMediasVideoCard
+            affichage3 += newMediasPrinted
         } else {
-            //  console.log(media.image);
-            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
-                 
-                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/></a>`;
+            newMediasPrinted = new createMediasImageCard(media.date, media.id, media.image, media.likes, media.photographerId, media.price, media.tags, media.title).createTheMediaImageCard
+            affichage3 += newMediasPrinted
         }
-        affichage3 += `<div class="label-media">
-        <p class="photograph-title">${media.title}</p>
-        <p class="photograph-numberOfLikes">${media.likes}
-        <i class="far fa-heart" alt="likes"></i></p>
-        </div>
-        </li> `;
     }
     affichage3 += '</ul></div>';
     remplissage2.innerHTML = affichage3;
@@ -410,22 +357,12 @@ function triDateRecenteEnPremier() { // fonction déclenchée au clic (fonction 
     for (let media of mediasPlusRecent) {
         //  console.log(media)
         if (media.image == undefined) {
-            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
-                 <div class="video_container">
-                 <video width="320" height="240" controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div></a>`;
-
+            newMediasPrinted = new createMediasVideoCard(media.date, media.id, media.likes, media.photographerId, media.price, media.tags, media.title, media.video).createTheMediasVideoCard
+            affichage3 += newMediasPrinted
         } else {
-            //  console.log(media.image);
-            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
-                 
-                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/></a>`;
+            newMediasPrinted = new createMediasImageCard(media.date, media.id, media.image, media.likes, media.photographerId, media.price, media.tags, media.title).createTheMediaImageCard
+            affichage3 += newMediasPrinted
         }
-        affichage3 += `<div class="label-media">
-        <p class="photograph-title">${media.title}</p>
-        <p class="photograph-numberOfLikes">${media.likes}
-        <i class="far fa-heart" alt="likes"></i></p>
-        </div>
-        </li> `;
     }
     affichage3 += '</ul></div>';
     remplissage2.innerHTML = affichage3;
@@ -442,22 +379,12 @@ function triOrdreAlphabétique() { // fonction déclenchée au clic (fonction da
     for (let media of mediasEnOrdreAlphabetique) {
         //  console.log(media)
         if (media.image == undefined) {
-            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.video}" class="restricted">
-                 <div class="video_container">
-                 <video width="320" height="240" controls="" class="photographer-video"> <source src="images/Sample Photos/${prenom}/${media.video}" type="video/mp4"></video></div></a>`;
-
+            newMediasPrinted = new createMediasVideoCard(media.date, media.id, media.likes, media.photographerId, media.price, media.tags, media.title, media.video).createTheMediasVideoCard
+            affichage3 += newMediasPrinted
         } else {
-            //  console.log(media.image);
-            affichage3 += `<li class="listOfMedias"><a href="images/Sample Photos/${prenom}/${media.image}" class="restricted">
-                 
-                 <img class="photographer-selection" src="images/Sample Photos/${prenom}/${media.image}"/></a>`;
+            newMediasPrinted = new createMediasImageCard(media.date, media.id, media.image, media.likes, media.photographerId, media.price, media.tags, media.title).createTheMediaImageCard
+            affichage3 += newMediasPrinted
         }
-        affichage3 += `<div class="label-media">
-        <p class="photograph-title">${media.title}</p>
-        <p class="photograph-numberOfLikes">${media.likes}
-        <i class="far fa-heart" alt="likes"></i></p>
-        </div>
-        </li> `;
     }
     affichage3 += '</ul></div>';
     remplissage2.innerHTML = affichage3;
