@@ -95,6 +95,15 @@ h1 {
     font-weight: 400;
 }
 
+.indexTitle {
+    @media all and (max-width: 769px) {
+        margin: 0px;
+        top: 35px;
+        right: 20px;
+        font-size: 14px;
+    }
+}
+
 .photographer_listOfTags {
     display: flex;
     flex-direction: row;

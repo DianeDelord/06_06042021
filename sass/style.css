@@ -89,14 +89,19 @@ hr {
      object-fit: cover;
   margin-bottom: 10px;
 }
+
 @media all and (max-width: 769px) {
-  .photographer-portrait {
+  .resp {
     height: 110px;
     width: 110px;
     margin-bottom: 20px;
     position: absolute;
     top: 90px;
     right: 20px;
+    border-radius: 50%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    background-size: contain;
   }
 }
 
@@ -263,6 +268,11 @@ h3 {
     z-index: 101;
   }
 }
+@media all and (max-width: 320px) {
+  .content {
+    max-height: 99vh;
+  }
+}
 
 .modal-body,
 #modal-body__validation {
@@ -315,6 +325,11 @@ textarea {
 @media all and (max-width: 769px) {
   .message {
     height: auto;
+  }
+}
+@media all and (max-width: 320px) {
+  .message {
+    height: 100px;
   }
 }
 
@@ -675,6 +690,15 @@ h1 {
   font-weight: 400;
 }
 
+@media all and (max-width: 769px) {
+  .indexTitle {
+    margin: 0px;
+    top: 35px;
+    right: 20px;
+    font-size: 14px;
+  }
+}
+
 .photographer_listOfTags {
   display: flex;
   flex-direction: row;
@@ -848,6 +872,7 @@ nav li:hover #chevron {
     font-size: 36px;
     padding: 0;
     margin: 0;
+    width: 75%;
   }
 }
 

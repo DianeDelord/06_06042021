@@ -98,6 +98,9 @@ h3 {
         border-radius: 0;
         z-index: 101;
     }
+    @media all and (max-width: 320px) {
+        max-height: 99vh;
+    }
 }
 
 .modal-body,
@@ -149,6 +152,9 @@ textarea {
     resize: none;
     @media all and (max-width: 769px) {
         height: auto;
+    }
+    @media all and (max-width: 320px) {
+        height: 100px;
     }
 }
 

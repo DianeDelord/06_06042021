@@ -81,6 +81,9 @@ hr {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
+}
+
+.resp {
     @media all and (max-width: 769px) {
         height: 110px;
         width: 110px;
@@ -88,6 +91,9 @@ hr {
         position: absolute;
         top: 90px;
         right: 20px;
+        border-radius: 50%;
+        object-fit: cover;
+        background-size: contain;
     }
 }
 

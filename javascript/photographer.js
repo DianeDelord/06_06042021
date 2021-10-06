@@ -118,6 +118,7 @@ fetch("assets/data.json")
     photographerCard_h1.textContent = photographer_name;
 
     photographerCard_img.setAttribute("class", "photographer-portrait");
+    photographerCard_img.setAttribute("class", "resp");
     photographerCard_img.setAttribute("src", `images/Sample Photos/Photographers ID Photos/${photographer_portrait}`);
     photographerCard_img.setAttribute("alt", `${photographer_name}`);
     photographerCard_location.setAttribute("class", "photographer-city");
