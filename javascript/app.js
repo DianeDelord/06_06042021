@@ -71,7 +71,7 @@ class CardPhotographer {
         return this.createCard()
     }
     createCard() {
-        createEachCard = `<a href="/photographer.html?id=` + this.id + `" id="` + this.id + `" class="restrict" aria-label="` + this.name + `"> 
+        createEachCard = `<a href="./photographer.html?id=` + this.id + `" id="` + this.id + `" class="restrict" aria-label="` + this.name + `"> 
         <li class="photographers-items"> <section> <img class="photographer-portrait" alt="${this.name}" src="images/Sample Photos/Photographers ID Photos/${this.portrait}">
        </section> <section> <h2 class="photographer-name">${this.name}</h2> <p class="photographer-city">${this.city}, ${this.country}</p> <p class="tagline">${this.tagline}</p>
     <p class="photographerPrice">${this.price}€/jour</p> <div class="photographer_listOfTags">`;

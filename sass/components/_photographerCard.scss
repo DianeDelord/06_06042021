@@ -5,6 +5,10 @@
     justify-content: space-between;
     margin: 0;
     padding: initial;
+    @media all and (max-width: 769px) {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
 }
 
 #selected-items {
@@ -37,6 +41,10 @@ hr {
     align-items: center;
     min-width: 23%;
     width: 26%;
+    @media all and (max-width: 769px) {
+        width: 100%;
+        margin: 20px;
+    }
 }
 
 .restrict:hover {
@@ -59,6 +67,9 @@ hr {
 .photographers-items p {
     line-height: 1em;
     font-size: .9rem;
+    @media all and (max-width: 769px) {
+        line-height: 0em;
+    }
 }
 
 .photographer-portrait {
