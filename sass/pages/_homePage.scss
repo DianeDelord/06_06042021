@@ -3,6 +3,9 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'DM Sans', sans-serif;
+    @media all and (max-width: 769px) {
+        margin: 20px 15px;
+    }
 }
 
 header {
@@ -35,7 +38,6 @@ header {
     @media all and (max-width: 769px) {
         position: absolute;
         top: 25px;
-        left: 20px;
         width: 55%;
     }
 }
@@ -91,17 +93,14 @@ h1 {
     right: 55px;
     color: $primary-color;
     font-weight: 400;
-    @media all and (max-width: 769px) {
-        position: absolute;
-        top: 25px;
-        right: 20px;
-        font-size: 1em;
-    }
 }
 
 .photographer_listOfTags {
     display: flex;
     flex-direction: row;
+    @media all and (max-width: 769px) {
+        margin: 0px;
+    }
 }
 
 .lienTag {

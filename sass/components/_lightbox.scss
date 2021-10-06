@@ -13,6 +13,12 @@
     animation: lightboxIn .5s;
     border-radius: 5px;
     object-fit: cover;
+    @media all and (max-width: 769px) {
+        min-width: 85vw;
+    }
+    @media all and (max-width: 414px) {
+        min-width: 75vw;
+    }
 }
 
 .lightbox {
@@ -26,6 +32,9 @@
     overflow: auto;
     animation: lightboxIn .5s;
     transition: opacity .3s;
+    @media all and (max-width: 769px) {
+        z-index: 101;
+    }
 }
 
 .lightbox.fadeOut {

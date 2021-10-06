@@ -5,6 +5,9 @@
 #informations {
     background-color: $quaternary-color;
     border-radius: 5px;
+    @media all and (max-width: 769px) {
+        background-color: white;
+    }
 }
 
 .photographerPersonal_card {
@@ -17,6 +20,11 @@
     color: $another-color;
     font-weight: 400;
     position: initial;
+    @media all and (max-width: 769px) {
+        font-size: 36px;
+        padding: 0;
+        margin: 0;
+    }
 }
 
 .photographerPersonal_card-city {
@@ -26,6 +34,10 @@
 .photographerPersonal_card-tagline {
     font-size: .8em;
     color: $dark-color;
+    @media all and (max-width: 769px) {
+        padding: 7px 0;
+        margin: 0;
+    }
 }
 
 .redirect {
@@ -36,11 +48,18 @@
     padding: 17px;
     text-decoration: none;
     align-items: center;
+    @media all and (max-width: 769px) {
+        margin: 0;
+        padding: 0;
+    }
 }
 
 #photographer_infos {
     display: flex;
     flex-direction: column;
+    @media all and (max-width: 769px) {
+        margin-bottom: 25px;
+    }
 }
 
 #mediasDuPhotographe {
@@ -70,6 +89,10 @@
     transition: .3s ease-in-out;
     margin: 0 53px 0 0;
     width: 300px;
+    @media all and (max-width: 769px) {
+        width: 100%;
+        margin: 0;
+    }
 }
 
 .photographer-video:hover,
@@ -84,6 +107,9 @@
     object-fit: cover;
     object-position: top;
     border-radius: 5px;
+    @media all and (max-width: 769px) {
+        width: 100%;
+    }
 }
 
 .video_container {
@@ -92,6 +118,9 @@
     display: block;
     height: 250px;
     object-fit: contain;
+    @media all and (max-width: 769px) {
+        width: 100%;
+    }
 }
 
 .photographer-video {
@@ -103,6 +132,9 @@
 
 .restricted {
     text-decoration: none;
+    @media all and (max-width: 769px) {
+        width: 100%;
+    }
 }
 
 .photograph-title {
@@ -121,6 +153,10 @@
     align-items: center;
     justify-content: space-between;
     width: 95%;
+    @media all and (max-width: 769px) {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
 
 .fas {
@@ -140,6 +176,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    @media all and (max-width: 769px) {
+        display: none;
+    }
 }
 
 .onglet_likesColor:before {
