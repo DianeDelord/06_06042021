@@ -43,7 +43,7 @@ hr {
   text-decoration: none;
   align-items: center;
   min-width: 23%;
-  width: 26%;
+  max-width: 350px;
 }
 @media all and (max-width: 769px) {
   .restrict {
@@ -90,6 +90,15 @@ hr {
   margin-bottom: 10px;
 }
 
+.resp {
+  height: 170px;
+  width: 170px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-size: contain;
+}
 @media all and (max-width: 769px) {
   .resp {
     height: 110px;
@@ -102,6 +111,12 @@ hr {
     -o-object-fit: cover;
        object-fit: cover;
     background-size: contain;
+  }
+}
+@media all and (max-width: 375px) {
+  .resp {
+    height: 95px;
+    width: 95px;
   }
 }
 
@@ -550,6 +565,7 @@ textarea {
   outline: none;
   font-size: 0.8rem;
   padding: 12px 7px;
+  margin: 15px;
 }
 @media all and (max-width: 769px) {
   .btn-signup {

@@ -41,7 +41,7 @@ hr {
     text-decoration: none;
     align-items: center;
     min-width: 23%;
-    width: 26%;
+    max-width: 350px;
     @media all and (max-width: 769px) {
         width: 100%;
         margin: 20px;
@@ -84,6 +84,12 @@ hr {
 }
 
 .resp {
+    height: 170px;
+    width: 170px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-size: contain;
     @media all and (max-width: 769px) {
         height: 110px;
         width: 110px;
@@ -94,6 +100,10 @@ hr {
         border-radius: 50%;
         object-fit: cover;
         background-size: contain;
+    }
+    @media all and (max-width: 375px) {
+        height: 95px;
+        width: 95px;
     }
 }
 
