@@ -34,7 +34,7 @@ class createMediasVideoCard {
     createMediasVideo() {
         createEachMediaVideo = `<li class="listOfMedias ${this.tags}">
         <a class="restricted" href="images/Sample Photos/${prenom}/${this.video}"><div class="video_container">
-        <video width="320" height="240" controls="" class="photographer-video" aria-label="${this.title}">
+        <video width="320" height="240" controls="" class="photographer-video mediaForLightbox" aria-label="${this.title}">
         <source src="images/Sample Photos/${prenom}/${this.video}" type="video/mp4">
         </video></div></a><div class="label-media"><p class="photograph-title">${this.title}</p>
         <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
@@ -59,7 +59,7 @@ class createMediasImageCard {
     createMediaImage() {
         createEachMediaImage = `<li class="listOfMedias ${this.tags}">
         <a class="restricted" href="images/Sample Photos/${prenom}/${this.image}">
-        <img class="photographer-selection" src="images/Sample Photos/${prenom}/${this.image}" aria-label="${this.title}">
+        <img class="photographer-selection mediaForLightbox" src="images/Sample Photos/${prenom}/${this.image}" aria-label="${this.title}">
         </a>
         <div class="label-media"><p class="photograph-title">${this.title}</p>
         <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
