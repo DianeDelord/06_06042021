@@ -40,74 +40,41 @@ class lightbox {
 
     /**
      * @param {string} url URL de l'image
-     */
+     */  
     loadImage(url) {
         this.url = null;
-        console.log(this.element)
-        console.log(url)
+        const container = this.element.querySelector('.lightbox__container')
+        const loader = document.createElement('div')
+        loader.setAttribute("src", "images/loader.svg");
+        loader.classList.add('lightbox__loader');
+        container.innerHTML = '';
+        container.appendChild(loader)
+
+        let media = (url.split(".")[1]) == "mp4" ? document.createElement("video") : new Image();
+       
+
+        const afterLoading = () => {
+            container.removeChild(loader);
+            container.appendChild(media);
+            this.url = url;
+        }
+        media.src = url
 
         if ((url.split(".")[1]) == "mp4") {
-            let image = new Image();
-            console.log(image)
-
-            const container = this.element.querySelector('.lightbox__container')
-            const loader = document.createElement('div')
-            loader.classList.add('lightbox__loader');
-            loader.setAttribute("src", "images/loader.svg");
-            container.innerHTML = '';
-            container.appendChild(loader)
-            console.log(image)
-            console.log(container)
-            console.log("video")
-            console.log(image)
-            this.url = url;
-            console.log(url)
-            let videoContainer = document.createElement("video")
-            videoContainer.setAttribute("width", "320")
-            videoContainer.setAttribute("height", "240")
-            videoContainer.setAttribute("controls", "controls")
-            videoContainer.setAttribute("aria-label", ``)
-            videoContainer.setAttribute("src", `${url}`)
-            videoContainer.setAttribute("role", "button")
-            container.innerHTML = '';
-            console.log(container)
-            console.log(image)
-            container.appendChild(image);
-            console.log(container)
-            image.replaceWith(videoContainer)
-            console.log(image)
-
-            image.onload = () => {
-                container.removeChild(loader);
-                container.appendChild(videoContainer);
-                console.log(image)
-                videoContainer.src = url;
-                console.log(url)
-            }
-            image.src = url;
-            console.log(image.src)
-        } else {
-            let image = new Image();
-            const container = this.element.querySelector('.lightbox__container')
-            const loader = document.createElement('div')
-            loader.classList.add('lightbox__loader');
-            loader.setAttribute("src", "images/loader.svg");
-            container.innerHTML = '';
-            container.appendChild(loader)
-            console.log(image)
-            console.log(container)
-
-            image.onload = () => {
-                container.removeChild(loader);
-                container.appendChild(image);
-                this.url = url;
-                console.log(url)
-                console.log(container)
-            }
-            image.src = url;
-            console.log(image.src)
+         
+            media.setAttribute("width", "320")
+            media.setAttribute("height", "240")
+            media.setAttribute("controls", "controls")
+            media.setAttribute("aria-label", ``)
+            media.setAttribute("role", "button")
+            media.onloadstart = afterLoading
         }
+        else {
+            media.onload = afterLoading
+        }        
+       
     }
+            
 
     onKeyUp(e) {
         if (e.key == 'Escape') {
