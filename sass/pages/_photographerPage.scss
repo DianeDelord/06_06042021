@@ -20,6 +20,8 @@
     color: $another-color;
     font-weight: 400;
     position: initial;
+    font-size: 3em;
+    margin: .7em 0;
     @media all and (max-width: 769px) {
         font-size: 36px;
         padding: 0;
@@ -33,7 +35,7 @@
 }
 
 .photographerPersonal_card-tagline {
-    font-size: .8em;
+    font-size: 1em;
     color: $dark-color;
     @media all and (max-width: 769px) {
         padding: 7px 0;
@@ -140,12 +142,12 @@
 
 .photograph-title {
     color: $primary-color;
-    font-size: .7em;
+    font-size: 1.1em;
 }
 
 .photograph-numberOfLikes {
     color: $primary-color;
-    font-size: .7em;
+    font-size: 1.1em;
 }
 
 .label-media {
@@ -192,4 +194,5 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    font-size: 1.2em;
 }

@@ -18,7 +18,7 @@ let contact = document.getElementById("contact");
 let createEachMediaVideo
 let createEachMediaImage
 class createMediasVideoCard {
-    constructor(date, id, likes, photographerId, price, tags, title, video) {
+    constructor(date, id, likes, photographerId, price, tags, title, video, altText) {
         this.date = date;
         this.id = id;
         this.likes = likes;
@@ -27,6 +27,7 @@ class createMediasVideoCard {
         this.tags = tags;
         this.title = title;
         this.video = video;
+        this.altText = altText;
     }
     get createTheMediasVideoCard() {
         return this.createMediasVideo()
@@ -34,7 +35,7 @@ class createMediasVideoCard {
     createMediasVideo() {
         createEachMediaVideo = `<li class="listOfMedias ${this.tags}">
         <a class="restricted" href="images/Sample Photos/${prenom}/${this.video}"><div class="video_container">
-        <video width="320" height="240" controls="" class="photographer-video mediaForLightbox" aria-label="${this.title}">
+        <video width="320" height="240" controls="" class="photographer-video mediaForLightbox" aria-label="${this.altText}">
         <source src="images/Sample Photos/${prenom}/${this.video}" type="video/mp4">
         </video></div></a><div class="label-media"><p class="photograph-title">${this.title}</p>
         <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
@@ -43,7 +44,7 @@ class createMediasVideoCard {
 }
 
 class createMediasImageCard {
-    constructor(date, id, image, likes, photographerId, price, tags, title) {
+    constructor(date, id, image, likes, photographerId, price, tags, title, altText) {
         this.date = date;
         this.id = id;
         this.image = image;
@@ -52,6 +53,7 @@ class createMediasImageCard {
         this.price = price;
         this.tags = tags;
         this.title = title;
+        this.altText = altText;
     }
     get createTheMediaImageCard() {
         return this.createMediaImage()
@@ -59,7 +61,7 @@ class createMediasImageCard {
     createMediaImage() {
         createEachMediaImage = `<li class="listOfMedias ${this.tags}">
         <a class="restricted" href="images/Sample Photos/${prenom}/${this.image}">
-        <img class="photographer-selection mediaForLightbox" src="images/Sample Photos/${prenom}/${this.image}" aria-label="${this.title}">
+        <img class="photographer-selection mediaForLightbox" src="images/Sample Photos/${prenom}/${this.image}" aria-label="${this.altText}">
         </a>
         <div class="label-media"><p class="photograph-title">${this.title}</p>
         <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
@@ -194,10 +196,10 @@ function createMedias() {
 
     for (let title of tri) {
         if (title.image == undefined) {
-            newMediasPrinted = new createMediasVideoCard(title.date, title.id, title.likes, title.photographerId, title.price, title.tags, title.title, title.video).createTheMediasVideoCard
+            newMediasPrinted = new createMediasVideoCard(title.date, title.id, title.likes, title.photographerId, title.price, title.tags, title.title, title.video, title.altText).createTheMediasVideoCard
             photographerCard_ul += newMediasPrinted
         } else {
-            newMediasPrinted = new createMediasImageCard(title.date, title.id, title.image, title.likes, title.photographerId, title.price, title.tags, title.title).createTheMediaImageCard
+            newMediasPrinted = new createMediasImageCard(title.date, title.id, title.image, title.likes, title.photographerId, title.price, title.tags, title.title, title.altText).createTheMediaImageCard
             photographerCard_ul += newMediasPrinted
         }
     }

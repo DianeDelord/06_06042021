@@ -6,6 +6,11 @@ body {
     @media all and (max-width: 769px) {
         margin: 20px 15px;
     }
+    @media all and (min-width: 1350px) {
+        margin: auto;
+        margin-top: 40px;
+        max-width: 1360px;
+    }
 }
 
 header {
@@ -73,7 +78,7 @@ header {
     border: .001rem solid;
     border-color: lightgray;
     border-radius: 20px;
-    font-size: .7rem;
+    font-size: 1em;
     margin: 2px 0;
 }
 
@@ -126,6 +131,6 @@ h1 {
     border: 0.001rem solid;
     border-color: lightgray;
     border-radius: 20px;
-    font-size: 0.7rem;
+    font-size: 1rem;
     margin: 0 2px;
 }
