@@ -8,10 +8,7 @@ class lightbox {
         const links = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]'));
         const gallery = links.map(link => link.getAttribute('href'));
         console.log("lightbox ok    " + links)
-            //   console.log(links[0])
-            //   console.log(links[0])
             //  console.log(gallery);
-
         links.forEach(link => link.addEventListener('click', e => {
             console.log(link)
             e.preventDefault()
@@ -37,7 +34,6 @@ class lightbox {
         document.addEventListener('keyup', this.onKeyUp);
     }
 
-
     /**
      * @param {string} url URL de l'image
      */
@@ -52,7 +48,6 @@ class lightbox {
 
         let media = (url.split(".")[1]) == "mp4" ? document.createElement("video") : new Image();
 
-
         const afterLoading = () => {
             container.removeChild(loader);
             container.appendChild(media);
@@ -61,7 +56,6 @@ class lightbox {
         media.src = url
 
         if ((url.split(".")[1]) == "mp4") {
-
             media.setAttribute("width", "320")
             media.setAttribute("height", "240")
             media.setAttribute("controls", "controls")
@@ -71,8 +65,6 @@ class lightbox {
         } else {
             media.onload = afterLoading
         }
-
-
     }
 
     onKeyUp(e) {
@@ -121,7 +113,6 @@ class lightbox {
         }
         this.loadImage(this.images[i - 1]);
     }
-
 
     /**
      * @param {string} url URL de l'image

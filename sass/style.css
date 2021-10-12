@@ -21,6 +21,11 @@
   margin: 0;
   padding: initial;
 }
+@media all and (max-width: 769px) {
+  #selected-items {
+    justify-content: center;
+  }
+}
 
 .photographers-items section:nth-child(2) {
   display: flex;
@@ -211,6 +216,12 @@ textarea::placeholder {
     bottom: 10px;
     left: 20px;
     z-index: 100;
+  }
+}
+@media all and (max-width: 769px) and (max-width: 376px) {
+  .div_contact_button {
+    left: 25vw;
+    margin: 0 auto;
   }
 }
 
@@ -573,10 +584,17 @@ textarea {
   .btn-signup {
     position: fixed;
     bottom: 30px;
-    left: 32vw;
+    left: 40vw;
     font-weight: 700;
     z-index: 100;
-    padding: 5px 25px;
+    margin: auto;
+  }
+}
+@media all and (max-width: 376px) {
+  .btn-signup {
+    font-weight: 700;
+    z-index: 100;
+    left: 29vw;
   }
 }
 
@@ -605,16 +623,16 @@ body {
   flex-direction: column;
   font-family: "DM Sans", sans-serif;
 }
-@media all and (max-width: 769px) {
-  body {
-    margin: 20px 15px;
-  }
-}
 @media all and (min-width: 1350px) {
   body {
     margin: auto;
     margin-top: 40px;
     max-width: 1360px;
+  }
+}
+@media all and (max-width: 769px) {
+  body {
+    margin: 20px 15px;
   }
 }
 
@@ -673,6 +691,16 @@ header {
 }
 @media all and (max-width: 769px) {
   .photographer-categories {
+    margin: 25px auto;
+    width: 95%;
+    justify-content: center;
+    position: absolute;
+    top: 80px;
+    left: 0;
+  }
+}
+@media all and (max-width: 700px) {
+  .photographer-categories {
     width: 95%;
     justify-content: center;
     margin: auto;
@@ -705,6 +733,11 @@ header {
 main {
   display: flex;
   flex-direction: column;
+}
+@media all and (max-width: 769px) {
+  main {
+    margin: 20px;
+  }
 }
 
 h1 {
@@ -972,7 +1005,7 @@ nav li:hover #chevron {
   margin: 0 53px 0 0;
   width: 300px;
 }
-@media all and (max-width: 769px) {
+@media all and (max-width: 1026px) {
   .portfolioMedias li {
     width: 100%;
     margin: 0;

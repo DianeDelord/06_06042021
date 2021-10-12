@@ -38,7 +38,7 @@ class createMediasVideoCard {
         <video width="320" height="240" controls="" class="photographer-video mediaForLightbox" aria-label="${this.altText}">
         <source src="images/Sample Photos/${prenom}/${this.video}" type="video/mp4">
         </video></div></a><div class="label-media"><p class="photograph-title">${this.title}</p>
-        <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
+        <p class="photograph-numberOfLikes">${this.likes} <em class="far fa-heart" alt="likes" aria-hidden="true"></em></p></div></li>`;
         return createEachMediaVideo
     }
 }
@@ -64,7 +64,7 @@ class createMediasImageCard {
         <img class="photographer-selection mediaForLightbox" src="images/Sample Photos/${prenom}/${this.image}" aria-label="${this.altText}">
         </a>
         <div class="label-media"><p class="photograph-title">${this.title}</p>
-        <p class="photograph-numberOfLikes">${this.likes} <i class="far fa-heart" alt="likes" aria-hidden="true"></i></p></div></li>`;
+        <p class="photograph-numberOfLikes">${this.likes} <em class="far fa-heart" alt="likes" aria-hidden="true"></em></p></div></li>`;
         return createEachMediaImage
     }
 }
@@ -218,12 +218,9 @@ let ongletLikesTarif = document.getElementById("ongletLikesTarif");
 ///////  remplissage de l'onglet et gestion des likes : sur les médias et sur le total sur l'onglet
 ongletRemplissage()
     .then(data => {
-        console.log("onglet remplissage");
         let compteurDeLikes = 0;
         let onglet_likes = document.createElement("p");
-        let likes_onglet = document.createElement("i")
         let onglet_price = document.createElement("p");
-        console.log(onglet_price);
         let mediaLikes
 
         //boucle pour ajouter les likes de chaque média au compteur total de likes obtenus par le photographe
@@ -238,11 +235,9 @@ ongletRemplissage()
         let heart_likes = Array.from(document.querySelectorAll(".label-media"))
         heart_likes.forEach(element => {
                 element.addEventListener('click', event => {
-                    console.log(heart_likes, event)
                     console.log("coeur clické")
                     let heart = element.querySelector(".fa-heart")
                     let numberOfLikesOfTheMedia = parseInt(element.querySelector(".photograph-numberOfLikes").innerText)
-                    console.log(numberOfLikesOfTheMedia)
 
                     // si le coeur est "vide" c'est qu'il n'a pas été clické / liké 
                     // au click = coeur liké => le coeur passe "plein"
@@ -250,10 +245,9 @@ ongletRemplissage()
                         heart.classList.replace("far", "fas");
                         compteurDeLikes += 1 // ajout +1 au total des likes du photographe dans l'onglet
                         numberOfLikesOfTheMedia += 1 // ajout +1 au total des likes de ce média
-                        element.querySelector(".photograph-numberOfLikes").innerHTML = numberOfLikesOfTheMedia + " " + `<i class="fas fa-heart" alt="likes"></i>`
+                        element.querySelector(".photograph-numberOfLikes").innerHTML = numberOfLikesOfTheMedia + " " + `<em class="fas fa-heart" alt="likes" aria-hidden="true"></em>`
                         console.log("coeur liké")
-                        console.log(compteurDeLikes)
-                        onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
+                        onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<em class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></em>`
 
                         // si le coeur est "plein" c'est qu'il a déjà été clické / liké 
                         // au click = coeur unliké => le coeur repasse à "vide"
@@ -262,8 +256,8 @@ ongletRemplissage()
                         console.log("coeur unliké")
                         compteurDeLikes -= 1
                         numberOfLikesOfTheMedia -= 1
-                        element.querySelector(".photograph-numberOfLikes").innerHTML = numberOfLikesOfTheMedia + " " + `<i class="far fa-heart" alt="likes"></i>`
-                        onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
+                        element.querySelector(".photograph-numberOfLikes").innerHTML = numberOfLikesOfTheMedia + " " + `<em class="far fa-heart" alt="likes" aria-hidden="true"></em>`
+                        onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<em class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></em>`
                     }
                 })
             })
@@ -271,13 +265,11 @@ ongletRemplissage()
 
         console.log("le total de likes est : " + compteurDeLikes);
         onglet_likes.setAttribute("class", "numberOfLikes")
-        onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<i class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></i>`
+        onglet_likes.innerHTML = compteurDeLikes + `&#8239; ` + `<em class="fas fa-heart onglet_likesColor" alt="likes" aria-hidden="true"></em>`
         onglet_price.setAttribute("class", "onglet_price")
 
         for (let photographer of data.photographers) {
-            //  console.log(photographer.id);
             if (photographer.id == photographerPage) {
-                //   console.log(photographer.price); // tarif journalier du photographe de la page
                 onglet_price.textContent = `${photographer.price} €/jour`
             }
         }
@@ -307,10 +299,10 @@ setTimeout(function filtreTag() {
             for (let tag of tri) {
                 if (tag.tags == linkClicked) {
                     if (tag.image == undefined) {
-                        newMediasPrinted = new createMediasVideoCard(tag.date, tag.id, tag.likes, tag.photographerId, tag.price, tag.tags, tag.title, tag.video).createTheMediasVideoCard
+                        newMediasPrinted = new createMediasVideoCard(tag.date, tag.id, tag.likes, tag.photographerId, tag.price, tag.tags, tag.title, tag.video, tag.altText).createTheMediasVideoCard
                         affichage3 += newMediasPrinted
                     } else {
-                        newMediasPrinted = new createMediasImageCard(tag.date, tag.id, tag.image, tag.likes, tag.photographerId, tag.price, tag.tags, tag.title).createTheMediaImageCard
+                        newMediasPrinted = new createMediasImageCard(tag.date, tag.id, tag.image, tag.likes, tag.photographerId, tag.price, tag.tags, tag.title, tag.altText).createTheMediaImageCard
                         affichage3 += newMediasPrinted
                     }
                 }
@@ -330,7 +322,7 @@ setTimeout(function filtreTag() {
 // tri dans les médias du photographe depuis les données json
 let newMediasPrinted
 
-function triPopulariteCroissante() { // fonction déclenchée au clic (fonction dans le html)
+function triPopulariteDecroissante() { // fonction déclenchée au clic (fonction dans le html)
     console.log("triPopulariteCroissantee")
 
     let affichage3 = '<ul class="portfolioMedias">';
@@ -372,7 +364,7 @@ function triDateRecenteEnPremier() { // fonction déclenchée au clic (fonction 
 }
 
 
-function triOrdreAlphabétique() { // fonction déclenchée au clic (fonction dans le html)
+function triOrdreAlphabetique() { // fonction déclenchée au clic (fonction dans le html)
     console.log("triOrdreAlphabétique")
 
     let affichage3 = '<ul class="portfolioMedias">';

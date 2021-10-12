@@ -30,6 +30,10 @@ textarea::placeholder {
         bottom: 10px;
         left: 20px;
         z-index: 100;
+        @media all and (max-width: 376px) {
+            left: 25vw;
+            margin: 0 auto;
+        }
     }
 }
 
@@ -392,10 +396,15 @@ textarea {
     @media all and (max-width: 769px) {
         position: fixed;
         bottom: 30px;
-        left: 32vw;
+        left: 40vw;
         font-weight: 700;
         z-index: 100;
-        padding: 5px 25px;
+        margin: auto;
+    }
+    @media all and (max-width: 376px) {
+        font-weight: 700;
+        z-index: 100;
+        left: 29vw;
     }
 }
 

@@ -18,6 +18,9 @@
     justify-content: space-between;
     margin: 0;
     padding: initial;
+    @media all and (max-width: 769px) {
+        justify-content: center;
+    }
 }
 
 .photographers-items section:nth-child(2) {

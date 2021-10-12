@@ -3,13 +3,13 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'DM Sans', sans-serif;
-    @media all and (max-width: 769px) {
-        margin: 20px 15px;
-    }
     @media all and (min-width: 1350px) {
         margin: auto;
         margin-top: 40px;
         max-width: 1360px;
+    }
+    @media all and (max-width: 769px) {
+        margin: 20px 15px;
     }
 }
 
@@ -58,6 +58,14 @@ header {
     width: 45%;
     flex-wrap: wrap;
     @media all and (max-width: 769px) {
+        margin: 25px auto;
+        width: 95%;
+        justify-content: center;
+        position: absolute;
+        top: 80px;
+        left: 0;
+    }
+    @media all and (max-width: 700px) {
         width: 95%;
         justify-content: center;
         margin: auto;
@@ -90,6 +98,9 @@ header {
 main {
     display: flex;
     flex-direction: column;
+    @media all and (max-width: 769px) {
+        margin: 20px;
+    }
 }
 
 h1 {
